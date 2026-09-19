@@ -1,0 +1,90 @@
+{
+  "schema_version": "2.0",
+  "domain_id": "automotive_repair_operations",
+  "tools": [
+    {
+      "name": "diagnose_wait_bottlenecks",
+      "description": "依門市、日期與維修流程事件診斷等待時間瓶頸；只回傳證據與可能根因，不直接假設是排班問題。",
+      "action_kind": "read",
+      "annotations": {"readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"shop_id": {"type": "string"}, "date_from": {"type": "string"}, "date_to": {"type": "string"}}, "required": ["shop_id"], "additionalProperties": false}
+    },
+    {
+      "name": "list_repair_work_queue",
+      "description": "列出指定門市目前接車、檢查、待料、待核價、施工與待交車工單，供現場判斷塞車位置。",
+      "action_kind": "read",
+      "annotations": {"readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"shop_id": {"type": "string"}, "status": {"type": "string"}}, "required": ["shop_id"], "additionalProperties": false}
+    },
+    {
+      "name": "get_repair_order",
+      "description": "讀取單一維修工單的車輛、進度、工位、技師、零件、報價與通知狀態。",
+      "action_kind": "read",
+      "annotations": {"readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}}, "required": ["repair_order_id"], "additionalProperties": false}
+    },
+    {
+      "name": "create_vehicle_intake",
+      "description": "建立車輛接車紀錄，保存門市、車牌、里程、客訴與到店時間；寫入前需明確確認。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"shop_id": {"type": "string"}, "plate_number": {"type": "string"}, "mileage_km": {"type": "integer", "minimum": 0}, "customer_concern": {"type": "string"}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["shop_id", "plate_number", "customer_concern", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "create_repair_order",
+      "description": "由已確認的接車紀錄建立維修工單與初始檢查項目；不自動承諾價格或完工時間。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"intake_id": {"type": "string"}, "inspection_items": {"type": "array", "items": {"type": "string"}}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["intake_id", "inspection_items", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "assign_repair_bay",
+      "description": "將工單指派到可用工位；若工位被占用則拒絕，避免重複排入。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}, "bay_id": {"type": "string"}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["repair_order_id", "bay_id", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "match_technician_skills",
+      "description": "依工單檢查項目比對技師技能與可用時段，只提供候選名單，不直接改派。",
+      "action_kind": "read",
+      "annotations": {"readOnlyHint": true, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}}, "required": ["repair_order_id"], "additionalProperties": false}
+    },
+    {
+      "name": "mark_parts_wait",
+      "description": "記錄工單待料品項、供應商預估到貨時間與是否影響交期。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}, "part_name": {"type": "string"}, "estimated_arrival": {"type": "string"}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["repair_order_id", "part_name", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "request_quote_approval",
+      "description": "建立客戶報價核准請求並記錄金額與項目；只建立待核准狀態，不代替客戶同意。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}, "amount": {"type": "number", "minimum": 0}, "quote_items": {"type": "array", "items": {"type": "string"}}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["repair_order_id", "amount", "quote_items", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "update_repair_status",
+      "description": "依允許的狀態順序更新工單進度並留下時間紀錄，禁止跳過必要核准。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}, "status": {"type": "string", "enum": ["inspection", "waiting_quote_approval", "waiting_parts", "repairing", "quality_check", "ready_for_handover"]}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["repair_order_id", "status", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "notify_repair_customer",
+      "description": "準備並記錄維修進度通知；測試環境只建立通知紀錄，不冒充簡訊或 LINE 已送達。",
+      "action_kind": "write",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": true},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}, "channel": {"type": "string", "enum": ["in_app", "sms", "line"]}, "message": {"type": "string"}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["repair_order_id", "channel", "message", "confirmed", "idempotency_key"], "additionalProperties": false}
+    },
+    {
+      "name": "complete_vehicle_handover",
+      "description": "完成交車核對，確認品管、客戶說明與交車時間後結案；不得在品管未完成時結案。",
+      "action_kind": "transaction",
+      "annotations": {"readOnlyHint": false, "destructiveHint": false, "idempotentHint": true, "openWorldHint": false},
+      "inputSchema": {"type": "object", "properties": {"repair_order_id": {"type": "string"}, "quality_check_passed": {"type": "boolean"}, "confirmed": {"type": "boolean"}, "idempotency_key": {"type": "string"}}, "required": ["repair_order_id", "quality_check_passed", "confirmed", "idempotency_key"], "additionalProperties": false}
+    }
+  ]
+}

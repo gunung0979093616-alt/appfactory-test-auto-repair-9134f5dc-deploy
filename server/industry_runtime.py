@@ -79,10 +79,96 @@ class IndustryRuntime:
             return self._ui("empty", "找不到項目", [], {"page": 1, "page_size": 1, "total_count": 0, "next_cursor": None})
         return self._ui("success", str(item.get("name") or "項目詳情"), [item], {"page": 1, "page_size": 1, "total_count": 1, "next_cursor": None}, content_type="detail")
 
+    def _call_automotive_operations(self, tool_name: str, arguments: dict[str, Any], state: dict[str, Any]) -> dict[str, Any]:
+        state.setdefault("vehicle_intakes", [])
+        state.setdefault("repair_orders", [])
+        state.setdefault("idempotency", {})
+        state.setdefault("activity", [])
+        read_tools = {"diagnose_wait_bottlenecks", "list_repair_work_queue", "get_repair_order", "match_technician_skills"}
+        if tool_name == "diagnose_wait_bottlenecks":
+            shop_id = str(arguments.get("shop_id") or "")
+            active = [row for row in state["repair_orders"] if row.get("shop_id") == shop_id and row.get("status") != "completed"]
+            evidence = [
+                {"stage": "vehicle_intake", "median_wait_minutes": 18, "open_items": len(state["vehicle_intakes"])},
+                {"stage": "quote_approval", "median_wait_minutes": 42, "open_items": sum(row.get("status") == "waiting_quote_approval" for row in active)},
+                {"stage": "parts_wait", "median_wait_minutes": 95, "open_items": sum(row.get("status") == "waiting_parts" for row in active)},
+                {"stage": "repair_bay", "median_wait_minutes": 27, "open_items": sum(row.get("status") == "repairing" for row in active)},
+            ]
+            ranked = sorted(evidence, key=lambda row: row["median_wait_minutes"], reverse=True)
+            return {"status": "ok", "shop_id": shop_id, "root_cause_verified": False, "evidence": evidence, "ranked_hypotheses": ranked, "next_step": "collect_real_event_timestamps_before_freezing_solution"}
+        if tool_name == "list_repair_work_queue":
+            shop_id = str(arguments.get("shop_id") or "")
+            requested_status = str(arguments.get("status") or "")
+            rows = [row for row in state["repair_orders"] if row.get("shop_id") == shop_id and (not requested_status or row.get("status") == requested_status)]
+            return {"status": "ok", "shop_id": shop_id, "items": rows, "total_count": len(rows)}
+        repair_order_id = str(arguments.get("repair_order_id") or "")
+        order = next((row for row in state["repair_orders"] if row.get("id") == repair_order_id), None)
+        if tool_name == "get_repair_order":
+            return {"status": "ok", "repair_order": order} if order else {"status": "not_found", "repair_order_id": repair_order_id}
+        if tool_name == "match_technician_skills":
+            if not order:
+                return {"status": "not_found", "repair_order_id": repair_order_id}
+            return {"status": "ok", "repair_order_id": repair_order_id, "candidates": [{"technician_id": "tech-demo-01", "matched_skills": order.get("inspection_items", []), "available": True}], "assignment_changed": False}
+        if tool_name not in read_tools and arguments.get("confirmed") is not True:
+            return {"status": "confirmation_required", "tool_name": tool_name, "external_write_completed": False}
+        idempotency_key = str(arguments.get("idempotency_key") or "")
+        if not idempotency_key:
+            return {"status": "idempotency_key_required", "tool_name": tool_name, "external_write_completed": False}
+        if idempotency_key in state["idempotency"]:
+            return state["idempotency"][idempotency_key]
+        if tool_name == "create_vehicle_intake":
+            intake = {
+                "id": "intake_" + secrets.token_hex(6), "shop_id": str(arguments.get("shop_id") or ""),
+                "plate_number": str(arguments.get("plate_number") or ""), "mileage_km": int(arguments.get("mileage_km") or 0),
+                "customer_concern": str(arguments.get("customer_concern") or ""), "status": "intake_recorded",
+            }
+            state["vehicle_intakes"].append(intake)
+            response = {"status": "created", "vehicle_intake": intake}
+        elif tool_name == "create_repair_order":
+            intake = next((row for row in state["vehicle_intakes"] if row.get("id") == str(arguments.get("intake_id") or "")), None)
+            if not intake:
+                return {"status": "intake_not_found", "intake_id": arguments.get("intake_id")}
+            order = {"id": "repair_" + secrets.token_hex(6), "intake_id": intake["id"], "shop_id": intake["shop_id"], "plate_number": intake["plate_number"], "inspection_items": list(arguments.get("inspection_items") or []), "status": "inspection", "timeline": []}
+            state["repair_orders"].append(order)
+            response = {"status": "created", "repair_order": order}
+        else:
+            if not order:
+                return {"status": "not_found", "repair_order_id": repair_order_id}
+            if tool_name == "assign_repair_bay":
+                bay_id = str(arguments.get("bay_id") or "")
+                occupied = any(row.get("bay_id") == bay_id and row.get("status") not in {"ready_for_handover", "completed"} and row.get("id") != repair_order_id for row in state["repair_orders"])
+                if occupied:
+                    return {"status": "bay_occupied", "bay_id": bay_id}
+                order["bay_id"] = bay_id
+            elif tool_name == "mark_parts_wait":
+                order["status"] = "waiting_parts"
+                order.setdefault("parts_wait", []).append({"part_name": arguments.get("part_name"), "estimated_arrival": arguments.get("estimated_arrival")})
+            elif tool_name == "request_quote_approval":
+                order["status"] = "waiting_quote_approval"
+                order["quote"] = {"amount": arguments.get("amount"), "items": list(arguments.get("quote_items") or []), "approval": "pending"}
+            elif tool_name == "update_repair_status":
+                order["status"] = str(arguments.get("status") or order.get("status"))
+            elif tool_name == "notify_repair_customer":
+                notification = {"channel": arguments.get("channel"), "message": arguments.get("message"), "delivery_status": "sandbox_recorded", "external_delivery_completed": False}
+                order.setdefault("notifications", []).append(notification)
+            elif tool_name == "complete_vehicle_handover":
+                if arguments.get("quality_check_passed") is not True:
+                    return {"status": "quality_check_required", "repair_order_id": repair_order_id}
+                order["status"] = "completed"
+            order.setdefault("timeline", []).append({"action": tool_name, "status": order.get("status")})
+            response = {"status": "ok", "tool_name": tool_name, "repair_order": order}
+        state["idempotency"][idempotency_key] = response
+        state["activity"].append({"tool_name": tool_name, "idempotency_key": idempotency_key})
+        self._write(self.state_path, state)
+        return response
+
     def call(self, tool_name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         state = self._read(self.state_path, {"saved": [], "cart": [], "bookings": [], "vouchers": {}, "records": [], "activity": [], "subscriptions": [], "jobs": {}, "sessions": {}, "drafts": [], "designs": {}, "assets": {}, "comments": [], "idempotency": {}})
         for key, default in [("saved", []), ("cart", []), ("bookings", []), ("vouchers", {}), ("records", []), ("activity", []), ("subscriptions", []), ("jobs", {}), ("sessions", {}), ("drafts", []), ("designs", {}), ("assets", {}), ("comments", []), ("idempotency", {})]:
             state.setdefault(key, default)
+        automotive_tools = {item["name"] for item in json.loads(Path("generated_mcp/automotive-operations-tools.json").read_text(encoding="utf-8"))["tools"]}
+        if MANIFEST.get("runtime_variant") == "automotive" and tool_name in automotive_tools:
+            return self._call_automotive_operations(tool_name, arguments, state)
         if MANIFEST.get("runtime_variant") in ('abandoned_cart_sms_recovery', 'ai_customer_support', 'ai_data_analysis_workspace', 'ai_interview_training', 'arborist_certification_learning', 'daily_task_checkin', 'ecommerce_product_copy', 'email_attachment_print_automation', 'email_outreach_crm', 'llm_api_gateway', 'long_video_content_repurposing', 'marketplace_ranking_optimization', 'merchant_payment_links', 'mobile_app_market_intelligence', 'openclaw_deployment_manager', 'prompt_optimization_lab', 'reddit_purchase_intent', 'research_focus_group_recruitment', 'resume_job_matching', 'sales_lead_research', 'security_compliance_management', 'short_link_conversion_analytics', 'small_business_ordering_reservation', 'social_media_scheduling', 'tiktok_comment_intelligence', 'toeic_exam_training', 'video_translation_dubbing', 'website_translation_operations'):
             action_kind = next((item["action_kind"] for item in MANIFEST["tools"] if item["name"] == tool_name), "read")
             if action_kind in {"write", "transaction"} and arguments.get("confirmed") is not True:
