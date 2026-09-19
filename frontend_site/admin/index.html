@@ -3,256 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>開發外掛助手｜管理後台預覽</title>
-  <link rel="icon" href="../favicon.ico">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #08111f;
-      --panel: rgba(15, 27, 48, .88);
-      --panel-2: rgba(22, 38, 67, .82);
-      --line: rgba(169, 198, 255, .22);
-      --text: #ecf5ff;
-      --muted: #a9b8d4;
-      --accent: #6ee7b7;
-      --accent-2: #60a5fa;
-      --warn: #fbbf24;
-    }
-    * { box-sizing: border-box; }
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(96, 165, 250, .28), transparent 30rem),
-        radial-gradient(circle at 80% 10%, rgba(110, 231, 183, .16), transparent 28rem),
-        linear-gradient(145deg, #07101f, #0d1728 58%, #08111f);
-      color: var(--text);
-      min-height: 100vh;
-    }
-    a { color: inherit; }
-    .shell { width: 100%; max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; overflow-x: clip; }
-    .topbar {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      border: 1px solid var(--line); background: rgba(8, 17, 31, .72);
-      border-radius: 22px; padding: 14px 16px; position: sticky; top: 14px; backdrop-filter: blur(18px);
-    }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; min-width: 0; overflow-wrap: anywhere; }
-    .mark {
-      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #04111f;
-      box-shadow: 0 18px 45px rgba(96, 165, 250, .22);
-    }
-    .nav { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; max-width: 100%; min-width: 0; }
-    .nav a, .button {
-      text-decoration: none; border: 1px solid var(--line); border-radius: 999px;
-      padding: 10px 13px; background: rgba(255,255,255,.06); color: var(--text); font-weight: 700;
-    }
-    .button.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #04111f; border: 0; }
-    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; align-items: stretch; padding: 46px 0 24px; }
-    .hero-card, .panel {
-      border: 1px solid var(--line); background: var(--panel); border-radius: 30px; padding: 28px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.28);
-    }
-    .eyebrow { color: var(--accent); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
-    h1 { font-size: clamp(34px, 5vw, 64px); line-height: 1.02; margin: 0 0 16px; }
-    h2 { font-size: clamp(24px, 3vw, 36px); margin: 0 0 16px; }
-    h3 { margin: 0 0 10px; font-size: 20px; }
-    p { color: var(--muted); line-height: 1.75; }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-    .chips span { border: 1px solid var(--line); border-radius: 999px; padding: 9px 12px; background: rgba(255,255,255,.07); font-weight: 700; }
-    .metric { display: grid; gap: 12px; }
-    .metric div { background: var(--panel-2); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }
-    .metric strong { display: block; font-size: 30px; color: var(--accent); }
-    .admin-visual-system { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
-    .admin-visual-system article { min-height: 132px; border-radius: 22px; padding: 18px; border: 1px solid var(--line); background: radial-gradient(circle at 20% 0%, rgba(110,231,183,.28), transparent 34%), rgba(255,255,255,.06); position: relative; overflow: hidden; animation: adminFloat 7s ease-in-out infinite; }
-    .admin-visual-system article:nth-child(2n) { animation-delay: -2s; }
-    .admin-visual-system article::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; opacity: 0; background: linear-gradient(110deg, transparent, rgba(96,165,250,.26), transparent); transition: opacity .2s ease; }
-    .admin-visual-system article:hover::after { opacity: 1; animation: adminSweep 1.3s linear; }
-    .admin-visual-system strong { display: block; color: var(--text); font-size: 22px; margin-bottom: 10px; position: relative; z-index: 1; }
-    .admin-visual-system span { color: var(--muted); position: relative; z-index: 1; }
-    .verification-ladder { list-style: none; padding: 0; display: grid; gap: 10px; }
-    .verification-ladder li { border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px 12px 42px; background: rgba(255,255,255,.055); position: relative; }
-    .verification-ladder li::before { content: "✓"; position: absolute; left: 14px; top: 12px; color: var(--accent); font-weight: 900; }
-    @keyframes adminFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-    @keyframes adminSweep { to { transform: translateX(100%); } }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .card { border: 1px solid var(--line); background: var(--panel-2); border-radius: 22px; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 18px; }
-    th, td { border-bottom: 1px solid var(--line); padding: 13px 12px; text-align: left; color: var(--muted); }
-    th { color: var(--text); background: rgba(255,255,255,.06); }
-    code { color: #bfdbfe; }
-    .sections { display: grid; gap: 18px; }
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .notice { border-left: 4px solid var(--warn); background: rgba(251, 191, 36, .1); padding: 16px 18px; border-radius: 16px; color: #fde68a; }
-    @media (max-width: 820px) {
-      .hero, .two, .grid, .admin-visual-system { grid-template-columns: 1fr; }
-      .topbar { position: static; align-items: flex-start; flex-direction: column; }
-      .nav { justify-content: flex-start; width: 100%; }
-      .nav a { max-width: 100%; overflow-wrap: anywhere; }
-      table { display: block; overflow-x: auto; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-    }
-  </style>
+  <title>營運管理後台｜汽車維修營運中心</title>
+  <link rel="stylesheet" href="/automotive-app.css">
 </head>
 <body>
-  <main class="shell">
-    <header class="topbar">
-      <div class="brand"><div class="mark">後</div><div>開發外掛助手<br><small>開發外掛助手後台</small></div></div>
-      <nav class="nav">
-        <a href="../index.html">查看前台首頁</a>
-        <a href="#content">內容</a>
-        <a href="#assets">素材</a>
-        <a href="#deploy">部署</a>
-        <a href="../downloads/AI_App_Factory_V1-website-delivery.zip">下載網站 ZIP</a>
-        <a href="google-login.html">Google 登入</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="hero-card">
-        <p class="eyebrow">Owner Admin Preview</p>
-        <h1>開發外掛助手 管理後台</h1>
-        <p>這個後台是給專案擁有者使用：管理網站內容、圖片素材、前台連結、服務連線、上線狀態、驗證證據、政策頁與送審資料。一般訪客不應看到內部守門或工程語。</p>
-        <div class="chips"><span>免費評估</span>
-<span>建立外掛</span>
-<span>產生網站</span>
-<span>整理測試證據</span>
-<span>準備送審</span>
-<span>交付網站 ZIP</span></div>
-        <div class="admin-visual-system"><article><strong>網站內容</strong><span>頁面文案、導覽、方案</span></article>
-<article><strong>圖片素材</strong><span>Logo、主視覺、素材槽</span></article>
-<article><strong>上線部署</strong><span>GitHub、Render、健康檢查</span></article>
-<article><strong>驗證證據</strong><span>本機、遠端、原生、送審</span></article></div>
-      </div>
-      <aside class="hero-card metric">
-        <div><strong>1</strong>前台首頁連結已放入後台入口</div>
-        <div><strong>7</strong>個後台管理模組</div>
-        <div><strong>42</strong>個產業適配檢查</div>
-      </aside>
-    </section>
-
-    <section class="sections">
-
-      <div class="panel">
-        <p class="eyebrow">Project-aware delivery</p>
-        <h2>後台也要看得出整個專案階段</h2>
-        <div class="grid">
-        <article class="card"><p class="eyebrow">第一階段</p><h3>外掛與 MCP 交付</h3><p>需求、工具、Skill、Logo、專案 ZIP、MCP 與部署交接要能被第二階段讀取。</p></article>
-        <article class="card"><p class="eyebrow">第二階段</p><h3>網站前後端交付</h3><p>首頁、方案、文件、後台、API 摘要、素材、Next.js/React/Tailwind 來源與網站 ZIP 要一起交付。</p></article>
-        <article class="card"><p class="eyebrow">後續階段</p><h3>登入、付款、送審、維運</h3><p>未完成階段要標清楚下一步與本人授權邊界，不得假裝已完成。</p></article>
-        <article class="card"><p class="eyebrow">污染守門</p><h3>專案內容隔離</h3><p>開發助手自建網站內容只能用於本體驗證；未來不同產業網站不得混入開發助手商業邏輯或其他客戶內容。</p></article>
-        </div>
-      </div>
-
-      <div id="content" class="panel">
-        <p class="eyebrow">Admin modules</p>
-        <h2>後台應該管理什麼</h2>
-        <div class="grid">
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>公開網站內容</h3>
-          <p>管理開發外掛助手首頁、導覽、方案、教學、搜尋摘要與政策頁。</p>
-        </article>
-
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>圖片與素材</h3>
-          <p>管理 Logo、首頁主圖、背景圖、卡片圖、公開圖片網址與替換紀錄。</p>
-        </article>
-
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>外掛連線</h3>
-          <p>追蹤服務網址、連線狀態、工具掃描狀態與實際測試紀錄。</p>
-        </article>
-
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>資料與同步</h3>
-          <p>追蹤資料來源、最後更新時間、資料狀態、失敗原因與修復紀錄。</p>
-        </article>
-
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>使用者與權益</h3>
-          <p>管理登入角色、方案、額度、到期、測試帳號與客服查看權限。</p>
-        </article>
-
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>部署與驗證</h3>
-          <p>追蹤正式上線版本、健康狀態、原生測試與送審資料。</p>
-        </article>
-
-        <article class="card">
-          <p class="eyebrow">管理模組</p>
-          <h3>稽核紀錄</h3>
-          <p>保存擁有人確認、寫入修改、授權、錯誤與回歸測試結果。</p>
-        </article></div>
-      </div>
-
-      <div id="assets" class="two">
-        <section class="panel">
-          <p class="eyebrow">Asset slots</p>
-          <h2>圖片與 R2 素材欄位</h2>
-          <table>
-            <thead><tr><th>欄位</th><th>狀態</th><th>用途</th></tr></thead>
-            <tbody><tr><td>logo_256</td><td>必備</td><td>ChatGPT App / website header / manifest icon</td></tr>
-<tr><td>homepage_hero</td><td>必備</td><td>首頁第一屏主視覺</td></tr>
-<tr><td>background_texture</td><td>必備</td><td>網站背景與產業情境</td></tr>
-<tr><td>entity_card_image</td><td>選用</td><td>商品、房源、餐廳、活動、服務卡片</td></tr>
-<tr><td>widget_media</td><td>選用</td><td>ChatGPT Widget 圖片、影片縮圖或生成結果</td></tr></tbody>
-          </table>
-        </section>
-        <section id="auth" class="panel">
-          <p class="eyebrow">Owner login</p>
-          <h2>Google 管理者登入</h2>
-          <p>讓不同產業開發者用自己的 Google 帳號登入後台並確認擁有者身份。</p>
-          <div class="notice">目前狀態：需要管理者授權後才能修改。未完成本人授權前，不能宣稱已可正式登入。</div>
-          <p><a class="button" href="google-login.html">開啟獨立 Google 登入維護頁</a></p>
-        </section>
-      </div>
-
-      <div id="deploy" class="two">
-        <section class="panel">
-          <p class="eyebrow">Admin navigation</p>
-          <h2>後台路由</h2>
-          <table>
-            <thead><tr><th>頁面</th><th>權限</th></tr></thead>
-            <tbody><tr><td>總覽</td><td>擁有人與授權管理者</td></tr>
-<tr><td>網站內容</td><td>擁有人與內容管理者</td></tr>
-<tr><td>圖片素材</td><td>擁有人與內容管理者</td></tr>
-<tr><td>資料同步</td><td>擁有人與技術管理者</td></tr>
-<tr><td>使用者與方案</td><td>擁有人與客服管理者</td></tr>
-<tr><td>上線狀態</td><td>擁有人與技術管理者</td></tr>
-<tr><td>送審資料</td><td>擁有人與審核準備人員</td></tr>
-<tr><td>稽核紀錄</td><td>擁有人唯讀</td></tr></tbody>
-          </table>
-        </section>
-        <section class="panel">
-          <p class="eyebrow">Verification layers</p>
-          <h2>部署與驗證分層</h2>
-          <ul class="verification-ladder"><li><strong>本地產出</strong>：確認檔案、頁面、測試與交付包存在。</li>
-<li><strong>版本發布</strong>：確認正式版本與目前程式一致。</li>
-<li><strong>服務連線</strong>：確認公開服務網址、健康狀態與工具連線可用。</li>
-<li><strong>原生測試</strong>：確認在實際聊天介面可掃描、可呼叫、可完成正反向測試。</li>
-<li><strong>送審狀態</strong>：確認隱私條款、客服入口、測試帳號、影片與審核資料齊全。</li></ul>
-          <h3>政策頁同步</h3>
-          <ul><li>privacy.html</li>
-<li>terms.html</li>
-<li>support.html</li></ul>
-        </section>
-      </div>
-
-      <section class="panel">
-        <p class="eyebrow">Truth boundary</p>
-        <h2>目前不能假裝完成的事</h2>
-        <p>目前這是本地後台預覽；正式登入、正式付款、公開網址、應用審核與真實使用資料，都要等本人授權與各平台驗證後才可標記完成。</p>
-      </section>
+  <header>
+    <strong>營運管理後台</strong>
+    <nav>
+      <a href="/">營運首頁</a>
+      <a href="/intake.html">接車開單</a>
+      <a href="/work-orders.html">維修工單</a>
+      <a href="/resources.html">工位與技師</a>
+    </nav>
+  </header>
+  <main>
+    <h1>三店等待與未結案件</h1>
+    <p class="lead">這個後台直接呼叫診斷與工單工具，不再只是開發助手模板的靜態管理頁。</p>
+    <section id="shops" class="grid" aria-live="polite"></section>
+    <section class="panel">
+      <h2>真實邊界</h2>
+      <p>目前只保存隔離測試資料。Google 登入、員工角色權限、正式簡訊／LINE、供應商零件資料與永久資料庫，必須另有專案擁有者授權與正式環境證據。</p>
     </section>
   </main>
+  <footer>管理後台 · 診斷資料與工單數量均來自此 App 的 MCP runtime。</footer>
+  <script src="/automotive-app.js"></script>
+  <script>
+    (async () => {
+      const target = document.querySelector('#shops');
+      target.innerHTML = '<article class="panel">載入三店營運資料…</article>';
+      try {
+        const shops = ['shop-01', 'shop-02', 'shop-03'];
+        const cards = await Promise.all(shops.map(async (shopId) => {
+          const [diagnosis, queue] = await Promise.all([
+            AutomotiveApp.callTool('diagnose_wait_bottlenecks', { shop_id: shopId }),
+            AutomotiveApp.callTool('list_repair_work_queue', { shop_id: shopId })
+          ]);
+          const root = diagnosis.structuredContent || diagnosis;
+          const work = queue.structuredContent || queue;
+          const count = Array.isArray(work.work_orders) ? work.work_orders.length : (work.count || 0);
+          return `<article class="panel"><p class="eyebrow">${AutomotiveApp.escapeHtml(shopId)}</p><h2>${count} 件未結工單</h2><p>根因已驗證：${root.root_cause_verified ? '是' : '否，需持續蒐證'}</p><details><summary>查看診斷證據</summary><pre>${AutomotiveApp.escapeHtml(JSON.stringify(root, null, 2))}</pre></details></article>`;
+        }));
+        target.innerHTML = cards.join('');
+      } catch (error) {
+        target.innerHTML = `<article class="panel error"><h2>資料載入失敗</h2><p>${AutomotiveApp.escapeHtml(error.message)}</p></article>`;
+      }
+    })();
+  </script>
 </body>
 </html>

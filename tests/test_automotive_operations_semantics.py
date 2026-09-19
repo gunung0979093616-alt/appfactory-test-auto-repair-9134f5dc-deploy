@@ -64,3 +64,21 @@ def test_tool_annotations_and_write_contract_are_consistent():
         required = set(tool["inputSchema"].get("required", []))
         if not is_read:
             assert {"confirmed", "idempotency_key"}.issubset(required)
+
+
+def test_operational_pages_exist_and_call_domain_tools():
+    expected = {
+        "intake.html": ["create_vehicle_intake", "create_repair_order"],
+        "work-orders.html": ["list_repair_work_queue"],
+        "resources.html": ["get_repair_order", "match_technician_skills"],
+        "admin/index.html": ["diagnose_wait_bottlenecks", "list_repair_work_queue"],
+    }
+    for relative_path, tool_names in expected.items():
+        page = (ROOT / "frontend_site" / relative_path).read_text(encoding="utf-8")
+        for tool_name in tool_names:
+            assert tool_name in page
+        assert "搜尋車款" not in page
+        assert "預約試駕" not in page
+    shared = (ROOT / "frontend_site" / "automotive-app.js").read_text(encoding="utf-8")
+    assert "tools/call" in shared
+    assert "MCP-Protocol-Version" in shared

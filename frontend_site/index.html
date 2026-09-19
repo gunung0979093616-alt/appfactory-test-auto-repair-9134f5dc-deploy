@@ -18,11 +18,11 @@
   </style>
 </head>
 <body>
-  <header><strong>三店汽車維修營運中心</strong><nav><a href="#diagnosis">瓶頸診斷</a><a href="#workflow">維修流程</a><a href="/admin/index.html">管理後台</a><a href="/docs.html">交付說明</a></nav></header>
+  <header><strong>三店汽車維修營運中心</strong><nav><a href="#diagnosis">瓶頸診斷</a><a href="/intake.html">接車建檔</a><a href="/work-orders.html">工單佇列</a><a href="/resources.html">資源媒合</a><a href="/admin/index.html">管理後台</a></nav></header>
   <main>
     <section class="hero">
       <div><span class="eyebrow">Automotive Operations App</span><h1>先找出塞車點，<br>再決定要改什麼。</h1><p>整合三間維修廠的接車、工單、工位、技師技能、零件等待、報價核准、進度通知與交車。系統不會只看到加班就武斷判定是排班問題。</p><div class="notice">目前為隔離測試 App：通知只建立測試紀錄，不冒充簡訊或 LINE 已送達；Google 登入與正式供應商服務仍需專案擁有者授權。</div></div>
-      <div class="proof"><div><b>3 間門市</b><span>可分店診斷與追蹤</span></div><div><b>12 個 MCP 工具</b><span>診斷、讀取與受確認寫入</span></div><div><b>2 個專案技能</b><span>資源探索與營運工作流</span></div><div><b>27 項基準測試</b><span>修改前回歸全部通過</span></div></div>
+      <div class="proof"><div><b>3 間門市</b><span>可分店診斷與追蹤</span></div><div><b>12 個 MCP 工具</b><span>診斷、讀取與受確認寫入</span></div><div><b>2 個專案技能</b><span>資源探索與營運工作流</span></div><div><b>31 項回歸測試</b><span>汽修語意與流程全部通過</span></div></div>
     </section>
     <section id="diagnosis"><h2>等待時間根因診斷</h2><div class="panel"><p>選擇門市後，App 會透過公開 MCP 工具取得接車、待核價、待料與工位等待證據；資料不足時保留假說，不直接凍結成排班方案。</p><div class="diagnose"><select id="shop"><option value="shop-01">北區店</option><option value="shop-02">中區店</option><option value="shop-03">南區店</option></select><button id="diagnoseButton">執行瓶頸診斷</button></div><div id="diagnosisResult" class="result">尚未執行。請選擇門市開始。</div></div></section>
     <section id="workflow"><h2>從接車到交車的完整流程</h2><div class="flow"><span>01 接車紀錄</span><span>02 建立工單</span><span>03 技師／工位</span><span>04 待料／核價</span><span>05 維修／品管</span><span>06 通知／交車</span></div></section>
