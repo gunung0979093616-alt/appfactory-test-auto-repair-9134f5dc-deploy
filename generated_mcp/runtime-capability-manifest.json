@@ -1,0 +1,659 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "automotive",
+  "runtime_variant": "automotive",
+  "display_name": "auto-repair",
+  "entity": "record",
+  "search_tool": "notification_delivery_status",
+  "detail_tool": "notification_delivery_status",
+  "required_columns": [
+    "id",
+    "name",
+    "status",
+    "updated_at"
+  ],
+  "tools": [
+    {
+      "name": "schedule_operation",
+      "description": "確認資源、時間與影響範圍後建立排程。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "subscribe_alerts",
+      "description": "確認通知對象與管道後建立異常通知。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "create_booking",
+      "description": "重新檢查名額與輸入並確認後建立預約。",
+      "action_kind": "transaction",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "booking_id": {
+            "type": "string"
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "approve_task",
+      "description": "核准任務：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "transaction",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "send_notification",
+      "description": "發送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "assign_technician",
+      "description": "指派技師：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "record_parts_usage",
+      "description": "零件使用紀錄：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "base_id": {
+            "type": "string"
+          },
+          "table_id": {
+            "type": "string"
+          },
+          "record_id": {
+            "type": "string"
+          },
+          "view_id": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "field_values": {
+            "type": "object"
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "book_notification",
+      "description": "book notification：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "cancel_notification",
+      "description": "取消通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "notification_delivery_status",
+      "description": "通知狀態：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "read",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "store_id": {
+            "type": "string"
+          },
+          "buyer_id": {
+            "type": "string"
+          },
+          "cart_id": {
+            "type": "string"
+          },
+          "variant_id": {
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "retry_notification",
+      "description": "重送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "schedule_job",
+      "description": "排程工作：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    },
+    {
+      "name": "schedule_reminder",
+      "description": "排程提醒：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirmed",
+          "idempotency_key"
+        ],
+        "additionalProperties": true
+      }
+    }
+  ],
+  "capabilities": [
+    "catalog_search_filter_pagination",
+    "detail_media_map_and_source",
+    "confirmed_user_actions",
+    "supplier_candidate_validate_publish",
+    "variants_slots_price_and_inventory",
+    "sandbox_checkout_or_booking",
+    "voucher_or_share_qr_when_applicable",
+    "typed_records_views_and_incremental_sync",
+    "workflow_state_activity_and_assignment",
+    "shipment_milestones_eta_and_exception_tracking"
+  ],
+  "oauth_scopes_by_tool": {},
+  "publication_policy": "candidate rows must validate before an explicit admin publish; never overwrite published data silently",
+  "truth_boundary": "Generated local sandbox runtime and behavior tests only. Supplier publication, inventory, booking, checkout, voucher redemption, external media, OAuth, payment providers, deployment, and ChatGPT native rendering need their own authorization and live evidence."
+}

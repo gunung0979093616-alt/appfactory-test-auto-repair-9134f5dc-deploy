@@ -1,0 +1,2116 @@
+{
+  "schema_version": "1.0",
+  "tool": "frontend_site_builder",
+  "generated_at": "2026-09-19T10:09:38.247731+00:00",
+  "project_id": "汽車服務系統",
+  "display_name": "汽車服務系統",
+  "industry_context": {
+    "domain_id": "automotive",
+    "name": "汽車服務系統",
+    "headline": "汽車服務系統：用自然語言完成搜尋車款、比較價格與預約試駕",
+    "audience": "汽車買賣、維修廠、租車、試駕與車主服務平台。",
+    "use_cases": [
+      "搜尋車輛或服務",
+      "比較價格里程條件",
+      "預約試駕或維修"
+    ],
+    "primary_actions": [
+      "搜尋車款",
+      "比較價格",
+      "預約試駕",
+      "查維修",
+      "估算費用"
+    ],
+    "keywords": [
+      "汽車",
+      "車款",
+      "里程",
+      "維修",
+      "試駕"
+    ],
+    "nav_labels": {
+      "home": "汽車首頁",
+      "marketing": "汽車交付",
+      "pricing": "車輛方案",
+      "guide": "車款教學",
+      "templates": "車輛模板",
+      "assets": "車輛素材",
+      "connect": "車商串接",
+      "docs": "汽車測試",
+      "status": "汽車驗收"
+    },
+    "theme": {
+      "class": "theme-automotive",
+      "brand": "#1e293b",
+      "accent": "#dc2626",
+      "gold": "#facc15",
+      "hero_radius": "32px",
+      "layout": "layout-automotive"
+    },
+    "visual_strategy": {
+      "color_family": "blue_reliability",
+      "color_psychology": "trust, data, travel, technology, stability",
+      "palette_roles": {
+        "brand": "primary identity and first visual impression",
+        "accent": "interactive highlights, cards, and secondary emphasis",
+        "highlight": "CTA, badges, important numbers, and proof points",
+        "surface": "dark readable background to keep Traditional Chinese copy clear"
+      },
+      "contrast_ratio_on_dark": 20.17,
+      "contrast_rule": "Use dark translucent overlays behind Traditional Chinese text; keep primary CTAs on highlight color and avoid low-contrast text over busy images.",
+      "background_texture": "automotive-motif-gradient",
+      "responsive_rule": "Use clamp(), balanced wrapping, and overflow wrapping so long Chinese titles do not clip on mobile."
+    },
+    "delivery": {
+      "entity": "汽車服務系統",
+      "marketing_h1": "汽車服務系統：把複雜需求整理成可理解、可操作的服務",
+      "pricing_h1": "汽車服務系統服務方案：先看懂適合誰、能做什麼、需要注意什麼",
+      "pricing_lead": "汽車服務系統網站必須用一般使用者聽得懂的文字說明用途、資料或流程邊界、使用方式與重要提醒，並避免把不必要的技術細節放到公開頁面。",
+      "stage1_title": "汽車服務系統基礎查詢",
+      "stage1_body": "整理汽車服務系統常見問題、分類、條件與結果說明，讓使用者能先用自然語言查詢與比較。",
+      "stage2_title": "汽車服務系統互動服務",
+      "stage2_body": "依汽車服務系統場景呈現表單、卡片、流程、圖片素材與提醒，讓使用者知道下一步怎麼做。",
+      "stage3_title": "汽車服務系統進階確認",
+      "stage3_body": "涉及預約、下單、付款、申請、上傳或公開資料時，先顯示摘要、來源與限制，再由使用者確認。"
+    },
+    "image_guidance": "車輛照片、試駕圖、維修流程圖、規格比較圖。"
+  },
+  "stage2_page_ui_content_map": {
+    "home": {
+      "nav_label": "首頁",
+      "nav_aliases": [
+        "首頁",
+        "訂位首頁",
+        "預約首頁",
+        "商品首頁",
+        "查詢首頁",
+        "毛孩預約",
+        "服務首頁",
+        "主頁"
+      ],
+      "title_source": "project.yaml owner_goal + app-home-copy.md + project stage catalog when the product has one",
+      "content_source": [
+        "whole project roadmap",
+        "Stage 1 project summary",
+        "Stage 2 continuation plan",
+        "planned downstream boundaries when required by the product",
+        "conversation_decision_trace.owner_goal",
+        "tool catalog"
+      ],
+      "required_ui_tools": [
+        "frontend_site_builder",
+        "ui_resource_catalog",
+        "industry_component_library"
+      ],
+      "required_ui_recipes": [
+        "hero",
+        "bento_or_component_grid",
+        "status_summary",
+        "primary_cta",
+        "aurora_or_glow_background",
+        "kinetic_text",
+        "magnetic_cta"
+      ],
+      "content_rule": "Must frame the whole project first: the project's Stage 1 plugin/MCP delivery, Stage 2 website/backend continuation, and any later login/payment/submission/operations boundaries that this project actually needs. Do not force the developer-assistant six-stage commercial model onto unrelated industries. Never make the homepage only about Stage 2 validation or reuse generic query-tool copy."
+    },
+    "marketing": {
+      "nav_label": "交付內容",
+      "nav_aliases": [
+        "交付內容",
+        "交付",
+        "服務",
+        "價值",
+        "案例"
+      ],
+      "title_source": "Stage delivery catalog + artifact_delivery_builder",
+      "content_source": [
+        "five_stage_product_catalog",
+        "delivery artifacts",
+        "proof layer summary"
+      ],
+      "required_ui_tools": [
+        "frontend_content_sync_builder",
+        "frontend_site_builder",
+        "ui_resource_catalog"
+      ],
+      "required_ui_recipes": [
+        "feature_cards",
+        "proof_layers",
+        "timeline_or_process"
+      ],
+      "content_rule": "Must show what the developer receives at each stage and what is not yet proven."
+    },
+    "pricing": {
+      "nav_label": "方案說明",
+      "nav_aliases": [
+        "方案說明",
+        "方案",
+        "價格",
+        "費用",
+        "定價"
+      ],
+      "title_source": "five_stage_product_catalog.py",
+      "content_source": [
+        "FREE_DISCOVERY",
+        "FIVE_PAID_STAGES",
+        "OPTIONAL_POST_LAUNCH_STAGE"
+      ],
+      "required_ui_tools": [
+        "payment_entitlement_system_builder",
+        "frontend_site_builder"
+      ],
+      "required_ui_recipes": [
+        "pricing_cards",
+        "stage_breakdown",
+        "truth_boundary_notice",
+        "moving_border_price_cards",
+        "hover_glow_cards"
+      ],
+      "content_rule": "For 開發助手 self-build, must preserve NT$1,200 / 800 / 500 / 700 / 400 and total NT$3,600 unless catalog changes."
+    },
+    "guide": {
+      "nav_label": "使用教學",
+      "nav_aliases": [
+        "使用教學",
+        "教學",
+        "開始使用",
+        "操作"
+      ],
+      "title_source": "end-user-how-to-use.md",
+      "content_source": [
+        "chatgpt-test-prompts.md",
+        "onboarding-flow.md",
+        "conversation trace"
+      ],
+      "required_ui_tools": [
+        "frontend_content_sync_builder",
+        "frontend_site_builder"
+      ],
+      "required_ui_recipes": [
+        "step_cards",
+        "prompt_examples",
+        "callout"
+      ],
+      "content_rule": "Must tell users what to say and what the system will read; users should not need to name internal tools."
+    },
+    "templates": {
+      "nav_label": "產業模板",
+      "nav_aliases": [
+        "產業模板",
+        "模板",
+        "頁面模組",
+        "分類",
+        "版型"
+      ],
+      "title_source": "industry_component_library + frontend_stack_adapter",
+      "content_source": [
+        "industry profiles",
+        "component library",
+        "UI resource catalog"
+      ],
+      "required_ui_tools": [
+        "template_selection_website_adapter",
+        "industry_component_library",
+        "ui_resource_catalog"
+      ],
+      "required_ui_recipes": [
+        "industry_cards",
+        "component_showcase",
+        "layout_variants"
+      ],
+      "content_rule": "Must explain industry-specific layout/component choices; template selection is fallback, not default."
+    },
+    "assets": {
+      "nav_label": "圖片素材",
+      "nav_aliases": [
+        "圖片素材",
+        "素材",
+        "圖片",
+        "檔案"
+      ],
+      "title_source": "website-image-spec + asset pipeline contract",
+      "content_source": [
+        "website-image-spec.json",
+        "r2_asset_taxonomy",
+        "image-strategy.json"
+      ],
+      "required_ui_tools": [
+        "website_hero_image_builder",
+        "cloudflare_r2_asset_pipeline_builder",
+        "file_upload_pipeline_builder"
+      ],
+      "required_ui_recipes": [
+        "asset_gallery",
+        "upload_state",
+        "storage_taxonomy"
+      ],
+      "content_rule": "Must distinguish R2 files, Cloudflare Images transformations, website render URLs, and ChatGPT UI render evidence."
+    },
+    "connect": {
+      "nav_label": "串接授權",
+      "nav_aliases": [
+        "串接授權",
+        "串接",
+        "授權",
+        "連接"
+      ],
+      "title_source": "stage2_connector_onboarding_registry + owner authorization and provider boundary",
+      "content_source": [
+        "stage2_connector_onboarding_registry",
+        "stage1 delivery outputs",
+        "auth_oauth_login_builder",
+        "github_publish_and_verify",
+        "render_guided_deploy",
+        "policy page registry"
+      ],
+      "required_ui_tools": [
+        "stage2_connector_onboarding_registry",
+        "auth_oauth_login_builder",
+        "frontend_site_builder"
+      ],
+      "required_ui_recipes": [
+        "authorization_steps",
+        "provider_status_cards",
+        "step_cards",
+        "truth_boundary_notice"
+      ],
+      "content_rule": "Must distinguish three audiences: the assistant-core website teaches industry developers how to connect 開發助手 in ChatGPT; after Stage 1 it teaches developers how to connect their own generated plugin using their own MCP/server URL; future generated industry websites teach the developer's end users how to connect that specific plugin. Owner authorization is required, password/OTP/secret copy-paste is forbidden, and no page may imply OpenAI/ChatGPT review approval is guaranteed."
+    },
+    "docs": {
+      "nav_label": "測試文件",
+      "nav_aliases": [
+        "測試文件",
+        "測試",
+        "文件",
+        "驗證"
+      ],
+      "title_source": "validation + conversation-decision-trace",
+      "content_source": [
+        "validation reports",
+        "conversation-decision-trace.json",
+        "requirements traceability matrix"
+      ],
+      "required_ui_tools": [
+        "proof_layer_validation_builder",
+        "frontend_content_sync_builder"
+      ],
+      "required_ui_recipes": [
+        "test_prompt_list",
+        "evidence_matrix",
+        "regression_status",
+        "tracing_beam_timeline",
+        "spotlight_evidence_cards"
+      ],
+      "content_rule": "Must prove Stage 2 consumed Stage 1 context; never copy another product's docs."
+    },
+    "status": {
+      "nav_label": "完成狀態",
+      "nav_aliases": [
+        "完成狀態",
+        "狀態",
+        "驗收",
+        "進度"
+      ],
+      "title_source": "project state + proof layers",
+      "content_source": [
+        "project_continuity",
+        "validation",
+        "stage2_delivery/operational-site-manifest.json"
+      ],
+      "required_ui_tools": [
+        "ops_health_dashboard_builder",
+        "proof_layer_validation_builder",
+        "stage2_operational_saas_builder"
+      ],
+      "required_ui_recipes": [
+        "health_cards",
+        "api_status_panel",
+        "truth_layer_badges"
+      ],
+      "content_rule": "Must separate local, GitHub, Render, MCP, ChatGPT native, submission, and approval evidence."
+    },
+    "privacy": {
+      "nav_label": "隱私權政策",
+      "nav_aliases": [
+        "隱私權政策",
+        "隱私說明",
+        "隱私",
+        "資料"
+      ],
+      "title_source": "policy page sync",
+      "content_source": [
+        "risk_compliance_boundary_guard",
+        "auth/data/upload contracts"
+      ],
+      "required_ui_tools": [
+        "risk_compliance_boundary_guard",
+        "frontend_site_builder"
+      ],
+      "required_ui_recipes": [
+        "policy_sections",
+        "data_boundary_cards"
+      ],
+      "content_rule": "Must explain data use and retention without exposing raw chat logs or internal prompts."
+    },
+    "terms": {
+      "nav_label": "使用條款",
+      "nav_aliases": [
+        "使用條款",
+        "條款",
+        "服務範圍"
+      ],
+      "title_source": "service scope and stage boundary",
+      "content_source": [
+        "stage catalog",
+        "commercial launch pipeline",
+        "truth boundaries"
+      ],
+      "required_ui_tools": [
+        "commercial_launch_pipeline_builder",
+        "frontend_site_builder"
+      ],
+      "required_ui_recipes": [
+        "scope_cards",
+        "confirmation_boundary"
+      ],
+      "content_rule": "Must explain what the service can and cannot promise at each stage."
+    },
+    "support": {
+      "nav_label": "客服支援",
+      "nav_aliases": [
+        "客服支援",
+        "客服",
+        "支援",
+        "問題"
+      ],
+      "title_source": "support policy and bug-report flow",
+      "content_source": [
+        "support_knowledge/support-knowledge.sqlite3",
+        "debug_and_repair_project",
+        "review_feedback_router",
+        "handoff checkpoints"
+      ],
+      "required_ui_tools": [
+        "support_knowledge_agent_builder",
+        "debug_and_repair_project",
+        "frontend_site_builder"
+      ],
+      "required_ui_recipes": [
+        "support_routes",
+        "bug_report_steps"
+      ],
+      "content_rule": "Must guide users to provide evidence without asking for passwords, OTP, tokens, or secrets."
+    },
+    "admin": {
+      "nav_label": "管理後台",
+      "nav_aliases": [
+        "管理後台",
+        "後台",
+        "管理",
+        "Admin"
+      ],
+      "title_source": "website_admin_backend_builder",
+      "content_source": [
+        "content management schema",
+        "asset management contract",
+        "admin API contract"
+      ],
+      "required_ui_tools": [
+        "website_admin_backend_builder",
+        "admin_ops_console_builder",
+        "stage2_operational_saas_builder"
+      ],
+      "required_ui_recipes": [
+        "sidebar_or_tabs",
+        "admin_tables",
+        "audit_log",
+        "api_state_panel"
+      ],
+      "content_rule": "Admin UI can preview read models in Stage 2; real writes require owner-gated backend authorization."
+    }
+  },
+  "stage2_ui_recipe_auto_map": {
+    "schema_version": "1.0",
+    "industry": "automotive",
+    "total_recipe_references": 46,
+    "unique_recipe_tokens": [
+      "admin_tables",
+      "api_state_panel",
+      "api_status_panel",
+      "asset_gallery",
+      "audit_log",
+      "aurora_or_glow_background",
+      "authorization_steps",
+      "bento_or_component_grid",
+      "bug_report_steps",
+      "callout",
+      "component_showcase",
+      "confirmation_boundary",
+      "data_boundary_cards",
+      "evidence_matrix",
+      "feature_cards",
+      "health_cards",
+      "hero",
+      "hover_glow_cards",
+      "industry_cards",
+      "kinetic_text",
+      "layout_variants",
+      "magnetic_cta",
+      "moving_border_price_cards",
+      "policy_sections",
+      "pricing_cards",
+      "primary_cta",
+      "prompt_examples",
+      "proof_layers",
+      "provider_status_cards",
+      "regression_status",
+      "scope_cards",
+      "sidebar_or_tabs",
+      "spotlight_evidence_cards",
+      "stage_breakdown",
+      "status_summary",
+      "step_cards",
+      "storage_taxonomy",
+      "support_routes",
+      "test_prompt_list",
+      "timeline_or_process",
+      "tracing_beam_timeline",
+      "truth_boundary_notice",
+      "truth_layer_badges",
+      "upload_state"
+    ],
+    "unique_recipe_token_count": 44,
+    "mapped_recipe_token_count": 44,
+    "unmapped_recipe_tokens": [],
+    "recipe_families": {
+      "hero_system": {
+        "label_zh": "首頁主視覺",
+        "design_standard": "第一眼要說清楚服務對象、核心價值與下一步；背景與標題要有產業感，不能只換顏色。",
+        "markers": [
+          "hero",
+          "hero-split",
+          "industry-visual"
+        ]
+      },
+      "structured_card_grid": {
+        "label_zh": "卡片式資訊整理",
+        "design_standard": "把服務、證據、元件或方案拆成易讀卡片；桌機可有層次，手機必須單欄可讀。",
+        "markers": [
+          "card",
+          "component-grid",
+          "bento-stage-grid"
+        ]
+      },
+      "status_and_evidence": {
+        "label_zh": "狀態與證據",
+        "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+        "markers": [
+          "evidence-matrix",
+          "truth-layer",
+          "status"
+        ]
+      },
+      "conversion_cta": {
+        "label_zh": "行動按鈕與轉換",
+        "design_standard": "按鈕必須連到真實頁面、表單或明確標示的預覽動作，不可只有動畫或 console.log。",
+        "markers": [
+          "button",
+          "cta",
+          "price-orbit"
+        ]
+      },
+      "motion_background": {
+        "label_zh": "背景質感與動效",
+        "design_standard": "背景、光暈、波紋、星空、3D 深度或線條只能輔助內容；不得使用持續旋轉背景，需支援 reduced motion，不能讓文字消失。",
+        "markers": [
+          "aurora-hero",
+          "industry-background.svg",
+          "depth-scene",
+          "keyframes"
+        ]
+      },
+      "text_emphasis": {
+        "label_zh": "文字重點動效",
+        "design_standard": "可用打字、翻轉、highlight 強化主張，但完整文案必須靜態可讀。",
+        "markers": [
+          "eyebrow",
+          "badge",
+          "highlight"
+        ]
+      },
+      "process_timeline": {
+        "label_zh": "流程與時間線",
+        "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+        "markers": [
+          "timeline-track",
+          "tracing-panel",
+          "flow-step"
+        ]
+      },
+      "pricing_experience": {
+        "label_zh": "方案與價格",
+        "design_standard": "價格、階段、交付物與不能承諾的事要放在同一脈絡；不得只做漂亮價格卡。",
+        "markers": [
+          "pricing-motion-panel",
+          "stage-card",
+          "movingBorder"
+        ]
+      },
+      "asset_and_upload": {
+        "label_zh": "圖片素材與上傳",
+        "design_standard": "要分清楚本機素材、R2、Cloudflare Images、公開 URL 與 ChatGPT UI 可渲染證據。",
+        "markers": [
+          "asset-lane",
+          "asset",
+          "upload"
+        ]
+      },
+      "authorization_and_provider": {
+        "label_zh": "授權與服務商狀態",
+        "design_standard": "Google/GitHub/Render/Cloudflare 等需要本人授權的地方，要顯示中文下一步與邊界。",
+        "markers": [
+          "connect",
+          "provider",
+          "authorization"
+        ]
+      },
+      "policy_and_boundary": {
+        "label_zh": "政策與使用邊界",
+        "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+        "markers": [
+          "privacy",
+          "terms",
+          "support"
+        ]
+      },
+      "admin_operations": {
+        "label_zh": "管理後台",
+        "design_standard": "後台可以保留系統真相，但畫面要用中文摘要、中文狀態與可操作的下一步呈現。",
+        "markers": [
+          "admin-visual-system",
+          "admin",
+          "table"
+        ]
+      }
+    },
+    "family_usage_count": {
+      "admin_operations": 3,
+      "asset_and_upload": 3,
+      "authorization_and_provider": 2,
+      "conversion_cta": 2,
+      "hero_system": 2,
+      "motion_background": 1,
+      "policy_and_boundary": 9,
+      "pricing_experience": 2,
+      "process_timeline": 7,
+      "status_and_evidence": 9,
+      "structured_card_grid": 5,
+      "text_emphasis": 1
+    },
+    "industry_priority_families": [
+      "status_and_evidence",
+      "process_timeline",
+      "admin_operations",
+      "pricing_experience",
+      "motion_background"
+    ],
+    "pages": {
+      "home": {
+        "nav_label": "首頁",
+        "content_rule": "Must frame the whole project first: the project's Stage 1 plugin/MCP delivery, Stage 2 website/backend continuation, and any later login/payment/submission/operations boundaries that this project actually needs. Do not force the developer-assistant six-stage commercial model onto unrelated industries. Never make the homepage only about Stage 2 validation or reuse generic query-tool copy.",
+        "recipes": [
+          {
+            "token": "hero",
+            "family_id": "hero_system",
+            "family_label_zh": "首頁主視覺",
+            "design_standard": "第一眼要說清楚服務對象、核心價值與下一步；背景與標題要有產業感，不能只換顏色。",
+            "visible_markers": [
+              "hero",
+              "hero-split",
+              "industry-visual"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "bento_or_component_grid",
+            "family_id": "structured_card_grid",
+            "family_label_zh": "卡片式資訊整理",
+            "design_standard": "把服務、證據、元件或方案拆成易讀卡片；桌機可有層次，手機必須單欄可讀。",
+            "visible_markers": [
+              "card",
+              "component-grid",
+              "bento-stage-grid"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "status_summary",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "primary_cta",
+            "family_id": "conversion_cta",
+            "family_label_zh": "行動按鈕與轉換",
+            "design_standard": "按鈕必須連到真實頁面、表單或明確標示的預覽動作，不可只有動畫或 console.log。",
+            "visible_markers": [
+              "button",
+              "cta",
+              "price-orbit"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "aurora_or_glow_background",
+            "family_id": "motion_background",
+            "family_label_zh": "背景質感與動效",
+            "design_standard": "背景、光暈、波紋、星空、3D 深度或線條只能輔助內容；不得使用持續旋轉背景，需支援 reduced motion，不能讓文字消失。",
+            "visible_markers": [
+              "aurora-hero",
+              "industry-background.svg",
+              "depth-scene",
+              "keyframes"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "kinetic_text",
+            "family_id": "text_emphasis",
+            "family_label_zh": "文字重點動效",
+            "design_standard": "可用打字、翻轉、highlight 強化主張，但完整文案必須靜態可讀。",
+            "visible_markers": [
+              "eyebrow",
+              "badge",
+              "highlight"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "magnetic_cta",
+            "family_id": "conversion_cta",
+            "family_label_zh": "行動按鈕與轉換",
+            "design_standard": "按鈕必須連到真實頁面、表單或明確標示的預覽動作，不可只有動畫或 console.log。",
+            "visible_markers": [
+              "button",
+              "cta",
+              "price-orbit"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "conversion_cta",
+          "hero_system",
+          "motion_background",
+          "status_and_evidence",
+          "structured_card_grid",
+          "text_emphasis"
+        ]
+      },
+      "marketing": {
+        "nav_label": "交付內容",
+        "content_rule": "Must show what the developer receives at each stage and what is not yet proven.",
+        "recipes": [
+          {
+            "token": "feature_cards",
+            "family_id": "structured_card_grid",
+            "family_label_zh": "卡片式資訊整理",
+            "design_standard": "把服務、證據、元件或方案拆成易讀卡片；桌機可有層次，手機必須單欄可讀。",
+            "visible_markers": [
+              "card",
+              "component-grid",
+              "bento-stage-grid"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "proof_layers",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "timeline_or_process",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          }
+        ],
+        "required_family_ids": [
+          "process_timeline",
+          "status_and_evidence",
+          "structured_card_grid"
+        ]
+      },
+      "pricing": {
+        "nav_label": "方案說明",
+        "content_rule": "For 開發助手 self-build, must preserve NT$1,200 / 800 / 500 / 700 / 400 and total NT$3,600 unless catalog changes.",
+        "recipes": [
+          {
+            "token": "pricing_cards",
+            "family_id": "pricing_experience",
+            "family_label_zh": "方案與價格",
+            "design_standard": "價格、階段、交付物與不能承諾的事要放在同一脈絡；不得只做漂亮價格卡。",
+            "visible_markers": [
+              "pricing-motion-panel",
+              "stage-card",
+              "movingBorder"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "stage_breakdown",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "truth_boundary_notice",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "moving_border_price_cards",
+            "family_id": "pricing_experience",
+            "family_label_zh": "方案與價格",
+            "design_standard": "價格、階段、交付物與不能承諾的事要放在同一脈絡；不得只做漂亮價格卡。",
+            "visible_markers": [
+              "pricing-motion-panel",
+              "stage-card",
+              "movingBorder"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "hover_glow_cards",
+            "family_id": "structured_card_grid",
+            "family_label_zh": "卡片式資訊整理",
+            "design_standard": "把服務、證據、元件或方案拆成易讀卡片；桌機可有層次，手機必須單欄可讀。",
+            "visible_markers": [
+              "card",
+              "component-grid",
+              "bento-stage-grid"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "policy_and_boundary",
+          "pricing_experience",
+          "process_timeline",
+          "structured_card_grid"
+        ]
+      },
+      "guide": {
+        "nav_label": "使用教學",
+        "content_rule": "Must tell users what to say and what the system will read; users should not need to name internal tools.",
+        "recipes": [
+          {
+            "token": "step_cards",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "prompt_examples",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "callout",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "policy_and_boundary",
+          "process_timeline"
+        ]
+      },
+      "templates": {
+        "nav_label": "產業模板",
+        "content_rule": "Must explain industry-specific layout/component choices; template selection is fallback, not default.",
+        "recipes": [
+          {
+            "token": "industry_cards",
+            "family_id": "structured_card_grid",
+            "family_label_zh": "卡片式資訊整理",
+            "design_standard": "把服務、證據、元件或方案拆成易讀卡片；桌機可有層次，手機必須單欄可讀。",
+            "visible_markers": [
+              "card",
+              "component-grid",
+              "bento-stage-grid"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "component_showcase",
+            "family_id": "structured_card_grid",
+            "family_label_zh": "卡片式資訊整理",
+            "design_standard": "把服務、證據、元件或方案拆成易讀卡片；桌機可有層次，手機必須單欄可讀。",
+            "visible_markers": [
+              "card",
+              "component-grid",
+              "bento-stage-grid"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "layout_variants",
+            "family_id": "hero_system",
+            "family_label_zh": "首頁主視覺",
+            "design_standard": "第一眼要說清楚服務對象、核心價值與下一步；背景與標題要有產業感，不能只換顏色。",
+            "visible_markers": [
+              "hero",
+              "hero-split",
+              "industry-visual"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "hero_system",
+          "structured_card_grid"
+        ]
+      },
+      "assets": {
+        "nav_label": "圖片素材",
+        "content_rule": "Must distinguish R2 files, Cloudflare Images transformations, website render URLs, and ChatGPT UI render evidence.",
+        "recipes": [
+          {
+            "token": "asset_gallery",
+            "family_id": "asset_and_upload",
+            "family_label_zh": "圖片素材與上傳",
+            "design_standard": "要分清楚本機素材、R2、Cloudflare Images、公開 URL 與 ChatGPT UI 可渲染證據。",
+            "visible_markers": [
+              "asset-lane",
+              "asset",
+              "upload"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "upload_state",
+            "family_id": "asset_and_upload",
+            "family_label_zh": "圖片素材與上傳",
+            "design_standard": "要分清楚本機素材、R2、Cloudflare Images、公開 URL 與 ChatGPT UI 可渲染證據。",
+            "visible_markers": [
+              "asset-lane",
+              "asset",
+              "upload"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "storage_taxonomy",
+            "family_id": "asset_and_upload",
+            "family_label_zh": "圖片素材與上傳",
+            "design_standard": "要分清楚本機素材、R2、Cloudflare Images、公開 URL 與 ChatGPT UI 可渲染證據。",
+            "visible_markers": [
+              "asset-lane",
+              "asset",
+              "upload"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "asset_and_upload"
+        ]
+      },
+      "connect": {
+        "nav_label": "串接授權",
+        "content_rule": "Must distinguish three audiences: the assistant-core website teaches industry developers how to connect 開發助手 in ChatGPT; after Stage 1 it teaches developers how to connect their own generated plugin using their own MCP/server URL; future generated industry websites teach the developer's end users how to connect that specific plugin. Owner authorization is required, password/OTP/secret copy-paste is forbidden, and no page may imply OpenAI/ChatGPT review approval is guaranteed.",
+        "recipes": [
+          {
+            "token": "authorization_steps",
+            "family_id": "authorization_and_provider",
+            "family_label_zh": "授權與服務商狀態",
+            "design_standard": "Google/GitHub/Render/Cloudflare 等需要本人授權的地方，要顯示中文下一步與邊界。",
+            "visible_markers": [
+              "connect",
+              "provider",
+              "authorization"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "provider_status_cards",
+            "family_id": "authorization_and_provider",
+            "family_label_zh": "授權與服務商狀態",
+            "design_standard": "Google/GitHub/Render/Cloudflare 等需要本人授權的地方，要顯示中文下一步與邊界。",
+            "visible_markers": [
+              "connect",
+              "provider",
+              "authorization"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "step_cards",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "truth_boundary_notice",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "authorization_and_provider",
+          "policy_and_boundary",
+          "process_timeline"
+        ]
+      },
+      "docs": {
+        "nav_label": "測試文件",
+        "content_rule": "Must prove Stage 2 consumed Stage 1 context; never copy another product's docs.",
+        "recipes": [
+          {
+            "token": "test_prompt_list",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "evidence_matrix",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "regression_status",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "tracing_beam_timeline",
+            "family_id": "process_timeline",
+            "family_label_zh": "流程與時間線",
+            "design_standard": "用流程、時間線或追蹤線說明階段交付、驗證與使用步驟。",
+            "visible_markers": [
+              "timeline-track",
+              "tracing-panel",
+              "flow-step"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "spotlight_evidence_cards",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          }
+        ],
+        "required_family_ids": [
+          "process_timeline",
+          "status_and_evidence"
+        ]
+      },
+      "status": {
+        "nav_label": "完成狀態",
+        "content_rule": "Must separate local, GitHub, Render, MCP, ChatGPT native, submission, and approval evidence.",
+        "recipes": [
+          {
+            "token": "health_cards",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "api_status_panel",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "truth_layer_badges",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          }
+        ],
+        "required_family_ids": [
+          "status_and_evidence"
+        ]
+      },
+      "privacy": {
+        "nav_label": "隱私權政策",
+        "content_rule": "Must explain data use and retention without exposing raw chat logs or internal prompts.",
+        "recipes": [
+          {
+            "token": "policy_sections",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "data_boundary_cards",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "policy_and_boundary"
+        ]
+      },
+      "terms": {
+        "nav_label": "使用條款",
+        "content_rule": "Must explain what the service can and cannot promise at each stage.",
+        "recipes": [
+          {
+            "token": "scope_cards",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "confirmation_boundary",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "policy_and_boundary"
+        ]
+      },
+      "support": {
+        "nav_label": "客服支援",
+        "content_rule": "Must guide users to provide evidence without asking for passwords, OTP, tokens, or secrets.",
+        "recipes": [
+          {
+            "token": "support_routes",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          },
+          {
+            "token": "bug_report_steps",
+            "family_id": "policy_and_boundary",
+            "family_label_zh": "政策與使用邊界",
+            "design_standard": "隱私、條款、支援與資料邊界要用一般中文說明，避免內部提示詞或原始紀錄外露。",
+            "visible_markers": [
+              "privacy",
+              "terms",
+              "support"
+            ],
+            "priority_for_industry": false
+          }
+        ],
+        "required_family_ids": [
+          "policy_and_boundary"
+        ]
+      },
+      "admin": {
+        "nav_label": "管理後台",
+        "content_rule": "Admin UI can preview read models in Stage 2; real writes require owner-gated backend authorization.",
+        "recipes": [
+          {
+            "token": "sidebar_or_tabs",
+            "family_id": "admin_operations",
+            "family_label_zh": "管理後台",
+            "design_standard": "後台可以保留系統真相，但畫面要用中文摘要、中文狀態與可操作的下一步呈現。",
+            "visible_markers": [
+              "admin-visual-system",
+              "admin",
+              "table"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "admin_tables",
+            "family_id": "admin_operations",
+            "family_label_zh": "管理後台",
+            "design_standard": "後台可以保留系統真相，但畫面要用中文摘要、中文狀態與可操作的下一步呈現。",
+            "visible_markers": [
+              "admin-visual-system",
+              "admin",
+              "table"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "audit_log",
+            "family_id": "admin_operations",
+            "family_label_zh": "管理後台",
+            "design_standard": "後台可以保留系統真相，但畫面要用中文摘要、中文狀態與可操作的下一步呈現。",
+            "visible_markers": [
+              "admin-visual-system",
+              "admin",
+              "table"
+            ],
+            "priority_for_industry": true
+          },
+          {
+            "token": "api_state_panel",
+            "family_id": "status_and_evidence",
+            "family_label_zh": "狀態與證據",
+            "design_standard": "把驗證、完成狀態、限制與下一步翻成台灣使用者看得懂的中文，不外露工程狀態碼。",
+            "visible_markers": [
+              "evidence-matrix",
+              "truth-layer",
+              "status"
+            ],
+            "priority_for_industry": true
+          }
+        ],
+        "required_family_ids": [
+          "admin_operations",
+          "status_and_evidence"
+        ]
+      }
+    },
+    "source_ui_component_count": 56,
+    "source_ui_component_expected_count": 56,
+    "design_element_registry": {
+      "schema_version": "1.0",
+      "design_system_id": "editorial_control_room",
+      "industry": "automotive",
+      "storage_mode": "version_controlled_registry",
+      "future_database_policy": "May be promoted to a tenant-safe database later, but public site generation must not depend on mutable cross-project records.",
+      "selection_rule": "Select by page role, project context, marketing goal, accessibility, motion comfort, license boundary, then visible marker validation.",
+      "agent_policy": "Use existing Stage 2 orchestrators and gates first. Create a separate agent only if multi-pass visual repair cannot be composed from deterministic tools and skills.",
+      "external_style_extraction_sources": [
+        {
+          "source_id": "nextjs_landing_page_templates",
+          "extract": [
+            "multi-page SaaS structure",
+            "responsive layouts",
+            "pricing sections",
+            "micro-interactions",
+            "portfolio/agency/productized service patterns"
+          ],
+          "do_not_copy": [
+            "paid template source",
+            "template brand names",
+            "demo copy",
+            "screenshots",
+            "unclear-license assets"
+          ]
+        },
+        {
+          "source_id": "cult_ui_component_patterns",
+          "extract": [
+            "shader hero primitives",
+            "texture overlays",
+            "browser window frames",
+            "terminal animation",
+            "direction-aware tabs",
+            "prompt library widgets"
+          ],
+          "do_not_copy": [
+            "third-party defaults",
+            "external brand labels",
+            "paid or unclear-license code",
+            "demo AI SDK marketing copy"
+          ]
+        },
+        {
+          "source_id": "aceternity_magic_shadcn_open_ui_patterns",
+          "extract": [
+            "bento grids",
+            "3D card depth",
+            "marquee",
+            "spotlight",
+            "aurora or glow",
+            "forms",
+            "dialogs",
+            "dashboard primitives"
+          ],
+          "do_not_copy": [
+            "proper nouns",
+            "sample people",
+            "company logos",
+            "provider-specific claims"
+          ]
+        }
+      ],
+      "elements": [
+        {
+          "element_id": "warm_paper_surface",
+          "label_zh": "暖白紙張底",
+          "solves": "讓複雜流程像企劃書與設計稿一樣好閱讀，避免深色科技模板疲勞。",
+          "visible_markers": [
+            "warm-paper",
+            "editorial-control-room",
+            "#f4f1e9"
+          ],
+          "page_roles": [
+            "home",
+            "pricing",
+            "docs",
+            "admin"
+          ],
+          "required_for_developer_tooling": true
+        },
+        {
+          "element_id": "signal_coral_action",
+          "label_zh": "珊瑚色行動訊號",
+          "solves": "把下一步、狀態切換與重要階段用一致品牌色標出來。",
+          "visible_markers": [
+            "signal-coral",
+            "#ff6b4a",
+            "coral"
+          ],
+          "page_roles": [
+            "home",
+            "pricing",
+            "docs",
+            "admin"
+          ],
+          "required_for_developer_tooling": true
+        },
+        {
+          "element_id": "asymmetric_editorial_hero",
+          "label_zh": "非對稱首頁主視覺",
+          "solves": "避免置中 SaaS 模板感，讓首頁第一眼有品牌記憶點與閱讀動線。",
+          "visible_markers": [
+            "asymmetric-hero",
+            "editorial-hero",
+            "hero-visual"
+          ],
+          "page_roles": [
+            "home"
+          ],
+          "required_for_developer_tooling": true
+        },
+        {
+          "element_id": "blueprint_card",
+          "label_zh": "Blueprint 工作稿卡片",
+          "solves": "把工具、階段、證據與交付物變成可視化的產品工程圖，不只用文字堆疊。",
+          "visible_markers": [
+            "blueprint-card",
+            "blueprint",
+            "card-ruler"
+          ],
+          "page_roles": [
+            "home",
+            "docs",
+            "admin"
+          ],
+          "required_for_developer_tooling": true
+        },
+        {
+          "element_id": "evidence_rail",
+          "label_zh": "證據鏈軌道",
+          "solves": "分清楚本機、GitHub、部署、MCP、原生測試與送審，不再用一句完成混充。",
+          "visible_markers": [
+            "evidence-rail",
+            "proof-node",
+            "truth-layer"
+          ],
+          "page_roles": [
+            "home",
+            "docs",
+            "admin"
+          ],
+          "required_for_developer_tooling": true
+        },
+        {
+          "element_id": "stage_tabs",
+          "label_zh": "階段索引標籤",
+          "solves": "讓免費評估與第一到第六階段各自有位置，避免首頁只講第二階段。",
+          "visible_markers": [
+            "stage-tabs",
+            "phase-row",
+            "phase-status"
+          ],
+          "page_roles": [
+            "home",
+            "pricing"
+          ],
+          "required_for_developer_tooling": true
+        },
+        {
+          "element_id": "comfortable_motion",
+          "label_zh": "舒適動效",
+          "solves": "用 reveal、hover、marquee 與按壓回饋提示互動，不使用讓人暈的旋轉背景。",
+          "visible_markers": [
+            "prefers-reduced-motion",
+            "hover",
+            "marquee"
+          ],
+          "page_roles": [
+            "home",
+            "pricing",
+            "docs",
+            "admin"
+          ],
+          "required_for_developer_tooling": true
+        }
+      ],
+      "required_element_ids": [
+        "warm_paper_surface",
+        "signal_coral_action",
+        "asymmetric_editorial_hero",
+        "blueprint_card",
+        "evidence_rail",
+        "stage_tabs",
+        "comfortable_motion"
+      ]
+    },
+    "ui_component_selection_evidence": {
+      "total_candidates": 56,
+      "selected_or_adapted_count": 33,
+      "not_selected_count": 23,
+      "direct_imported_count": 0,
+      "family_count": 10,
+      "public_label": "UI/UX 候選元件已依頁面目的、產業情境、授權、動態舒適度與正式 Next.js/React/Tailwind 架構進行規劃。",
+      "truth_boundary": "Public summary only. Detailed component names, third-party source names, forbidden demo strings, and internal selection reasons stay in the internal manifest and validation files."
+    },
+    "status_copy_map": {
+      "public_non_sensitive_read_model": "目前顯示安全公開資料",
+      "OWNER_AUTHORIZATION_REQUIRED": "需要管理者授權後才能修改",
+      "OWNER_AUTHORIZATION_REQUIRED_WITH_NEXT_ACTION": "需要管理者授權，並依畫面下一步繼續",
+      "available": "可使用",
+      "live": "已上線",
+      "optional": "可選用",
+      "audit_event_count": "稽核紀錄數",
+      "owner_write": "管理者寫入權限",
+      "contains_personal_data": "是否顯示個人資料",
+      "items_by_status": "項目狀態統計"
+    },
+    "marketing_goal_rule": "Classify the marketing goal before selecting UI: trust, conversion, showcase, education, comparison, booking, transaction, upload, or admin operations.",
+    "user_guidance_rule": "Every selected UI pattern must help a first-time visitor quickly understand what the site does, who it is for, what to click next, what status means, and what still requires confirmation.",
+    "selection_rule": "Match marketing goal and page role first, then industry priority, then stack/license compatibility, then visible-marker validation.",
+    "beauty_rule": "美觀不是只換色；必須同時檢查背景質感、資訊層次、舒適互動節奏、手機閱讀與中文可理解性；不得選用讓人不舒服的持續旋轉背景。",
+    "motion_safety_rule": "Do not auto-select rotating background UI. Prefer non-rotating 3D depth, static layered glow, low-contrast grids, cursor-responsive cards, hover-only cards, or reduced-motion friendly reveals."
+  },
+  "stage2_ui_visible_strengthening": {
+    "registry_id": "stage2_ui_visible_strengthening_v1",
+    "candidate_count": 56,
+    "visible_or_adapted_count": 48,
+    "conditional_showcase_or_reference_count": 8,
+    "public_label": "第二階段會在產出後再分析一次首頁、方案、文件、後台、串接與素材頁，讓全部 UI 候選都有可運用場景、觸發條件與安全替代，而不是只停留在候選清單。",
+    "quality_gates": [
+      "全部 UI 候選都有頁面或情境對應",
+      "首頁、方案、文件、後台、串接、素材頁都有可見 UI 區塊",
+      "旋轉眩暈類不得預設啟用",
+      "深色區塊不得使用低對比文字",
+      "不得把開發助手本體內容污染到其他產業網站"
+    ],
+    "truth_boundary": "Public summary only. Full component mapping stays in internal manifest and validation reports."
+  },
+  "stage2_ui_source_registry": {
+    "registry_id": "stage2_ui_source_registry_v1",
+    "source_count": 6,
+    "public_label": "第二階段已納入前端設計資源庫，會依頁面目的、品牌調性、授權可用性、效能與動態舒適度選用。",
+    "quality_gates": [
+      "只抽取可合法使用的方法與互動模式",
+      "不公開完整元件清單與授權風險細節",
+      "不複製第三方示範品牌或文案",
+      "商用風險留在管理者證據與交接資料"
+    ],
+    "truth_boundary": "Public source summary only. Exact source names, component imports, license files, hashes, commercial-risk notes, and build evidence stay in internal manifests/admin evidence."
+  },
+  "stage2_full_stack_resource_registry": {
+    "registry_id": "stage2_full_stack_resource_registry_v1",
+    "frontend": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "ui_source_count": 9,
+    "ui_source_public_label": "已納入多個前端設計資源，完整來源、授權與商用風險檢查留在內部證據。",
+    "next_backend": [
+      "Route Handlers",
+      "Server Actions",
+      "server-rendered API summary"
+    ],
+    "fastapi_backend": [
+      "FastAPI",
+      "Pydantic",
+      "SQLAlchemy",
+      "Alembic",
+      "Uvicorn",
+      "HTTPX",
+      "Pytest"
+    ],
+    "database": {
+      "default_local": "SQLite",
+      "production_upgrade": "PostgreSQL"
+    },
+    "selection_rule": "Reuse existing project stack when safe; otherwise Stage 2 generated production website target is Next.js/React/TypeScript/Tailwind with a coexisting FastAPI scaffold. The selector decides responsibility split: Next.js Server for website/simple routes; FastAPI for MCP/Python/data/webhook/auth/payment/operations backends. PostgreSQL is added only when production data scale, paid users, or tenant isolation require it.",
+    "truth_boundary": "Public framework summary only. Concrete dependency installation, migrations, provider credentials, and runtime evidence stay in internal validation."
+  },
+  "stage2_design_element_registry": {
+    "schema_version": "1.0",
+    "design_system_id": "editorial_control_room",
+    "industry": "automotive",
+    "storage_mode": "version_controlled_registry",
+    "future_database_policy": "May be promoted to a tenant-safe database later, but public site generation must not depend on mutable cross-project records.",
+    "selection_rule": "Select by page role, project context, marketing goal, accessibility, motion comfort, license boundary, then visible marker validation.",
+    "agent_policy": "Use existing Stage 2 orchestrators and gates first. Create a separate agent only if multi-pass visual repair cannot be composed from deterministic tools and skills.",
+    "external_style_extraction_sources": [
+      {
+        "source_id": "nextjs_landing_page_templates",
+        "extract": [
+          "multi-page SaaS structure",
+          "responsive layouts",
+          "pricing sections",
+          "micro-interactions",
+          "portfolio/agency/productized service patterns"
+        ],
+        "do_not_copy": [
+          "paid template source",
+          "template brand names",
+          "demo copy",
+          "screenshots",
+          "unclear-license assets"
+        ]
+      },
+      {
+        "source_id": "cult_ui_component_patterns",
+        "extract": [
+          "shader hero primitives",
+          "texture overlays",
+          "browser window frames",
+          "terminal animation",
+          "direction-aware tabs",
+          "prompt library widgets"
+        ],
+        "do_not_copy": [
+          "third-party defaults",
+          "external brand labels",
+          "paid or unclear-license code",
+          "demo AI SDK marketing copy"
+        ]
+      },
+      {
+        "source_id": "aceternity_magic_shadcn_open_ui_patterns",
+        "extract": [
+          "bento grids",
+          "3D card depth",
+          "marquee",
+          "spotlight",
+          "aurora or glow",
+          "forms",
+          "dialogs",
+          "dashboard primitives"
+        ],
+        "do_not_copy": [
+          "proper nouns",
+          "sample people",
+          "company logos",
+          "provider-specific claims"
+        ]
+      }
+    ],
+    "elements": [
+      {
+        "element_id": "warm_paper_surface",
+        "label_zh": "暖白紙張底",
+        "solves": "讓複雜流程像企劃書與設計稿一樣好閱讀，避免深色科技模板疲勞。",
+        "visible_markers": [
+          "warm-paper",
+          "editorial-control-room",
+          "#f4f1e9"
+        ],
+        "page_roles": [
+          "home",
+          "pricing",
+          "docs",
+          "admin"
+        ],
+        "required_for_developer_tooling": true
+      },
+      {
+        "element_id": "signal_coral_action",
+        "label_zh": "珊瑚色行動訊號",
+        "solves": "把下一步、狀態切換與重要階段用一致品牌色標出來。",
+        "visible_markers": [
+          "signal-coral",
+          "#ff6b4a",
+          "coral"
+        ],
+        "page_roles": [
+          "home",
+          "pricing",
+          "docs",
+          "admin"
+        ],
+        "required_for_developer_tooling": true
+      },
+      {
+        "element_id": "asymmetric_editorial_hero",
+        "label_zh": "非對稱首頁主視覺",
+        "solves": "避免置中 SaaS 模板感，讓首頁第一眼有品牌記憶點與閱讀動線。",
+        "visible_markers": [
+          "asymmetric-hero",
+          "editorial-hero",
+          "hero-visual"
+        ],
+        "page_roles": [
+          "home"
+        ],
+        "required_for_developer_tooling": true
+      },
+      {
+        "element_id": "blueprint_card",
+        "label_zh": "Blueprint 工作稿卡片",
+        "solves": "把工具、階段、證據與交付物變成可視化的產品工程圖，不只用文字堆疊。",
+        "visible_markers": [
+          "blueprint-card",
+          "blueprint",
+          "card-ruler"
+        ],
+        "page_roles": [
+          "home",
+          "docs",
+          "admin"
+        ],
+        "required_for_developer_tooling": true
+      },
+      {
+        "element_id": "evidence_rail",
+        "label_zh": "證據鏈軌道",
+        "solves": "分清楚本機、GitHub、部署、MCP、原生測試與送審，不再用一句完成混充。",
+        "visible_markers": [
+          "evidence-rail",
+          "proof-node",
+          "truth-layer"
+        ],
+        "page_roles": [
+          "home",
+          "docs",
+          "admin"
+        ],
+        "required_for_developer_tooling": true
+      },
+      {
+        "element_id": "stage_tabs",
+        "label_zh": "階段索引標籤",
+        "solves": "讓免費評估與第一到第六階段各自有位置，避免首頁只講第二階段。",
+        "visible_markers": [
+          "stage-tabs",
+          "phase-row",
+          "phase-status"
+        ],
+        "page_roles": [
+          "home",
+          "pricing"
+        ],
+        "required_for_developer_tooling": true
+      },
+      {
+        "element_id": "comfortable_motion",
+        "label_zh": "舒適動效",
+        "solves": "用 reveal、hover、marquee 與按壓回饋提示互動，不使用讓人暈的旋轉背景。",
+        "visible_markers": [
+          "prefers-reduced-motion",
+          "hover",
+          "marquee"
+        ],
+        "page_roles": [
+          "home",
+          "pricing",
+          "docs",
+          "admin"
+        ],
+        "required_for_developer_tooling": true
+      }
+    ],
+    "required_element_ids": [
+      "warm_paper_surface",
+      "signal_coral_action",
+      "asymmetric_editorial_hero",
+      "blueprint_card",
+      "evidence_rail",
+      "stage_tabs",
+      "comfortable_motion"
+    ]
+  },
+  "stage2_design_thinking_registry": {
+    "registry_id": "stage2_design_thinking_v1",
+    "public_label": "第二階段設計前會先檢查色彩對比、視覺層級、品牌色角色、行銷目標、行動按鈕、動效舒適度與防污染清單。",
+    "quality_gates": [
+      "文字背景對比",
+      "首屏動線",
+      "行動按鈕清楚",
+      "動效舒適",
+      "不複製第三方品牌或範例內容"
+    ],
+    "truth_boundary": "Public summary only. Full design source notes and internal validation details stay in internal evidence files."
+  },
+  "stage2_policy_page_registry": {
+    "registry_id": "stage2_chatgpt_app_policy_pages_v1",
+    "public_label": "第二階段會產生隱私權政策、使用條款、客服與資料邊界頁，並檢查資料用途、第三方授權、保存刪除、使用者確認與不得保證審查通過。",
+    "quality_gates": [
+      "隱私欄位完整",
+      "條款邊界完整",
+      "第三方授權清楚",
+      "保存與刪除清楚",
+      "不複製其他外掛品牌或條文"
+    ],
+    "truth_boundary": "Public summary only. Owner still needs to review legal accuracy and submit reachable policy URLs in the official platform UI."
+  },
+  "stage2_connector_onboarding_registry": {
+    "registry_id": "stage2_connector_onboarding_v1",
+    "public_label": "第二階段會產生 ChatGPT 外掛連接教學，區分網站擁有者、開發者與使用者的授權步驟，並檢查不得要求密碼、驗證碼或私密金鑰。",
+    "quality_gates": [
+      "連接教學角色清楚",
+      "第一階段外掛連結可接續",
+      "終端使用者看得懂如何連接",
+      "授權安全說明完整",
+      "不保證平台審查通過"
+    ],
+    "truth_boundary": "Public summary only. Live ChatGPT connection, platform review, and provider authorization require separate evidence."
+  },
+  "stage_usage_guide_sync_contract": {
+    "schema_version": "1.0",
+    "applies_to": "future_industry_project",
+    "purpose": "當階段能力、工具或技能新增/修改時，自動同步使用教學、客服知識庫、素材頁、串接頁、測試文件、狀態頁與後台說明。",
+    "developer_assistant_required_public_topics": [
+      "free_discovery_usage",
+      "stage_1_plugin_usage",
+      "stage_1_chatgpt_native_test_own_plugin_primary",
+      "stage_1_codex_direct_mcp_test_own_plugin_secondary",
+      "developer_assistant_self_tools_codex_only",
+      "stage_2_website_usage",
+      "stage_2_logo_and_r2_asset_upload_usage",
+      "stage_3_membership_permission_usage",
+      "stage_4_payuni_payment_entitlement_usage",
+      "stage_5_submission_usage",
+      "stage_6_operations_usage"
+    ],
+    "future_industry_project_required_topics": [
+      "plain_language_start",
+      "current_stage_usage",
+      "stage_1_chatgpt_native_test_own_plugin_primary",
+      "stage_1_codex_direct_mcp_test_own_plugin_secondary",
+      "support_agent_usage",
+      "asset_upload_and_public_url_boundary",
+      "owner_authorization_boundary",
+      "stage_specific_next_step"
+    ],
+    "auto_sync_targets": [
+      "frontend_site/index.html",
+      "frontend_site/guide.html",
+      "frontend_site/stage1-testing.html",
+      "frontend_site/assets.html",
+      "frontend_site/connect.html",
+      "frontend_site/docs.html",
+      "frontend_site/status.html",
+      "frontend_site/support.html",
+      "support_knowledge/support-knowledge.sqlite3",
+      "governance/stage_capability_map/stage-tool-skill-problem-map.json"
+    ],
+    "guard_rule": "能力存在但使用說明未同步時不得宣稱完成；公開教學只講使用方式，不列出內部工具矩陣、完整 UI 候選清單或商用授權細節。"
+  },
+  "source": {
+    "content_source": "sanitized project content",
+    "does_user_need_to_repeat_original_need": false
+  },
+  "site_type": "static_frontend_preview_fallback",
+  "production_frontend_target": "nextjs_app_router_react_typescript_tailwind",
+  "website_quality_tier": "productized_marketing_site_v2",
+  "framework": "static html/css/js preview fallback",
+  "reference_patterns": [
+    "reference_product_site_flow",
+    "external_ai_build_process_decomposed_to_stage2_capabilities",
+    "zip_to_site_requirement_traceability",
+    "static_html_rapid_preview_stack",
+    "react_vite_typescript_tailwind_stack",
+    "nextjs_app_router_typescript_tailwind_stack",
+    "fastapi_sqlite_stage2_backend_stack",
+    "wordpress_template_parts_patterns_style_variations",
+    "responsive_image_variant_planning",
+    "woocommerce_cart_checkout_transaction_flow",
+    "template_gallery_quality",
+    "auth_billing_entitlement_starter",
+    "observability_and_runtime_debug",
+    "deploy_gate_and_commit_specific_evidence",
+    "optional_figma_canva_design_import",
+    "website_asset_upload_storage_and_public_url_guard",
+    "industry_background_image_generation_and_replacement_guard",
+    "mobile_responsive_readability_guard",
+    "public_content_boundary_guard",
+    "full_product_site_flow_guard"
+  ],
+  "stage2_reference_experience": {
+    "source": "validation/stage2_reference_experience_integration/stage2-capability-blueprints.json",
+    "status": "completed_local",
+    "capability_blueprints": [
+      "static_html_rapid_preview_stack",
+      "react_vite_typescript_tailwind_stack",
+      "nextjs_app_router_typescript_tailwind_stack",
+      "fastapi_sqlite_stage2_backend_stack",
+      "requirements_traceability_and_validation_stack",
+      "reference_zip_visual_continuation_stack"
+    ],
+    "rule": "Use external AI-built website cases only as technical-process lessons. Do not depend on Manus or copy external brands, demo content, or unclear-license UI source."
+  },
+  "cross_stage_pollution_guard": {
+    "status": "enforced",
+    "scope": "stage_1_memory_to_stage_6_operations",
+    "current_project_identity": {
+      "project_id": "auto-repair-plugin-9134f5dc",
+      "display_name": "汽車服務系統",
+      "industry": "automotive"
+    },
+    "industry_project_forbidden_examples": [
+      "developer assistant self-build content",
+      "developer assistant pricing or commercial logic",
+      "protected reference-product content",
+      "third-party demo brands or placeholder people",
+      "provider state from another account",
+      "internal tool names, private prompts, secrets, tokens, or raw chat transcript"
+    ],
+    "rule": "Generated public pages and delivery packages must use only this project's sanitized content sources. Factory self-build wording is allowed only when current_project_identity.industry is developer_tooling."
+  },
+  "deployment_handoff": {
+    "recommended_provider": "owner-authorized frontend hosting",
+    "next_tool": "vercel_frontend_deploy_builder",
+    "free_url_status": "requires_owner_authorized_deployment",
+    "expected_free_url_kind": "reachable HTTPS website URL after deployment",
+    "not_a_live_url_until": "A provider returns a reachable website URL and validation records frontend_url_verified=true."
+  },
+  "portable_design_package": {
+    "status": "required_for_stage2_delivery",
+    "purpose": "讓開發者除了線上網址，也能下載完整網站設計與建置包，交給其他 AI、工程師或設計師延伸，不必重新描述需求。",
+    "expected_archive_name": "auto-repair-plugin-9134f5dc-stage2-website-design-package.zip",
+    "required_contents": [
+      "frontend_site/：首頁、方案頁、文件頁、狀態頁、素材頁、授權頁與後台預覽",
+      "frontend_site/public/assets/：Logo、背景圖、主視覺、社群圖與素材清單",
+      "frontend_site/site-manifest.json：頁面、導覽、UI recipe、SEO、素材與部署規則",
+      "frontend/content/：由第一階段專案檔與對話決策 trace 產生的網站文案來源",
+      "stage2_delivery/：API 摘要、驗證矩陣、部署契約、圖片策略與能力來源台帳",
+      "website_architecture/：第一階段到第二階段銜接契約",
+      "validation/：本地檢查、內容守門、UI recipe 對應與交付驗證報告",
+      "README-for-next-ai.md：給其他 AI 或工程師讀的中文接續說明、不得出現的內容與授權邊界"
+    ],
+    "validation_rule": "壓縮檔不是只放 HTML；必須包含內容來源、UI/UX 對應、素材替換槽、部署邊界與測試證據。"
+  },
+  "design_import_boundary": {
+    "figma": "optional owner-authorized design reference import; not required for local static generation",
+    "canva": "optional owner-authorized brand asset/template reference import; not required for local static generation",
+    "build_web_apps": "optional external builder reference; generated code must still pass project guards before registration"
+  },
+  "website_asset_pipeline": {
+    "local_storage": [
+      "frontend_site/public/assets/",
+      "assets/"
+    ],
+    "image_variants": {
+      "logo": "256x256 PNG plus editable source",
+      "hero": "1600x900 WEBP/PNG",
+      "card": "800x600 WEBP/PNG",
+      "gallery": "1200px wide responsive image set",
+      "social_preview": "1200x630 PNG/WEBP",
+      "industry_background": "decorative SVG/WEBP/PNG background matched to the website domain"
+    },
+    "developer_upload_intake": "Use file_upload_pipeline_builder when a site needs user-uploaded product, property, menu, logo, case-study, background, or marketing images.",
+    "image_generation_guidance": {
+      "default_mode": "Generate safe local SVG examples from the industry profile so every template has a visible industry background before paid image generation.",
+      "optional_ai_image_mode": "If the developer wants AI-generated photos or illustrations, guide them to use their own authorized ChatGPT image generation, Canva, Figma, or storage provider account; record source, consent, replacement path, and cost boundary.",
+      "replacement_slots": [
+        "navbar logo",
+        "hero visual",
+        "page background",
+        "feature cards",
+        "social preview"
+      ]
+    },
+    "public_url_rule": "Local files are not public URLs. A public image URL exists only after owner-authorized deployment or storage provider upload returns a reachable HTTPS URL.",
+    "supported_public_sources_after_authorization": [
+      "Vercel static public assets",
+      "Cloudflare Images",
+      "Google Drive shared file links",
+      "Canva export",
+      "Figma export"
+    ],
+    "asset_manifest": "frontend_site/public/assets/asset-manifest.json",
+    "cloudflare_handoff": "frontend_site/cloudflare-asset-handoff.md",
+    "security_boundary": "Do not publish private, unlicensed, personal, medical, financial, or customer images without owner consent and project policy."
+  },
+  "responsive_guard": {
+    "mobile_breakpoints": [
+      "900px",
+      "720px"
+    ],
+    "must_prevent": [
+      "horizontal overflow",
+      "tiny unreadable body text",
+      "fixed multi-column cards on phones",
+      "buttons that are too small to tap"
+    ],
+    "required_css_patterns": [
+      "overflow-x: hidden",
+      "clamp(",
+      "grid-template-columns: 1fr",
+      "flex-wrap: wrap"
+    ],
+    "truth_boundary": "CSS/static checks only; real device visual QA or browser screenshots are separate evidence."
+  },
+  "public_content_boundary": {
+    "source_rule": "Only public-facing product copy, sanitized feature summaries, delivery status, and owner-action guidance may appear on website pages.",
+    "must_not_publish": [
+      "raw user-agent chat transcript",
+      "anger/profanity or complaint wording from tests",
+      "private prompts or internal handoff instructions",
+      "commercial pricing formulas or private packaging logic",
+      "secret names, token examples, OTP/password requests",
+      "implementation-only tool IDs unless shown inside developer documentation, not marketing copy",
+      "internal R2/manifest/key/signed URL/proxy proof phrases on visitor-facing guide pages"
+    ],
+    "sanitization_rule": "Translate internal development evidence into friendly product outcomes before writing frontend pages.",
+    "runtime_api_rendering_rule": "API JSON may keep machine-readable status codes, but public/admin HTML must render them as plain Traditional Chinese labels."
+  },
+  "product_site_flow": {
+    "process_reference": "Use mature product-site process patterns only; do not copy any existing customer brand, data, code, private prompts, or production configuration.",
+    "wordpress_reference_abstraction": "Use template parts, page patterns, style variations, and responsive image planning as neutral website-builder architecture, not as a WordPress dependency.",
+    "commerce_reference_abstraction": "Use cart/checkout blocks and Store API concepts as neutral transaction architecture: client UI, server-side cart truth, checkout tokens, order snapshot, and payment boundary.",
+    "required_public_pages": [
+      "home",
+      "marketing_or_delivery",
+      "pricing_or_plan_explanation",
+      "setup_guide",
+      "connector_authorization",
+      "developer_test_docs",
+      "status_and_evidence",
+      "templates_or_industry_patterns",
+      "assets_and_logo_specs",
+      "privacy_policy",
+      "terms_or_usage_boundary",
+      "support_contact"
+    ],
+    "quality_rule": "Developer-facing pages must explain outcomes, next actions, and truth boundaries in plain language instead of exposing internal tool names."
+  },
+  "template_architecture": {
+    "source_reference": "WordPress Theme Handbook template hierarchy abstraction; no WordPress runtime or copied theme code.",
+    "template_parts": [
+      "header_nav",
+      "industry_background",
+      "hero",
+      "proof_rail",
+      "industry_panel",
+      "card_grid",
+      "asset_lane",
+      "footer"
+    ],
+    "page_templates": {
+      "home": "index.html",
+      "marketing": "marketing.html",
+      "pricing": "pricing.html",
+      "guide": "guide.html",
+      "templates": "templates.html",
+      "assets": "assets.html",
+      "connect": "connect.html",
+      "docs": "docs.html",
+      "status": "status.html",
+      "privacy": "privacy.html",
+      "terms": "terms.html",
+      "support": "support.html"
+    },
+    "fallback_rule": "If a domain-specific page label or content block is missing, fall back to the generic profile but still require visible industry keywords before validation can pass.",
+    "do_not_copy": [
+      "third-party theme code",
+      "WordPress plugin code",
+      "private brand assets",
+      "existing customer production content"
+    ]
+  },
+  "seo_readiness": {
+    "source_reference": "Google Search Central abstraction for crawlable, understandable, user-visible content.",
+    "checks": [
+      "unique title per page",
+      "meta description per page",
+      "robots.txt allows crawling",
+      "sitemap.xml lists public pages",
+      "JSON-LD describes visible website content",
+      "headings match public page purpose",
+      "no blank structured data pages"
+    ],
+    "truth_boundary": "Local static SEO tags and files are generated; Google indexing, Search Console verification, ranking, rich results, and public crawl proof require deployed URLs and owner authorization."
+  },
+  "public_manifest_boundary": {
+    "rule": "Files inside frontend_site/public must not expose local account paths, raw project slugs, private handoff text, or implementation-only provider names.",
+    "public_project_label": "汽車服務系統"
+  },
+  "transaction_template_boundary": {
+    "builder": "cart_checkout_transaction_builder",
+    "use_when": [
+      "commerce",
+      "ordering",
+      "booking",
+      "reservation",
+      "paid_lead",
+      "service_confirmation"
+    ],
+    "requires": [
+      "server_side_cart_or_selection_state",
+      "explicit_confirmation",
+      "idempotency",
+      "immutable_order_or_booking_snapshot",
+      "payment_or_lead_boundary"
+    ],
+    "not_proof_of": [
+      "live payment",
+      "provider authorization",
+      "entitlement activation",
+      "production order submission"
+    ]
+  },
+  "truth_boundary": "Frontend site builder creates a deployable static website preview fallback, local assets, and local validation proof only. The Stage 2 production website/frontend target for generated plugin/SaaS products is Next.js App Router + React + TypeScript + Tailwind. A public website URL, public image URL, connector validation, platform review, or approval requires the project owner to complete the related provider authorization and must be verified with reachable live evidence.",
+  "project_aware_stage_2": {
+    "status": "READY",
+    "industry": "automotive",
+    "architecture_dir": "website_architecture",
+    "selected_ui_resources": [],
+    "base_package": {
+      "package_id": "operations-dashboard",
+      "label": "資料查詢與營運基礎套件",
+      "layout_id": "operations-dashboard",
+      "motion_profile": "status-reveal",
+      "purpose": "讓條件、結果、來源、狀態與管理資料容易核對。",
+      "runtime": "framework-neutral HTML/CSS/JavaScript",
+      "delivery": "included_in_generated_project",
+      "third_party_dependency": false
+    },
+    "template_policy": "Project-aware generation is the default; template selection is an optional fallback."
+  },
+  "public_site_label": "汽車服務系統"
+}

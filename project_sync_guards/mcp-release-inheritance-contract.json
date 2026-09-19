@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T10:09:38.939249+00:00",
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "status_vocabulary": [
+    "PASS",
+    "FAIL",
+    "BLOCKED",
+    "NOT_RUN",
+    "NOT_REQUIRED",
+    "STALE"
+  ],
+  "project_public_tools": [
+    "schedule_operation",
+    "subscribe_alerts",
+    "create_booking",
+    "approve_task",
+    "send_notification",
+    "assign_technician",
+    "record_parts_usage",
+    "book_notification",
+    "cancel_notification",
+    "notification_delivery_status",
+    "retry_notification",
+    "schedule_job",
+    "schedule_reminder"
+  ],
+  "public_surface_policy": {
+    "rule": "Publish only validated project-scoped tools. Never copy the mother system's five router tools into a customer project.",
+    "mother_router_tools_forbidden_as_child_surface": [
+      "start_developer_project",
+      "list_builder_capabilities",
+      "get_builder_project_status",
+      "execute_builder_capability",
+      "analyze_deployment_feedback"
+    ],
+    "internal_capabilities": "behind project router/workflow unless intentionally designed and validated as a public project tool"
+  },
+  "mother_system_release_boundary": {
+    "stage_1_customer_project": "No Auth remains valid only for the generated customer's project-scoped Stage 1 test endpoint.",
+    "stage_3_factory_production": "The Factory mother system must use MCP OAuth before Stage 5 native ChatGPT validation when it exposes member, project, or entitlement-aware tools."
+  },
+  "stage_release_gates": {
+    "stage_1_plugin_testable": {
+      "auth_mode": "none",
+      "required": [
+        "public HTTPS /mcp candidate recorded",
+        "Streamable HTTP initialize PASS",
+        "tools/list matches project_public_tools",
+        "at least one real tools/call PASS",
+        "tool descriptions, schemas, and annotations match behavior",
+        "No Authentication native ChatGPT connector PASS with fresh evidence"
+      ],
+      "completion_rule": "A ZIP or Render URL is not Stage 1 complete until remote MCP and a fresh native ChatGPT connection both pass."
+    },
+    "stage_2_industry_site": {
+      "required": [
+        "GitHub commit equals deployed Render commit",
+        "production HTTPS/domain and CORS PASS",
+        "remote initialize, tools/list, and tools/call rerun after deployment",
+        "UI/resource metadata and native rendering evidence when UI exists"
+      ]
+    },
+    "stage_3_google_membership": {
+      "auth_mode": "oauth when private/member data or actions exist; otherwise NOT_REQUIRED",
+      "required_when_oauth": [
+        "401 plus WWW-Authenticate resource_metadata",
+        "protected-resource and authorization-server metadata",
+        "authorization code flow with PKCE S256",
+        "token issuer, audience/resource, expiry, and scope validation",
+        "authenticated MCP call and fresh native login PASS"
+      ],
+      "rule": "Google login and MCP OAuth are separate contracts; one must not be used as evidence for the other."
+    },
+    "stage_4_payment_entitlement": {
+      "required": [
+        "write/payment tools require authenticated identity and entitlement",
+        "confirmation, idempotency, callback verification, reconciliation, and refund evidence",
+        "No provider or real transaction evidence means BLOCKED or NOT_RUN, never PASS"
+      ]
+    },
+    "stage_5_submission_readiness": {
+      "required": [
+        "positive and negative native ChatGPT prompts",
+        "current tool scan matches deployed tool contracts",
+        "fresh connector transcript/screenshot/browser evidence",
+        "privacy, terms, support, and reviewer path match production"
+      ]
+    },
+    "stage_6_post_launch_data_operations": {
+      "required": [
+        "monitor health, remote MCP, connector failures, and deployment drift separately",
+        "rollback evidence",
+        "invalidate affected PASS evidence after every MCP/auth/deploy/domain/UI change"
+      ]
+    }
+  },
+  "evidence_dependency": {
+    "server_mcp_pass_is_not_native_chatgpt_pass": true,
+    "local_pass_is_not_production_pass": true,
+    "upper_level_pass_is_computed_only_from_required_child_checks": true,
+    "missing_evidence_status": "NOT_RUN"
+  },
+  "regression_invalidation": {
+    "inputs": [
+      "MCP endpoint or transport",
+      "tool name, description, input/output schema, or annotations",
+      "authentication mode, OAuth metadata, token validation, scope, or CORS",
+      "deployment commit, environment variable, Render service, domain, or proxy",
+      "ChatGPT UI resource URI, version, or widget metadata"
+    ],
+    "action": "Mark affected remote MCP and native ChatGPT evidence STALE, redeploy if needed, refresh/recreate the connection, and rerun affected tests in a new conversation."
+  },
+  "truth_boundary": "Generated MCP release-contract proof only. Local checks do not prove GitHub push, Render deployment, the production domain, a native ChatGPT connection, OAuth provider approval, or OpenAI review."
+}

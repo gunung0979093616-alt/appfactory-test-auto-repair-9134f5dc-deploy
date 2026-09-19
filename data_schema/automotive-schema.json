@@ -1,0 +1,48 @@
+{
+  "entity": "AutomotiveRecord",
+  "domain_id": "automotive",
+  "display_name": "auto-repair",
+  "fields": [
+    {
+      "name": "id",
+      "required": true
+    },
+    {
+      "name": "name",
+      "required": true
+    },
+    {
+      "name": "description",
+      "required": false
+    },
+    {
+      "name": "status",
+      "required": true
+    },
+    {
+      "name": "created_at",
+      "required": false
+    },
+    {
+      "name": "updated_at",
+      "required": true
+    },
+    {
+      "name": "category",
+      "required": false
+    },
+    {
+      "name": "source",
+      "required": false
+    },
+    {
+      "name": "owner_id",
+      "required": false
+    }
+  ],
+  "rules": [
+    "不得捏造不存在的資料或可用時段。",
+    "寫入、預約、取消、付款前必須確認使用者身份與輸入。",
+    "正式 OAuth、付款與部署必須有平台回傳的獨立證據。"
+  ]
+}

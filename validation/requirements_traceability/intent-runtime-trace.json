@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "status": "PASS",
+  "intent_id": "",
+  "runtime_variant": "automotive",
+  "required_tools": [
+    "approve_task",
+    "assign_technician",
+    "book_notification",
+    "create_booking",
+    "record_parts_usage",
+    "schedule_operation",
+    "send_notification",
+    "subscribe_alerts"
+  ],
+  "actual_tools": [
+    "approve_task",
+    "assign_technician",
+    "book_notification",
+    "cancel_notification",
+    "create_booking",
+    "notification_delivery_status",
+    "record_parts_usage",
+    "retry_notification",
+    "schedule_job",
+    "schedule_operation",
+    "schedule_reminder",
+    "send_notification",
+    "subscribe_alerts"
+  ],
+  "missing_tools": [],
+  "forbidden_tools_found": [],
+  "coverage_source": "frozen_from_pre_runtime_domain_plan",
+  "requirement_fingerprint": "234cf1065c25417738679315d66b616ad99fbd9291e8fecbdb45cc34bc151aa7",
+  "traceability_note": "Requirements are frozen before runtime compilation. Runtime output may satisfy them but may never promote itself into, remove, or rewrite owner requirements.",
+  "checks": {
+    "intent_variant_matches": "PASS",
+    "intent_declares_required_tools": "PASS",
+    "requirements_frozen_before_runtime": "PASS",
+    "requirement_fingerprint_present": "PASS",
+    "generic_intent_has_runtime_tools": "PASS",
+    "every_required_tool_present": "PASS",
+    "forbidden_template_tools_absent": "PASS",
+    "explicit_actions_covered": "PASS",
+    "tool_contracts_have_handlers": "PASS"
+  },
+  "truth_boundary": "Independent requirement-to-runtime coverage evidence; local contracts and sandbox handlers are not Google provider authorization or live execution proof."
+}

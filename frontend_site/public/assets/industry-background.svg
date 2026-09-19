@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="汽車服務系統 網站背景圖">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e293b" stop-opacity=".88"/>
+      <stop offset=".52" stop-color="#0f172a" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#dc2626" stop-opacity=".72"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="900" fill="#020617" opacity=".10"/>
+  <path d="M0 620 C260 520 420 720 700 590 C940 478 1100 510 1600 392 L1600 900 L0 900 Z" fill="#dc2626" opacity=".24"/>
+  <path d="M0 704 C300 610 520 760 784 670 C1040 582 1260 620 1600 536 L1600 900 L0 900 Z" fill="#1e293b" opacity=".30"/>
+  <circle cx="80" cy="70" r="8" fill="#facc15" opacity="0.070"/>
+<circle cx="217" cy="159" r="16" fill="#dc2626" opacity="0.095"/>
+<circle cx="354" cy="248" r="24" fill="#dc2626" opacity="0.120"/>
+<circle cx="491" cy="337" r="32" fill="#facc15" opacity="0.145"/>
+<circle cx="628" cy="426" r="40" fill="#dc2626" opacity="0.070"/>
+<circle cx="765" cy="515" r="8" fill="#dc2626" opacity="0.095"/>
+<circle cx="902" cy="604" r="16" fill="#facc15" opacity="0.120"/>
+<circle cx="1039" cy="693" r="24" fill="#dc2626" opacity="0.145"/>
+<circle cx="1176" cy="782" r="32" fill="#dc2626" opacity="0.070"/>
+<circle cx="1313" cy="111" r="40" fill="#facc15" opacity="0.095"/>
+<circle cx="1450" cy="200" r="8" fill="#dc2626" opacity="0.120"/>
+<circle cx="127" cy="289" r="16" fill="#dc2626" opacity="0.145"/>
+<circle cx="264" cy="378" r="24" fill="#facc15" opacity="0.070"/>
+<circle cx="401" cy="467" r="32" fill="#dc2626" opacity="0.095"/>
+<circle cx="538" cy="556" r="40" fill="#dc2626" opacity="0.120"/>
+<circle cx="675" cy="645" r="8" fill="#facc15" opacity="0.145"/>
+<circle cx="812" cy="734" r="16" fill="#dc2626" opacity="0.070"/>
+<circle cx="949" cy="823" r="24" fill="#dc2626" opacity="0.095"/>
+<circle cx="1086" cy="152" r="32" fill="#facc15" opacity="0.120"/>
+<circle cx="1223" cy="241" r="40" fill="#dc2626" opacity="0.145"/>
+<circle cx="1360" cy="330" r="8" fill="#dc2626" opacity="0.070"/>
+<circle cx="1497" cy="419" r="16" fill="#facc15" opacity="0.095"/>
+<circle cx="174" cy="508" r="24" fill="#dc2626" opacity="0.120"/>
+<circle cx="311" cy="597" r="32" fill="#dc2626" opacity="0.145"/>
+<circle cx="448" cy="686" r="40" fill="#facc15" opacity="0.070"/>
+<circle cx="585" cy="775" r="8" fill="#dc2626" opacity="0.095"/>
+<circle cx="722" cy="104" r="16" fill="#dc2626" opacity="0.120"/>
+<circle cx="859" cy="193" r="24" fill="#facc15" opacity="0.145"/>
+<circle cx="996" cy="282" r="32" fill="#dc2626" opacity="0.070"/>
+<circle cx="1133" cy="371" r="40" fill="#dc2626" opacity="0.095"/>
+<circle cx="1270" cy="460" r="8" fill="#facc15" opacity="0.120"/>
+<circle cx="1407" cy="549" r="16" fill="#dc2626" opacity="0.145"/>
+<circle cx="84" cy="638" r="24" fill="#dc2626" opacity="0.070"/>
+<circle cx="221" cy="727" r="32" fill="#facc15" opacity="0.095"/>
+<circle cx="358" cy="816" r="40" fill="#dc2626" opacity="0.120"/>
+<circle cx="495" cy="145" r="8" fill="#dc2626" opacity="0.145"/>
+  <g transform="translate(952 168) scale(2.15)" filter="url(#soft)" opacity=".64">
+    <rect x="48" y="74" width="168" height="168" rx="42" fill="white" opacity=".18"/><circle cx="132" cy="158" r="58" fill="#facc15" opacity=".72"/><rect x="86" y="270" width="104" height="16" rx="8" fill="#dc2626" opacity=".82"/>
+  </g>
+  <g transform="translate(104 452) scale(1.22)" opacity=".42">
+    <rect x="48" y="74" width="168" height="168" rx="42" fill="white" opacity=".18"/><circle cx="132" cy="158" r="58" fill="#facc15" opacity=".72"/><rect x="86" y="270" width="104" height="16" rx="8" fill="#dc2626" opacity=".82"/>
+  </g>
+</svg>

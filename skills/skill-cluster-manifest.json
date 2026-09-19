@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "domain_id": "automotive",
+  "display_name": "auto-repair",
+  "dynamic_skill_decision": "split",
+  "decision_rule": "先依問題、資料、工作流程、風險與權限拆 Skill，再為每個 Skill 綁定需要的 MCP Tool；複雜專案不得固定成單一 Skill。",
+  "skill_count": 2,
+  "tool_count": 13,
+  "clusters": [
+    {
+      "cluster_id": "resource_discovery",
+      "skill_slug": "automotive-resource-discovery",
+      "title": "資源探索與比較 Skill",
+      "reason": "搜尋、取得詳情、比較與找聯絡窗口要被同一組查詢規則管理。",
+      "tool_keywords": [
+        "search",
+        "get",
+        "compare",
+        "find",
+        "list"
+      ],
+      "tools": [
+        "notification_delivery_status"
+      ],
+      "risk_level": "low",
+      "query_patterns": [
+        "找資料",
+        "查詢",
+        "比較",
+        "在哪裡",
+        "有哪些"
+      ],
+      "data_dependencies": [
+        "canonical schema",
+        "search index",
+        "source freshness"
+      ],
+      "tool_count": 1
+    },
+    {
+      "cluster_id": "application_workflow",
+      "skill_slug": "automotive-application-workflow",
+      "title": "申請與流程協助 Skill",
+      "reason": "清單、準備資料、建立或更新流程需要明確邊界、確認與交付證據。",
+      "tool_keywords": [
+        "prepare",
+        "create",
+        "update",
+        "cancel",
+        "redeem",
+        "book",
+        "checkout",
+        "order",
+        "schedule",
+        "record",
+        "subscribe"
+      ],
+      "tools": [
+        "schedule_operation",
+        "subscribe_alerts",
+        "create_booking",
+        "approve_task",
+        "send_notification",
+        "assign_technician",
+        "record_parts_usage",
+        "book_notification",
+        "cancel_notification",
+        "retry_notification",
+        "schedule_job",
+        "schedule_reminder"
+      ],
+      "risk_level": "medium",
+      "query_patterns": [
+        "下一步",
+        "準備資料",
+        "幫我建立",
+        "幫我安排",
+        "如何送出"
+      ],
+      "data_dependencies": [
+        "workflow state",
+        "audit trail",
+        "confirmation rule"
+      ],
+      "tool_count": 12
+    }
+  ],
+  "unmapped_tools": [],
+  "duplicate_mappings": [],
+  "checks": {
+    "all_tools_mapped_to_skills": "PASS",
+    "no_duplicate_tool_skill_mapping": "PASS",
+    "complex_project_not_single_skill": "PASS",
+    "skill_manifest_has_reasons": "PASS"
+  },
+  "status": "PASS",
+  "truth_boundary": "Local generated project Skill-to-Tool planning evidence; native ChatGPT routing still requires live transcript proof."
+}

@@ -1,0 +1,9 @@
+{
+  "name": "汽車服務系統",
+  "short_name": "AI App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0ea5e9",
+  "lang": "zh-Hant"
+}

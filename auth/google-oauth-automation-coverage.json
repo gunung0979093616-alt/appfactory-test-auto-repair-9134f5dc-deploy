@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "covered_by_generated_stage_3_contract": [
+    "project-specific application name and environment URLs",
+    "customer-owned domain separation from provider preview hosts",
+    "branding and policy page URLs",
+    "external testing audience and owner test-user handoff",
+    "minimal openid email profile scopes",
+    "traceable callback path contract",
+    "idempotent provider-state diff and old-URL preservation",
+    "scoped owner authorization followed by automatic provider Save and sanitized read-back",
+    "owner_admin-only safe admin status",
+    "authorization expiry, revocation, verification due date, and URL-change repair paths",
+    "website Google login separated from MCP client OAuth"
+  ],
+  "executed_by_codex_after_project_and_provider_authorization": [
+    "inspect the real frontend, backend, auth framework, database, deployment, and dirty worktree",
+    "implement or reuse the login button, callback, verified identity, session, logout, and protected routes",
+    "apply the Google Cloud settings in an owner-visible authorized browser",
+    "click routine Save automatically after scoped authorization and prove the persisted values by reopening the existing client",
+    "configure named variables through the deployment secret manager without reading their values",
+    "deploy, run live login, mobile, authorization, and regression verification, then repair failures"
+  ],
+  "owner_only_actions": [
+    "enter Google password, OTP, or solve CAPTCHA",
+    "complete domain ownership or Google verification submission not included in the recorded Stage 3 authorization"
+  ],
+  "must_remain_incomplete_without_live_evidence": [
+    "Google Cloud project selected and modified",
+    "OAuth client credential created and stored",
+    "deployed callback reached",
+    "Google identity verified and local session created",
+    "logout and protected-route denial verified",
+    "production publication or Google review completed"
+  ],
+  "rejected_patterns": [
+    "asking the developer to paste password, OTP, cookie, token, API key, or client secret",
+    "guessing a callback from the public homepage alone",
+    "creating a duplicate OAuth client before inspecting existing clients",
+    "asking the owner to click the routine Google Cloud Save button after the scoped provider change was authorized",
+    "deleting old valid URLs or rotating a secret during a URL-only update",
+    "publishing externally or requesting sensitive scopes without owner confirmation",
+    "treating website Google login as proof of MCP OAuth"
+  ]
+}

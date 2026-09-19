@@ -1,0 +1,168 @@
+{
+  "automation_surface": "owner-authorized visible browser on console.cloud.google.com",
+  "owner_account_selection": {
+    "applies_to": [
+      "Google Cloud Stage 3 provider setup",
+      "owner_admin live-login verification"
+    ],
+    "source_of_truth": "the current customer project's registered owner_admin Google email; never infer ownership from account order or another project's session",
+    "agent_behavior": [
+      "when an account chooser is visible, select only the exact registered owner_admin email",
+      "if the exact account is already active, continue without asking the owner to choose again",
+      "if the exact account is absent, use Add another account or Switch account and pause only for password, OTP, or CAPTCHA",
+      "after provider authentication, verify the returned email and Google sub resolve to this project's owner_admin before any admin action"
+    ],
+    "never": [
+      "select the first or default account without an exact match",
+      "assume a Codex, ChatGPT, Google Cloud, or Render session belongs to the same person without project ownership evidence",
+      "apply the owner account hint to ordinary public member login"
+    ],
+    "public_member_login": "Every member chooses and verifies their own Google account; owner auto-selection is restricted to the project-owner setup and verification flow.",
+    "resume_after_human_checkpoint": true
+  },
+  "first_consent_handoff": {
+    "trigger": "Stage 3 purchase or owner-authorized Stage 3 start reaches the first live Google login verification",
+    "owner_setup_url": "/api/auth/google?next=%2Fadmin%2Fgoogle-login&flow=owner_setup",
+    "user_message": "若 Google 顯示選擇帳戶，請點選購買第三階段時登記的管理者 Google 帳號；完成後系統會自動繼續，不需要重新下指令。",
+    "maximum_owner_actions": "one account click, plus only provider-required password, OTP, or CAPTCHA",
+    "continuous_resume": true,
+    "must_not": [
+      "pause for another confirmation between non-secret setup steps",
+      "send the owner back to repeat project information",
+      "wait silently after opening the provider account chooser"
+    ],
+    "public_member_separation": "This owner setup message appears only on flow=owner_setup; ordinary member login keeps the normal member-facing copy."
+  },
+  "owner_login_transport": {
+    "mode": "same_page_redirect",
+    "callback_path": "/api/auth/google/owner-callback",
+    "reason": "Keep first owner consent on a controllable full-page route and prevent a detached popup from losing the continuation signal.",
+    "csrf_guard": "Require Google's g_csrf_token form value to exactly match its cookie before verifying the credential.",
+    "ordinary_member_login": "same-page redirect uses /api/auth/google/member-callback and never grants owner_admin without server-side membership verification",
+    "completion_redirect": "/admin/google-login"
+  },
+  "provider_popup_takeover": {
+    "required": true,
+    "sequence": [
+      "record the initiating login page before clicking the Google button",
+      "wait for either a controllable popup/page or a provider-native account chooser",
+      "reacquire the popup/page immediately when the automation surface exposes it",
+      "run exact owner_admin account matching before clicking any account",
+      "wait for the popup to close or the initiating page to receive the Google credential",
+      "verify /api/me and same-project owner_admin before declaring success"
+    ],
+    "success_gate": [
+      "Google credential accepted by the deployed backend",
+      "/api/me returns the expected verified identity",
+      "same-project role is owner_admin",
+      "owner-only page is accessible and logout clears the session"
+    ],
+    "must_not_mark_complete_on": [
+      "Google button clicked",
+      "account chooser opened",
+      "an account row clicked without backend identity proof"
+    ],
+    "native_surface_fallback": "If the provider intentionally exposes a non-controllable native identity surface, show the exact matched owner account and one-action handoff immediately; never wait silently. Resume automatically after that single owner click.",
+    "timeout_behavior": "Return a structured provider_popup_not_controllable or owner_account_not_present result promptly; never remain waiting without a visible next action."
+  },
+  "google_button_configuration": {
+    "use_fedcm_for_button": false,
+    "button_auto_select": false,
+    "ux_mode": "redirect",
+    "member_callback_path": "/api/auth/google/member-callback",
+    "expected_effect": "Use a full-page Google redirect so embedded and in-app browsers do not silently stall on FedCM or detached popup handling.",
+    "fedcm_retry_policy": "Do not rely on FedCM or a detached popup for ordinary login; use the fixed server callback and never leave a clickable button with no visible result.",
+    "identity_guard": "The backend still verifies the ID token audience and maps Google sub plus verified email to this project's membership before granting owner_admin."
+  },
+  "one_time_authorization": {
+    "record_at_start": true,
+    "scope": "the exact customer project, existing OAuth client, and manifest URL additions disclosed for this Stage 3 run",
+    "covers": [
+      "application name and same-account support/contact email",
+      "external testing audience and owner test user",
+      "customer-project domains, JavaScript origins, and discovered redirect URIs",
+      "Google OAuth web client creation or minimal update",
+      "Google API User Data Policy checkbox when it is explicitly included in the Stage 3 start disclosure"
+    ],
+    "no_repeat_confirmation_for_covered_actions": true,
+    "resume_from_first_incomplete_step": true,
+    "save_behavior": "Codex clicks Google Cloud Save automatically after the scoped authorization; the owner is not asked to click the routine Save button."
+  },
+  "provider_mutation_state_machine": {
+    "initial": "WAITING_FOR_OWNER_OAUTH_CHANGE_CONFIRMATION",
+    "states": [
+      "WAITING_FOR_OWNER_OAUTH_CHANGE_CONFIRMATION",
+      "APPLYING_PROVIDER_DIFF",
+      "PROVIDER_SAVE_CONFIRMED",
+      "WAITING_FOR_PROVIDER_PROPAGATION",
+      "LIVE_LOGIN_VERIFIED",
+      "FAILED_CLOSED"
+    ],
+    "authorization_gate": "Require one action-time confirmation naming the exact customer project, existing OAuth client, and sanitized URL additions before the first persistent provider mutation.",
+    "automatic_after_gate": [
+      "read the current sanitized origins and redirect URIs",
+      "compute an add-only exact-value diff against the generated manifest",
+      "add only missing values and deduplicate exact normalized entries",
+      "click the Google Cloud Save button automatically",
+      "wait for an explicit provider save-success message and for pending progress to finish",
+      "reload the existing OAuth client and read back the sanitized origins and redirect URIs",
+      "compare the read-back state and fingerprint with the manifest",
+      "wait for provider propagation, then run deployed login, callback, session, and logout verification"
+    ],
+    "save_action": "agent_clicks_save_after_scoped_owner_confirmation",
+    "owner_manual_save_required": false,
+    "success_evidence": [
+      "provider save-success message observed",
+      "saved OAuth client reopened",
+      "all required origins and redirect URIs read back exactly"
+    ],
+    "failure_codes": {
+      "save_not_confirmed": "OAUTH_PROVIDER_SAVE_NOT_CONFIRMED",
+      "readback_mismatch": "OAUTH_PROVIDER_CONFIG_STALE",
+      "live_login_failed": "OAUTH_LIVE_LOGIN_NOT_VERIFIED"
+    },
+    "failure_behavior": "Fail closed with the exact safe error code; do not create another OAuth client, delete old URLs, or rotate a secret to bypass a save/read-back failure.",
+    "truth_boundary": "A provider save and read-back prove configuration persistence only; LIVE_LOGIN_VERIFIED still requires the deployed Google callback, /api/me, session, protected route, and logout checks."
+  },
+  "agent_steps": [
+    "select or create the Google Cloud project that belongs to this customer project",
+    "match the visible Google account exactly to this customer project's registered owner_admin before changing provider configuration",
+    "open Google Auth Platform Branding and fill the project application name",
+    "fill only existing project homepage, privacy, terms, support, and verified logo fields",
+    "keep a public project in external testing mode and add the owner as a test user",
+    "add only customer-owned authorized domains",
+    "open Clients, choose Web application, and fill the project name",
+    "add the manifest JavaScript origins and only the redirect URIs required by a discovered runtime callback",
+    "request only openid, email, and profile for basic sign-in",
+    "after the scoped owner authorization, click Save automatically, wait for provider success, reopen the client, and verify the sanitized provider configuration against this manifest"
+  ],
+  "owner_only_steps": [
+    "enter Google password, OTP, or solve CAPTCHA",
+    "complete domain ownership or Google verification submission not included in the recorded Stage 3 authorization"
+  ],
+  "human_checkpoint_guidance": {
+    "otp": {
+      "plain_language_message": "請開啟當初綁定目前服務帳號的驗證器 App，輸入該服務顯示的 6 位數動態碼；若無法使用驗證器，請改用服務提供的備用碼或帳號復原。請勿把驗證碼貼到聊天。",
+      "agent_behavior": "Keep the authorized browser on the exact OTP page, identify the provider by name, and resume automatically after the owner submits the code without requiring another command.",
+      "never_request_in_chat": true
+    },
+    "password": {
+      "plain_language_message": "請直接在目前供應商的登入頁輸入密碼，不要貼到聊天；登入完成後 Codex 會從原步驟自動續接。",
+      "never_request_in_chat": true
+    },
+    "captcha": {
+      "plain_language_message": "請在目前頁面完成人機驗證；完成後 Codex 會從原步驟自動續接。"
+    }
+  },
+  "never_capture": [
+    "password",
+    "OTP",
+    "cookie",
+    "access token",
+    "refresh token",
+    "client secret",
+    "API key"
+  ],
+  "credential_preservation": "Never delete the OAuth client to repair a secret-handling issue. Preserve the client ID, origins, and login service; rotate only the affected secret when the runtime uses one.",
+  "url_update_guard": "URL-only maintenance is add-only by default: never delete an existing valid URI, recreate the OAuth client, or create/rotate a client secret merely to apply or repair origins and redirect URIs."
+}

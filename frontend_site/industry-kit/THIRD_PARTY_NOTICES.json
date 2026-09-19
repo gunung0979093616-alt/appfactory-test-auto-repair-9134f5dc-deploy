@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0",
+  "selected": [],
+  "notice": "No third-party UI code is bundled when selected is empty. License notices must be retained for every selected dependency."
+}

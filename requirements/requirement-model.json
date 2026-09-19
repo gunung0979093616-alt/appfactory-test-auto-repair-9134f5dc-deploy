@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T10:09:37.822748+00:00",
+  "revision": 1,
+  "parent_fingerprint": null,
+  "content_fingerprint": "bb149b5bc4c792ff1fc53c63ee8292bd0098d5da3017f75b5d67553961c650cb",
+  "original_input": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+  "answers": {},
+  "domain": "general_operations",
+  "outcome_family": "product_delivery",
+  "data_source": "website",
+  "six_layer_model": {
+    "surface_request": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+    "functional_need": "建立符合 general_operations 情境的 product_delivery 能力",
+    "problem_need": "降低 general_operations 現行流程中的資訊分散、人工處理或服務斷點",
+    "value_need": "讓工作結果更可靠且可驗證",
+    "outcome_need": "可量測地改善 product_delivery",
+    "root_goal": "可靠完成 product_delivery"
+  },
+  "unknowns": [
+    {
+      "id": "target_user",
+      "priority": "P2",
+      "router": "ASK_HUMAN_OR_INFER",
+      "question": "第一批真正會使用這個系統的人是誰？他們現在如何完成這件事？",
+      "why_this_matters": "使用者與現況會決定登入、權限、介面及成功指標。",
+      "possible_answers": [
+        "自己使用",
+        "公司內部人員",
+        "既有會員或客戶",
+        "一般公開使用者"
+      ],
+      "impact": "identity_ui_and_workflow"
+    }
+  ],
+  "scenario_branches": [],
+  "evidence_ledger": [
+    {
+      "field": "original_input",
+      "type": "FACT",
+      "value": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+      "source": "user_input",
+      "confidence": 1.0
+    },
+    {
+      "field": "domain",
+      "type": "INFERENCE",
+      "value": "general_operations",
+      "source": "keyword_and_context_inference",
+      "confidence": 0.2
+    },
+    {
+      "field": "outcome_family",
+      "type": "INFERENCE",
+      "value": "product_delivery",
+      "source": "keyword_and_context_inference",
+      "confidence": 0.75
+    }
+  ],
+  "human_available": true,
+  "next_question": {
+    "id": "target_user",
+    "priority": "P2",
+    "router": "ASK_HUMAN_OR_INFER",
+    "question": "第一批真正會使用這個系統的人是誰？他們現在如何完成這件事？",
+    "why_this_matters": "使用者與現況會決定登入、權限、介面及成功指標。",
+    "possible_answers": [
+      "自己使用",
+      "公司內部人員",
+      "既有會員或客戶",
+      "一般公開使用者"
+    ],
+    "impact": "identity_ui_and_workflow"
+  },
+  "readiness": {
+    "status": "READY_WITH_OPEN_QUESTIONS",
+    "requirements_draft_allowed": true,
+    "architecture_lock_allowed": true,
+    "external_or_irreversible_actions_allowed": true,
+    "reason": "根本目標足以進入資料盤點；其餘未知保留並在下一輪依答案更新。"
+  },
+  "fixed_guards": [
+    "ASSUMPTION and INFERENCE must never be promoted to FACT without a source or human answer.",
+    "Ask at most one highest-information-value question at a time.",
+    "Researchable facts must be researched instead of delegated to the user.",
+    "High-impact ambiguity keeps architecture, payment, legal consent, deletion, and production release fail-closed.",
+    "A later human answer invalidates conflicting assumptions and triggers impact-based regeneration."
+  ],
+  "truth_boundary": "Discovery-model evidence only; it does not prove implementation, deployment, provider authorization, native ChatGPT behavior, or approval."
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>汽車服務系統｜第一階段外掛使用與測試</title>
+  <meta name="description" content="第一階段交付後，如何在 ChatGPT 測試自己的外掛，並以 Codex 作第二種開發驗證。">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="theme-automotive" data-layout="layout-automotive" data-industry-layout="operations-dashboard" data-industry-kit="operations-dashboard" data-motion-profile="status-reveal" data-design-thinking="stage2-design-thinking-v1">
+  <header class="topbar">
+    <nav class="nav" aria-label="主要導覽">
+      <a class="brand" href="./index.html"><img class="brand-logo" src="./public/assets/logo-256.svg" alt="汽車服務系統 Logo"><span>汽車服務系統</span></a>
+      <details class="site-menu">
+        <summary>網站選單</summary>
+        <div class="navlinks" aria-label="網站分頁導覽">
+          <a href="./index.html">汽車首頁</a>
+        <a href="./marketing.html">汽車交付</a>
+        <a href="./pricing.html">車輛方案</a>
+        <a href="./subscription.html">訂閱方案</a>
+        <a class="google-login-nav-link" href="/api/auth/google?next=%2Faccount"><span class="google-g-icon google-g-icon-nav" aria-hidden="true">G</span><span>Google 登入</span></a>
+        <a href="./guide.html">車款教學</a>
+        <a href="./templates.html">車輛模板</a>
+        <a href="./assets.html">車輛素材</a>
+        <a href="./connect.html">車商串接</a>
+        <a href="./docs.html">汽車測試</a>
+        <a href="./status.html">汽車驗收</a>
+        <a href="./privacy.html">隱私權政策</a>
+        <a href="./terms.html">使用條款</a>
+        <a href="./support.html">客服支援</a>
+        </div>
+      </details>
+    </nav>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">第一階段交付後的使用說明</p>
+      <h1>把你取得的外掛連到 ChatGPT，開始測試實際功能</h1>
+      <p class="lead">這一頁教你在公開上架前使用與測試 汽車服務系統；正式公開上架後，請改用網站串接頁的品牌搜尋教學。</p>
+    </section>
+    <section class="card">
+      <p class="badge">主要測試方式</p>
+      <h2>在 ChatGPT 開發者階段新增自訂 MCP App</h2>
+      <ol>
+        <li>使用第一階段交付給你的 MCP 伺服器網址；網址通常以 <code>/mcp</code> 結尾。</li>
+        <li>在 ChatGPT 開發者階段新增自訂 MCP App，貼上你的 MCP 網址並連接。</li>
+        <li>用第一階段交付的正向、反向與模糊自然語言測試句驗證。</li>
+        <li>保留實際操作結果、對話紀錄或截圖，方便確認 ChatGPT 中的操作是否成功。</li>
+      </ol>
+      <p>你的 MCP 網址：<code id="delivered-mcp-url">請使用第一階段交付的網址</code></p>
+    </section>
+    <section class="card">
+      <p class="badge">第二種開發驗證</p>
+      <h2>也可以在 Codex 直接連接自己的 MCP</h2>
+      <p>到 Codex 設定 → 外掛程式 → 新增 MCP 伺服器 → 可串流 HTTP，填入名稱與你的 MCP 網址後儲存，再回到對話按「＋」選自己的外掛測試。</p>
+    </section>
+    <section class="card">
+      <h2>遇到問題怎麼辦</h2>
+      <p>先確認網址、<code>/health</code>、<code>/mcp</code> 與部署版本屬於同一個專案。不要在聊天中提供密碼、驗證碼、Cookie、Token 或任何私密金鑰。</p>
+      <a class="button" href="./support.html">前往客服支援</a>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>網站內容會依資料來源、服務狀態與使用者確認流程持續更新。</p>
+  </footer>
+  <script src="./industry-kit/interactions.js" defer></script>
+  <script>
+    const suppliedUrl = new URLSearchParams(window.location.search).get("mcp_url");
+    if (suppliedUrl && suppliedUrl.toLowerCase().startsWith("https://") && suppliedUrl.endsWith("/mcp")) {
+      document.getElementById("delivered-mcp-url").textContent = suppliedUrl;
+    }
+  </script>
+</body>
+</html>

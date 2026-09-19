@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>auto-repair｜Google 登入</title>
+  <meta name="description" content="auto-repair 的 Google 登入入口與帳號安全設定說明。">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="auto-repair｜Google 登入">
+  <meta property="og:description" content="auto-repair 的 Google 登入入口與帳號安全設定說明。">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="template-page" content="login">
+  <style>
+    :root { --ink:#172033; --muted:#667085; --line:#d8e0ed; --brand:#2563eb; --bg:#f8fbff; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Segoe UI",sans-serif; background:radial-gradient(circle at top left,#dbeafe,#fff 42%,#f8fafc); color:var(--ink); }
+    .card { width:min(720px,100%); background:#fff; border:1px solid var(--line); border-radius:32px; padding:34px; box-shadow:0 28px 80px rgba(23,32,51,.12); }
+    h1 { font-size:clamp(2rem,5vw,4rem); line-height:1; margin:0 0 16px; letter-spacing:-.04em; }
+    p, li { line-height:1.75; color:var(--muted); }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; margin:16px 0; padding:14px 18px; border-radius:999px; background:var(--brand); color:white; text-decoration:none; font-weight:950; }
+    .gate { border:1px solid #fed7aa; background:#fff7ed; color:#7c2d12; border-radius:20px; padding:16px; }
+    a { color:var(--brand); font-weight:850; }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"auto-repair Google 登入","about":"通用外掛系統","description":"Google 登入入口、會員身份與帳號安全設定說明。"}
+  </script>
+</head>
+<body>
+  <main class="card">
+    <p><a href="./index.html">← 回首頁</a></p>
+    <h1>使用 Google 登入</h1>
+    <p>auto-repair 已預留 Google 登入、使用者身份、登入狀態與安全返回路徑。不同使用者可用自己的 Google 帳號登入；正式連線前必須由專案擁有人完成 Google 帳號服務設定。</p>
+    <p>登入後可以安全地使用資料查詢、整理、比較、訂閱與後台管理功能。</p>
+    <a class="button" href="/api/auth/google?next=%2Faccount">使用 Google 帳號登入</a>
+    <section class="gate">
+      <strong>正式連線前的帳號安全確認</strong>
+      <ul>
+        <li>本人建立 OAuth consent、client ID 與 redirect URI。</li>
+        <li>client secret 不貼在聊天裡，只放部署平台 Secret Manager。</li>
+        <li>手機與桌機都要驗證登入、callback、session 與 safe next。</li>
+      </ul>
+    </section>
+    <p>登入完成後可前往 <a href="./payment.html">訂閱方案頁</a> 或 <a href="/ops">管理者後台</a>。</p>
+  </main>
+</body>
+</html>

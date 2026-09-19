@@ -1,0 +1,15 @@
+{
+  "domain_dns_assets": "cloudflare",
+  "free_preview_host": true,
+  "cost_trigger": "Read a fresh provider quote before any paid upgrade or domain checkout; never hard-code a price.",
+  "owner_action_boundary": "Only the owner completes provider login, MFA, CAPTCHA, legal acceptance, and real payment.",
+  "id": "standard_python",
+  "primary_compute": "render",
+  "primary_backend_candidates": [
+    "render_web_service"
+  ],
+  "selection_reason": "Safe cross-industry default for Python/FastAPI, background work, OAuth callbacks, and MCP services.",
+  "limits": [
+    "A free preview URL is not durable storage proof; paid service or storage remains a later owner decision."
+  ]
+}

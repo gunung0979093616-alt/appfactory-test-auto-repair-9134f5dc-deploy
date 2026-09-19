@@ -1,0 +1,60 @@
+{
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "tests": [
+    {
+      "capability_id": "approve_task",
+      "cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ]
+    },
+    {
+      "capability_id": "send_notification",
+      "cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ]
+    },
+    {
+      "capability_id": "assign_technician",
+      "cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ]
+    },
+    {
+      "capability_id": "record_parts_usage",
+      "cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ]
+    },
+    {
+      "capability_id": "book_notification",
+      "cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ]
+    }
+  ]
+}

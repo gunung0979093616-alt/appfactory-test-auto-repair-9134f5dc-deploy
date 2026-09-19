@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "page": "/admin/google-login",
+  "visible_to": [
+    "owner_admin"
+  ],
+  "business_view": [
+    "Google 登入可用狀態",
+    "已連接網址數量",
+    "最後驗證時間",
+    "需要本人處理的下一步"
+  ],
+  "codex_maintenance_view": [
+    "configuration fingerprint",
+    "missing/stale origin and redirect URI diff",
+    "callback live check",
+    "safe error code",
+    "repair command"
+  ],
+  "never_render": [
+    "client secret",
+    "token",
+    "cookie",
+    "password",
+    "OTP",
+    "raw provider response"
+  ],
+  "status_api": "/api/admin/oauth/status",
+  "truth_boundary": "The admin page reports safe state and repair entry points; it does not store or reveal provider credentials."
+}

@@ -1,0 +1,27 @@
+# 登入與 OAuth 驗證守門
+
+- login page renders
+- Google OAuth console settings are owner-confirmed without exposing secrets
+- generated Google OAuth manifest is derived from this project rather than a reference project
+- OAuth configuration sync is idempotent and reports only missing or stale values
+- provider-managed preview domains are not claimed as owner-authorized production domains
+- admin OAuth status is owner_admin-only and never returns secrets or tokens
+- safe next=/oauth-continue is preserved after login/register
+- cross-origin login uses credentials include when cookie sessions are used
+- callback route exists
+- state and redirect_uri are preserved through authorization
+- PKCE challenge and verifier path is tested for external OAuth clients
+- session persists across protected API call
+- logout clears session
+- different Google accounts resolve to different local user identities
+- /api/auth/google, /api/me, MCP, quota, plans, payments, entitlements, notifications and ops resolve the same server-side user_id
+- user-supplied owner/admin claims never elevate privileges
+- tenant and project membership are checked before owner/admin access
+- security event persistence stores hashes and classifications but no raw prompt or secret
+- mobile login and callback complete without blank page or hidden overflow blocking action buttons
+- reviewer path can access test-only data
+- owner_admin remains authorized when plan, subscription or quota state changes
+- a customer project's owner_admin never becomes mother-system admin or another project's admin
+- MCP unauthorized returns proper auth challenge when needed
+- ChatGPT OAuth metadata endpoints are reachable after deployment
+- ChatGPT native or review test transcript shows the external client completed OAuth and called the protected tool

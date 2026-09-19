@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "stage": "stage_3_google_membership",
+  "authorization": "server-verified same-project owner_admin session",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/admin/oauth/status",
+      "purpose": "sanitized current state"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/oauth/sync-plan",
+      "purpose": "minimal diff plan only; no provider mutation"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/oauth/verify",
+      "purpose": "rerun deployed login/callback checks"
+    }
+  ],
+  "response_allowlist": [
+    "configuration_state",
+    "application_name",
+    "authorized_domains",
+    "authorized_javascript_origins",
+    "authorized_redirect_uris",
+    "configuration_fingerprint",
+    "last_verified_at",
+    "authorization_expires_at",
+    "credential_rotation_due_at",
+    "verification_due_at",
+    "next_action",
+    "error_code"
+  ],
+  "forbidden_response_fields": [
+    "client_secret",
+    "password",
+    "otp",
+    "cookie",
+    "access_token",
+    "refresh_token",
+    "authorization_code"
+  ],
+  "mutation_boundary": "Provider changes run only through an owner-authorized browser or official provider adapter and require one action-time confirmation scoped to the exact project, existing client, and sanitized diff; after that Codex performs routine Save and read-back automatically."
+}

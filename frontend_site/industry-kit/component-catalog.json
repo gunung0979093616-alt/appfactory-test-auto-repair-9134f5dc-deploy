@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "domain": "automotive",
+  "components": [
+    {
+      "component_id": "search_filter",
+      "label": "條件搜尋",
+      "purpose": "依產業欄位篩選資料"
+    },
+    {
+      "component_id": "result_card",
+      "label": "結果卡片",
+      "purpose": "整理重點、狀態與下一步"
+    },
+    {
+      "component_id": "source_evidence",
+      "label": "來源與更新狀態",
+      "purpose": "顯示資料來源與更新時間"
+    },
+    {
+      "component_id": "admin_record_table",
+      "label": "管理資料表",
+      "purpose": "提供管理者查詢與維護紀錄"
+    }
+  ]
+}

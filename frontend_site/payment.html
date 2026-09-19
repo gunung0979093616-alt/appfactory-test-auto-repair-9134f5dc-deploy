@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>auto-repair｜訂閱方案</title>
+  <meta name="description" content="auto-repair 的免費方案、入門方案、專業方案、商務方案。方案數量與權益可由專案設定；正式付款需完成登入、商家審核、付款通知與本人授權。">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="auto-repair｜訂閱方案">
+  <meta property="og:description" content="auto-repair 的免費方案、入門方案、專業方案、商務方案。">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="template-page" content="payment">
+  <style>
+    :root { --ink:#172033; --muted:#667085; --line:#d8e0ed; --brand:#2563eb; --accent:#16a34a; --warn:#b45309; --bg:#f7fafc; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Segoe UI",sans-serif; background:linear-gradient(180deg,#eef5ff,#fff 45%,#f7fafc); color:var(--ink); }
+    header { padding:28px 20px; border-bottom:1px solid var(--line); background:rgba(255,255,255,.86); position:sticky; top:0; backdrop-filter:blur(12px); z-index:5; }
+    nav, main { max-width:1160px; margin:0 auto; }
+    nav { display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; }
+    nav a { color:var(--ink); text-decoration:none; font-weight:800; }
+    .links { display:flex; gap:12px; flex-wrap:wrap; }
+    .hero { padding:70px 20px 34px; text-align:center; }
+    h1 { font-size:clamp(2.1rem,5vw,4.8rem); line-height:1; margin:12px 0; letter-spacing:-.05em; }
+    p { line-height:1.75; }
+    .eyebrow { color:var(--brand); font-weight:900; }
+    .login { display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius:999px; background:#fff; border:1px solid var(--line); box-shadow:0 12px 28px rgba(23,32,51,.08); color:var(--brand); text-decoration:none; font-weight:900; }
+    .plans { display:grid; grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:18px; padding:24px 20px 70px; }
+    .plan { background:#fff; border:1px solid var(--line); border-radius:28px; padding:24px; box-shadow:0 22px 60px rgba(23,32,51,.09); display:flex; flex-direction:column; min-height:360px; }
+    .plan.featured { border-color:#93c5fd; transform:translateY(-8px); }
+    h2 { margin:0 0 8px; font-size:1.35rem; }
+    .price { font-size:2.2rem; font-weight:950; margin:12px 0; }
+    ul { padding-left:1.2rem; line-height:1.75; color:var(--muted); }
+    .spacer { flex:1; }
+    button, .button { display:block; width:100%; border:0; border-radius:16px; padding:14px 16px; background:var(--brand); color:white; font-size:1rem; font-weight:950; text-align:center; text-decoration:none; cursor:pointer; }
+    .free { background:#0f172a; }
+    .notice { max-width:1160px; margin:0 auto 64px; padding:20px; border-radius:24px; border:1px solid #fed7aa; background:#fff7ed; color:#7c2d12; }
+    .notice strong { color:#9a3412; }
+    footer { padding:28px 20px; text-align:center; color:var(--muted); border-top:1px solid var(--line); }
+    @media (max-width:720px) { header { position:static; } .plan.featured { transform:none; } .links { width:100%; } .links a { flex:1; } }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"auto-repair 訂閱方案","about":"通用外掛系統","description":"可設定 1 至 N 種中文方案、Google 登入與信用卡付款安全說明。"}
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./index.html">auto-repair</a>
+      <div class="links">
+        <a href="./login.html">Google 登入</a>
+        <a href="/ops">管理者後台</a>
+        <a href="./support.html">客服支援</a>
+      </div>
+    </nav>
+  </header>
+  <section class="hero">
+    <main>
+      <div class="eyebrow">使用 Google 登入後選擇方案</div>
+      <h1>選擇適合你的訂閱方案</h1>
+      <p>auto-repair 已預留資料查詢、整理、比較、免費試用、付費升級、權益額度、到期與後台對帳流程。正式信用卡付款需完成本人商家審核與安全驗證。</p>
+      <p><strong>PAYUNi 通用金流技能包</strong> 已建立付款頁版型、後端建單、通知對帳與權益開通順序；正式收款前會先保持關閉。</p>
+      <p><a class="login" href="./login.html">使用 Google 登入 / 連結帳號</a></p>
+    </main>
+  </section>
+  <main class="plans" aria-label="訂閱方案">
+    <article class="plan"><h2>免費方案</h2><p>給初次測試與送審 reviewer path 使用。</p><div class="price">NT$0</div><ul><li>每月 50 次示範額度</li><li>基本查詢或展示功能</li><li>可驗證登入與工具流程</li></ul><div class="spacer"></div><a class="button free" href="./login.html">免費開始</a></article>
+<article class="plan featured"><h2>入門方案</h2><p>給個人與小型團隊開始正式使用。</p><div class="price">NT$299/月</div><ul><li>每月 500 次使用額度</li><li>保留使用紀錄</li><li>基礎客服支援</li></ul><div class="spacer"></div><form method="post" action="/api/billing/checkout"><input type="hidden" name="product_code" value="starter"><button type="submit">信用卡訂閱入門方案</button></form></article>
+<article class="plan"><h2>專業方案</h2><p>給需要更多資料、媒體或自動化流程的業者。</p><div class="price">NT$899/月</div><ul><li>每月 2,000 次使用額度</li><li>進階報表與後台</li><li>可銜接更多外部服務</li></ul><div class="spacer"></div><form method="post" action="/api/billing/checkout"><input type="hidden" name="product_code" value="professional"><button type="submit">信用卡訂閱專業方案</button></form></article>
+<article class="plan"><h2>商務方案</h2><p>給多門市、團隊席位或高流量服務。</p><div class="price">洽談</div><ul><li>團隊席位與人工開通</li><li>客製額度、期限與 SLA</li><li>付款、退款、對帳流程強化</li></ul><div class="spacer"></div><form method="post" action="/api/billing/checkout"><input type="hidden" name="product_code" value="business"><button type="submit">信用卡訂閱商務方案</button></form></article>
+  </main>
+  <section class="notice">
+    <strong>付款狀態：</strong>正式付款目前尚未開放。按鈕已展示信用卡訂閱入口版面，但正式建單、跳轉付款頁、付款通知開通權益、退款與取消，必須等本人完成商家審核、安全設定、測試付款後才可開啟。
+  </section>
+  <footer>付款完成頁只顯示付款狀態；只有經過驗證的付款通知或交易查詢對帳可開通權益。</footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "status": "draft_seed",
+  "truth_boundary": "這只是第一版說明文案種子，尚未經使用者品牌確認、法務確認或前端視覺設計。",
+  "target_user": "想把重複工作變成 ChatGPT 工具的使用者",
+  "homepage": {
+    "hero_title": "auto-repair：把重複工作交給 ChatGPT 完成",
+    "hero_subtitle": "整合服務、可預約時段與取消改期，讓使用者用自然語言完成預約。",
+    "primary_cta": "開始建立我的 AI 助手",
+    "secondary_cta": "查看可以解決什麼問題"
+  },
+  "problem_section": {
+    "title": "你可能正在重複做這些事",
+    "bullets": [
+      "資料散在不同檔案、系統或網站，每次都要重新整理。",
+      "每次都要手動複製資料給 AI，再重新下提示詞。",
+      "不同人查同一件事，得到的答案格式不一致。",
+      "想把流程交給 ChatGPT，但不知道如何變成可用工具。"
+    ]
+  },
+  "solution_section": {
+    "title": "auto-repair 可以怎麼幫你",
+    "bullets": [
+      "把你的資料、規則與流程整理成固定工具。",
+      "讓 ChatGPT 用自然語言呼叫工具完成查詢或分析。",
+      "保留每次建置、驗證與修改紀錄，方便後續接續開發。",
+      "需要上線時，再逐步接 GitHub、Render、登入、付款與送審。"
+    ]
+  },
+  "how_it_works": [
+    "說出你想解決的問題",
+    "建立獨立專案工作區",
+    "整理資料、規則與成功定義",
+    "產生 Skill / MCP / 前後端",
+    "完成測試、部署與 ChatGPT 驗證"
+  ],
+  "trust_notes": [
+    "本地建立完成不等於已部署。",
+    "付款、登入、外部 API、ChatGPT 上架都需要獨立驗證證據。",
+    "敏感資料與金鑰不應寫入聊天、README 或原始碼。"
+  ]
+}

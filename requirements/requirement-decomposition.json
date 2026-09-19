@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "id": "create",
+      "source_fragments": [
+        "建立"
+      ]
+    },
+    {
+      "id": "approve",
+      "source_fragments": [
+        "核准"
+      ]
+    },
+    {
+      "id": "notify",
+      "source_fragments": [
+        "通知"
+      ]
+    },
+    {
+      "id": "book",
+      "source_fragments": [
+        "預約"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "notification",
+      "source_fragments": [
+        "通知"
+      ]
+    }
+  ],
+  "rules": [],
+  "states": [],
+  "external_dependencies": [
+    {
+      "id": "notification_provider",
+      "source_fragments": [
+        "通知"
+      ]
+    },
+    {
+      "id": "publishing_provider",
+      "source_fragments": [
+        "網站"
+      ]
+    }
+  ],
+  "ordering_rule": "actions_rules_states_entities_before_industry"
+}

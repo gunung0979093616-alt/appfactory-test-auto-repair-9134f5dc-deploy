@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "accepted_formats": [
+    "csv",
+    "json",
+    "xlsx"
+  ],
+  "required_columns": [
+    "id",
+    "name",
+    "status",
+    "updated_at"
+  ],
+  "domain_columns": [
+    "category",
+    "source",
+    "owner_id"
+  ],
+  "workflow": [
+    "upload_private",
+    "parse_candidate",
+    "validate_rows",
+    "review_errors",
+    "explicit_publish",
+    "versioned_pointer"
+  ],
+  "isolation_keys": [
+    "project_id",
+    "supplier_id",
+    "batch_id"
+  ],
+  "domain_id": "automotive"
+}

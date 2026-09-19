@@ -1,0 +1,18 @@
+{
+  "version": "seed-v1",
+  "items": [
+    {
+      "id": "demo-001",
+      "name": "auto-repair示範項目",
+      "description": "這是可替換的原創示範資料，不代表真實供應或庫存。",
+      "status": "published",
+      "category": "demo",
+      "price": 1000,
+      "currency": "TWD",
+      "inventory": 3,
+      "image_urls": [],
+      "source_url": "",
+      "updated_at": "2026-09-08T00:00:00Z"
+    }
+  ]
+}

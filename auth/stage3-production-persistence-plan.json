@@ -1,0 +1,29 @@
+{
+  "session_secret": "APPFACTORY_SESSION_SECRET must be stable across restarts and deployments",
+  "membership_database": "APPFACTORY_AUTH_DB_PATH must use persistent storage",
+  "durability_declaration": "APPFACTORY_AUTH_STORAGE_DURABLE=true only after the persistent path is mounted and verified",
+  "completion_gate": "A successful live login on ephemeral storage is test evidence, not production-ready membership evidence",
+  "render_default": {
+    "architecture": "paid Render web service plus minimum persistent disk plus SQLite",
+    "initial_disk_size_gb": 2,
+    "mount_path": "/data",
+    "database_path": "/data/stage3_membership.sqlite3",
+    "why": "Reuse the proven simple single-instance pattern before introducing managed PostgreSQL complexity.",
+    "scale_up_rule": "Monitor capacity and increase disk only when evidence requires it; Render disks cannot be reduced afterward."
+  },
+  "pre_purchase_automatic_work": [
+    "generate the disk mount and SQLite path contract",
+    "prepare APPFACTORY_SESSION_SECRET, APPFACTORY_ADMIN_EMAILS, GOOGLE_CLIENT_ID and APPFACTORY_AUTH_DB_PATH variable names",
+    "prepare a safe SQLite copy and integrity-check plan",
+    "prepare two-deployment persistence verification"
+  ],
+  "single_paid_owner_action": "confirm the Render paid service and persistent-disk purchase in the provider checkout",
+  "post_purchase_automatic_work": [
+    "attach the disk at /data",
+    "set APPFACTORY_AUTH_DB_PATH=/data/stage3_membership.sqlite3",
+    "set APPFACTORY_AUTH_STORAGE_DURABLE=true only after the mount is verified",
+    "migrate existing SQLite membership data without overwriting a newer durable database",
+    "deploy, log in, deploy again, and verify the same user_id and owner_admin membership remain"
+  ],
+  "postgresql_policy": "PostgreSQL is optional for multi-instance concurrency or operational scale; it is not required for the initial Stage 3 Google login launch."
+}

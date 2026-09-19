@@ -1,0 +1,146 @@
+{
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "tools": [
+    {
+      "name": "approve_task",
+      "description": "核准任務：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "approve",
+      "entities": [],
+      "action_kind": "transaction",
+      "source_requirement_fragments": [
+        "核准"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc"
+    },
+    {
+      "name": "send_notification",
+      "description": "發送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "notify",
+      "entities": [],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "通知"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc"
+    },
+    {
+      "name": "assign_technician",
+      "description": "指派技師：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "assign",
+      "entities": [
+        "equipment"
+      ],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "技師"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc"
+    },
+    {
+      "name": "record_parts_usage",
+      "description": "零件使用紀錄：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "update",
+      "entities": [
+        "equipment"
+      ],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "零件"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc"
+    },
+    {
+      "name": "book_notification",
+      "description": "book notification：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "book",
+      "entities": [
+        "notification"
+      ],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "預約"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc"
+    },
+    {
+      "name": "cancel_notification",
+      "description": "取消通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "cancel",
+      "entities": [],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "recommended_after_core:notification"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc",
+      "requirement_status": "optional",
+      "enabled_by_default": false,
+      "owner_confirmation_required_to_enable": true
+    },
+    {
+      "name": "notification_delivery_status",
+      "description": "通知狀態：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "track",
+      "entities": [],
+      "action_kind": "read",
+      "source_requirement_fragments": [
+        "recommended_after_core:notification"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc",
+      "requirement_status": "optional",
+      "enabled_by_default": true,
+      "owner_confirmation_required_to_enable": false
+    },
+    {
+      "name": "retry_notification",
+      "description": "重送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "retry",
+      "entities": [],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "recommended_after_core:notification"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc",
+      "requirement_status": "optional",
+      "enabled_by_default": false,
+      "owner_confirmation_required_to_enable": true
+    },
+    {
+      "name": "schedule_job",
+      "description": "排程工作：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "schedule",
+      "entities": [],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "recommended_after_core:notification"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc",
+      "requirement_status": "optional",
+      "enabled_by_default": false,
+      "owner_confirmation_required_to_enable": true
+    },
+    {
+      "name": "schedule_reminder",
+      "description": "排程提醒：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action": "notify",
+      "entities": [],
+      "action_kind": "write",
+      "source_requirement_fragments": [
+        "recommended_after_core:notification"
+      ],
+      "requirement_id": "req_132396723c29901a",
+      "project_scope": "auto-repair-plugin-9134f5dc",
+      "requirement_status": "optional",
+      "enabled_by_default": false,
+      "owner_confirmation_required_to_enable": true
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "generated_by": "frontend_site_builder",
+  "project_display_name": "汽車服務系統",
+  "domain": "automotive",
+  "asset_pipeline_status": "LOCAL_ASSETS_READY",
+  "public_url_status": "PUBLIC_URL_NOT_VERIFIED",
+  "owner_authorization_required": true,
+  "brand_identity": null,
+  "developer_assistant_r2_brand_assets": [],
+  "developer_assistant_codex_guide_assets": [],
+  "developer_assistant_marketing_assets": [],
+  "industry_background_strategy": {
+    "current_mode": "LOCAL_GENERATED_SVG_EXAMPLE",
+    "visible_in_site": true,
+    "cost_boundary": "No paid image-generation cost is charged by this local template step.",
+    "future_replacement": "Developers can replace this slot with their own generated/uploaded image after source and permission are recorded."
+  },
+  "industry_color_strategy": {
+    "source": "industry_website_profiles",
+    "status": "APPLIED_TO_TEMPLATE",
+    "color_family": "blue_reliability",
+    "color_psychology": "trust, data, travel, technology, stability",
+    "palette_roles": {
+      "brand": "primary identity and first visual impression",
+      "accent": "interactive highlights, cards, and secondary emphasis",
+      "highlight": "CTA, badges, important numbers, and proof points",
+      "surface": "dark readable background to keep Traditional Chinese copy clear"
+    },
+    "contrast_ratio_on_dark": 20.17,
+    "contrast_rule": "Use dark translucent overlays behind Traditional Chinese text; keep primary CTAs on highlight color and avoid low-contrast text over busy images.",
+    "responsive_rule": "Use clamp(), balanced wrapping, and overflow wrapping so long Chinese titles do not clip on mobile.",
+    "background_texture": "automotive-motif-gradient"
+  },
+  "local_assets": [
+    {
+      "asset_id": "logo_256",
+      "label": "外掛 Logo / ChatGPT 上架圖示",
+      "local_path": "frontend_site/public/assets/logo-256.svg",
+      "recommended_size": "256x256",
+      "format": "SVG source; export PNG before submission when required",
+      "public_url": null,
+      "public_url_verified": false
+    },
+    {
+      "asset_id": "industry_hero",
+      "label": "汽車服務系統首頁主視覺",
+      "local_path": "frontend_site/public/assets/industry-hero.svg",
+      "recommended_size": "1600x900",
+      "format": "SVG source; export WEBP/PNG for production CDN when needed",
+      "public_url": null,
+      "public_url_verified": false
+    },
+    {
+      "asset_id": "industry_background",
+      "label": "汽車服務系統頁面背景圖",
+      "local_path": "frontend_site/public/assets/industry-background.svg",
+      "recommended_size": "decorative responsive background",
+      "format": "SVG source; replace with WEBP/PNG when using generated or uploaded imagery",
+      "public_url": null,
+      "public_url_verified": false,
+      "visual_signature": "automotive|#1e293b|#dc2626|汽車-車款-里程|搜尋車款-比較價格-預約試駕",
+      "replacement_slot": "body background and section atmosphere"
+    },
+    {
+      "asset_id": "planned_asset_1",
+      "label": "外掛 Logo / ChatGPT 上架圖示",
+      "local_path": null,
+      "recommended_size": "256x256",
+      "format": "PNG or SVG source + PNG export",
+      "public_url": null,
+      "public_url_verified": false
+    },
+    {
+      "asset_id": "planned_asset_2",
+      "label": "首頁主視覺",
+      "local_path": null,
+      "recommended_size": "1600x900",
+      "format": "WEBP or PNG",
+      "public_url": null,
+      "public_url_verified": false
+    },
+    {
+      "asset_id": "planned_asset_3",
+      "label": "社群分享圖",
+      "local_path": null,
+      "recommended_size": "1200x630",
+      "format": "PNG or WEBP",
+      "public_url": null,
+      "public_url_verified": false
+    },
+    {
+      "asset_id": "planned_asset_4",
+      "label": "功能卡片圖",
+      "local_path": null,
+      "recommended_size": "800x600",
+      "format": "WEBP or PNG",
+      "public_url": null,
+      "public_url_verified": false
+    }
+  ],
+  "public_storage_options": [
+    {
+      "provider": "Vercel static public assets",
+      "status": "available_after_frontend_deployment",
+      "verification_required": "reachable HTTPS URL for each referenced asset"
+    },
+    {
+      "provider": "Cloudflare R2 Standard object storage",
+      "status": "owner_authorization_required",
+      "free_tier_reference": "10 GB-month/month Standard storage free tier; operations also have separate monthly free limits.",
+      "recommended_for": "template hero/background images, generated site assets, downloadable media, and public asset URLs after owner authorization.",
+      "setup_required": [
+        "owner Cloudflare login",
+        "R2 bucket",
+        "public access or custom domain policy",
+        "upload proof",
+        "reachable HTTPS URL validation"
+      ],
+      "verification_required": "bucket/object upload result plus reachable HTTPS URL for every image used by the public website"
+    },
+    {
+      "provider": "Cloudflare Images",
+      "status": "owner_authorization_required",
+      "recommended_for": "image resizing/delivery workflows when the generated project needs managed image variants.",
+      "setup_required": [
+        "owner Cloudflare login",
+        "image upload permission",
+        "delivery URL proof"
+      ],
+      "verification_required": "provider upload result plus reachable HTTPS URL"
+    },
+    {
+      "provider": "Google Drive shared links",
+      "status": "owner_authorization_required",
+      "verification_required": "sharing permission and reachable file URL"
+    }
+  ],
+  "truth_boundary": "Developer-assistant approved brand assets are public R2 URLs verified for this release. Other generated project local files are not public URLs until an owner-authorized storage provider returns reachable HTTPS URLs and validation records public_url_verified=true. Do not claim Cloudflare R2/Images public delivery until that verification exists."
+}

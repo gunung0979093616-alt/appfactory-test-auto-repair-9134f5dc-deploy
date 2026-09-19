@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T10:09:39.938397+00:00",
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "purpose": "讓不同產業外掛專案在每個階段新增工具、技能、Agent、UI、後端、資料庫、登入、付款、送審或維運時，自動知道要同步哪些檔案與驗證。",
+  "stage_sync_policy": {
+    "stage_1_plugin_testable": {
+      "when_created": "automatically during generated project Stage 1",
+      "creates": [
+        "support SQLite",
+        "support Agent spec",
+        "support search index",
+        "stage sync policy",
+        "MCP release inheritance contract",
+        "project memory",
+        "delivery ZIP evidence"
+      ],
+      "sync_targets": [
+        "project.yaml",
+        "AI_HANDOFF.md",
+        "MEMORY_SYNC.md",
+        "GUARDS.md",
+        "support_knowledge/",
+        "project_sync_guards/mcp-release-inheritance-contract.json",
+        "validation/",
+        "delivery ZIP"
+      ],
+      "solves": "讓不同產業開發者一開始就有客服知識、不可回答邊界、專案記憶與下一階段同步契約。"
+    },
+    "stage_2_industry_site": {
+      "when_created": "when Stage 2 website/admin/frontend is generated",
+      "creates": [
+        "public support page",
+        "privacy policy page",
+        "terms page",
+        "status page",
+        "normalized render schema",
+        "versioned ChatGPT Widget",
+        "native validation matrix",
+        "website/admin content sync report"
+      ],
+      "sync_targets": [
+        "frontend_site/",
+        "frontend_next/",
+        "frontend/content/",
+        "frontend/rich_media_interactive_ui/",
+        "website_admin_backend/",
+        "project_continuity/",
+        "support_knowledge/",
+        "remote MCP evidence",
+        "production commit evidence",
+        "privacy/terms/support/status pages",
+        "delivery ZIP"
+      ],
+      "solves": "網站內容、客服、政策頁、前後端與 ZIP 必須讀取第一階段專案事實，不可套用母系統或第三方 demo。"
+    },
+    "stage_3_google_membership": {
+      "when_created": "when login/member/OAuth is actually implemented or authorized",
+      "creates": [
+        "login support topics",
+        "role/account isolation guard",
+        "auth validation evidence"
+      ],
+      "sync_targets": [
+        "login page",
+        "support_knowledge/",
+        "privacy policy",
+        "terms",
+        "admin user panel",
+        "OAuth discovery/PKCE/token validation",
+        "authenticated MCP evidence",
+        "fresh native ChatGPT login evidence",
+        "auth tests"
+      ],
+      "solves": "登入、會員、角色與帳號隔離變更時，客服、政策、後台與測試同步更新。"
+    },
+    "stage_4_payment_entitlement": {
+      "when_created": "when pricing/payment/entitlement is actually implemented or authorized",
+      "creates": [
+        "payment support topics",
+        "entitlement troubleshooting",
+        "billing validation evidence"
+      ],
+      "sync_targets": [
+        "pricing page",
+        "subscription page",
+        "terms",
+        "support_knowledge/",
+        "admin payment panel",
+        "backend payment routes",
+        "database migration",
+        "Checkout/Notify/Return/Trade Query callbacks",
+        "provider verification state",
+        "member account",
+        "reconciliation evidence",
+        "payment tests"
+      ],
+      "solves": "方案、付款、權益、額度與對帳變更時，公開頁、客服、後台與測試同步更新。"
+    },
+    "stage_5_submission_readiness": {
+      "when_created": "when the project prepares ChatGPT/App submission",
+      "creates": [
+        "submission checklist",
+        "reviewer path notes",
+        "positive/negative prompt set",
+        "policy URL readiness"
+      ],
+      "sync_targets": [
+        "docs",
+        "status page",
+        "support page",
+        "privacy",
+        "terms",
+        "submission package",
+        "current production tool scan",
+        "positive/negative native prompts",
+        "native rendering validation matrix",
+        "fresh native transcript evidence"
+      ],
+      "solves": "送審資料、政策 URL、測試提示與 reviewer path 必須一致，且不得保證 OpenAI 審核通過。"
+    },
+    "stage_6_post_launch_data_operations": {
+      "when_created": "when post-launch maintenance or data sync is purchased/authorized",
+      "creates": [
+        "incident support topics",
+        "data sync validation",
+        "rollback evidence",
+        "operations health checks"
+      ],
+      "sync_targets": [
+        "database",
+        "API",
+        "MCP",
+        "admin ops",
+        "status page",
+        "support_knowledge/",
+        "versioned Widget resources",
+        "release notes",
+        "rollback tests"
+      ],
+      "solves": "上線後資料、API、MCP、後台、狀態頁與客服必須跟版本發布和回滾證據同步。"
+    }
+  },
+  "public_private_boundary": {
+    "public_ok": [
+      "使用教學",
+      "階段說明",
+      "非敏感排錯",
+      "公開政策頁",
+      "完成/未完成狀態"
+    ],
+    "internal_only": [
+      "內部路由",
+      "私有 Skill 原文",
+      "system prompt",
+      "secrets",
+      "tokens",
+      "其他客戶資料",
+      "母系統能力清單"
+    ]
+  },
+  "required_stage_1_bootstrap": {
+    "support_sqlite": "support_knowledge/support-knowledge.sqlite3",
+    "support_agent_spec": "support_knowledge/support-agent-spec.json",
+    "support_validation": "validation/support_knowledge_agent/support-knowledge-agent-validation.json",
+    "sync_guard_validation": "validation/industry_project_sync_guard/industry-project-sync-guard-report.json"
+  },
+  "truth_boundary": "Industry project sync guard proof only. It creates local project-owned sync policy and validation evidence for a generated industry plugin/app. It does not prove GitHub, Render, remote MCP, ChatGPT native behavior, payment, OAuth, submission, approval, or durable cloud storage."
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>auto-repair 部署管理</title>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif; margin: 0; background: #f6f8fb; color: #102033; }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 18px; }
+    section { background: white; border: 1px solid #d9e2ec; border-radius: 18px; padding: 20px; margin: 16px 0; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+    code { background: #eef4ff; padding: 2px 6px; border-radius: 6px; }
+    button { border: 0; background: #0f766e; color: white; padding: 10px 14px; border-radius: 10px; cursor: pointer; }
+    pre { white-space: pre-wrap; background: #0f172a; color: #d7fbe8; padding: 14px; border-radius: 12px; overflow: auto; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>auto-repair 部署管理</h1>
+  <p>這個頁面給開發者確認正式 Render（雲端部署平台）服務是不是最新版、網站是否可開、MCP（ChatGPT 連接工具服務）是否可驗證。它不要求你在網頁輸入密碼、OTP（一次性驗證碼）或金鑰。</p>
+  <section>
+    <h2>目前狀態</h2>
+    <p>讀取 <code>/api/admin/deployment/status</code> API（系統接口），確認版本、Render（雲端部署平台）服務 ID（識別碼）、正式網址與 MCP URL（ChatGPT 連接網址）。</p>
+    <button onclick="loadStatus()">重新整理狀態</button>
+    <pre id="status">尚未讀取</pre>
+  </section>
+  <section>
+    <h2>正式環境測試</h2>
+    <p>發布後要再測一次正式網址，不能只看本機測試。這個按鈕會呼叫 <code>/api/admin/deployment/smoke</code> API（系統接口），回報 health（健康狀態）與 MCP（ChatGPT 連接工具服務）應測項目。</p>
+    <button onclick="runSmoke()">執行 smoke（正式環境快速驗證）檢查</button>
+    <pre id="smoke">尚未執行</pre>
+  </section>
+</main>
+<script>
+async function loadStatus() {
+  const res = await fetch('/api/admin/deployment/status');
+  document.getElementById('status').textContent = JSON.stringify(await res.json(), null, 2);
+}
+async function runSmoke() {
+  const res = await fetch('/api/admin/deployment/smoke', {method:'POST'});
+  document.getElementById('smoke').textContent = JSON.stringify(await res.json(), null, 2);
+}
+loadStatus().catch(err => document.getElementById('status').textContent = String(err));
+</script>
+</body>
+</html>

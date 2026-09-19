@@ -1,0 +1,70 @@
+{
+  "visibility": "project_internal_not_mother_system",
+  "routes": [
+    {
+      "tool": "schedule_operation",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "subscribe_alerts",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "create_booking",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "approve_task",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "send_notification",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "assign_technician",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "record_parts_usage",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "book_notification",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "cancel_notification",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "notification_delivery_status",
+      "skill": "automotive-resource-discovery",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "retry_notification",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "schedule_job",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    },
+    {
+      "tool": "schedule_reminder",
+      "skill": "automotive-application-workflow",
+      "handler": "server/industry_runtime.py"
+    }
+  ]
+}

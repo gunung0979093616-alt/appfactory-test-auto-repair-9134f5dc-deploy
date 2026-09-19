@@ -1,0 +1,13 @@
+{
+  "local_database_path": "/private/tmp/factory-59-industry-e2e.KQwkc4/auto-repair-plugin-9134f5dc/database/database.sqlite",
+  "production_recommendation": "managed PostgreSQL or durable provider database; do not rely on ephemeral filesystem",
+  "scheduler": "provider cron/worker only after owner authorization",
+  "required_environment": [
+    "DATA_SYNC_SOURCE_ADAPTER",
+    "DATA_SYNC_TENANT_ID",
+    "DATA_SYNC_PROJECT_ID",
+    "DATA_SYNC_SOURCE_ID"
+  ],
+  "secrets": "provider credentials must be configured in the provider secret manager, never committed",
+  "status": "waiting_for_provider_authorization"
+}

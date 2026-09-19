@@ -1,0 +1,43 @@
+{
+  "identity_source": "server_verified_oauth_or_session_only",
+  "scope_keys": [
+    "tenant_id",
+    "project_id",
+    "subject",
+    "role",
+    "permission"
+  ],
+  "roles": [
+    "user",
+    "developer",
+    "admin",
+    "owner"
+  ],
+  "persistent_tables": [
+    "project_memberships",
+    "tool_usage_events",
+    "account_restrictions",
+    "admin_action_audit_logs"
+  ],
+  "stored_event_fields": [
+    "hashed tenant/project/subject",
+    "tool_name",
+    "request_hash",
+    "request_size",
+    "outcome",
+    "risk_code",
+    "created_at"
+  ],
+  "forbidden_event_fields": [
+    "raw prompt",
+    "password",
+    "OTP",
+    "token",
+    "cookie",
+    "payment credential"
+  ],
+  "anonymous_global_block": false,
+  "stage_3": "bind verified OAuth/session identity to project membership and enforce RBAC",
+  "stage_6": "operate retention, per-subject limits, restrictions, alerts and owner audit",
+  "persistence_requirement": "APPFACTORY_SECURITY_DB_PATH must point to durable storage before deployed monitoring can be marked PASS"
+}

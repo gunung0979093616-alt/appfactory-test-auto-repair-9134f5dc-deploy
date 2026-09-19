@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "entrypoint": "python -m server.stage56_worker --once",
+  "schedule_mode": "manual_until_owner_authorizes_provider",
+  "timezone": "Asia/Taipei",
+  "concurrency": 1,
+  "bounded_attempts": 3,
+  "durable_state": "APP_DATA_DIR/stage56.sqlite3",
+  "source_path": "server-configured DATA_SYNC_SOURCE_DIR only; API callers cannot choose filesystem paths",
+  "failure_policy": "candidate mismatch retains current published version; worker stops after bounded attempts",
+  "notification_policy": "enqueue digest-only owner alert; provider remains disabled until owner configures it and passes admin canary",
+  "post_change_gate": "rerun live release smoke after deployment, source, tool, skill, or incident changes"
+}

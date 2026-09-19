@@ -1,0 +1,23 @@
+{
+  "owner_stage": "stage_1",
+  "policy": "inventory_and_lock_in_stage_1_install_only_when_a_stage_uses_it",
+  "automatic_install_when_build_authorized": true,
+  "clean_environment_verification_required": true,
+  "do_not_install_every_future_dependency_up_front": true,
+  "stage_profiles": {
+    "stage_1": [
+      "project runtime",
+      "MCP SDK when selected"
+    ],
+    "stage_2": [
+      "detected frontend and backend stack"
+    ],
+    "stage_3": [
+      "Google identity verification and HTTP transport"
+    ],
+    "stage_4": [
+      "PAYUNi integration only after Stage 4 starts"
+    ]
+  },
+  "failure_gate": "missing dependency, failed clean import, or failed build keeps the stage incomplete"
+}

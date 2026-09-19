@@ -1,0 +1,29 @@
+{
+  "layers": [
+    "source",
+    "candidate",
+    "published_version",
+    "current_pointer",
+    "consumer_read"
+  ],
+  "scope_keys": [
+    "tenant_id",
+    "project_id",
+    "source_id"
+  ],
+  "required_tables": [
+    "sync_batches",
+    "candidate_records",
+    "publish_versions",
+    "published_records",
+    "current_versions"
+  ],
+  "consumer_view": "current_published_records",
+  "rules": [
+    "candidate errors never switch the published pointer",
+    "missing files do not imply deletion",
+    "deletion requires an explicit _deleted tombstone",
+    "duplicate record identities fail closed",
+    "rollback changes only the scoped current pointer"
+  ]
+}

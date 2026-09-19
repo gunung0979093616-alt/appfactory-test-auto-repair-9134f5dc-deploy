@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "built_in_local_formats": [
+    "csv",
+    "json",
+    "jsonl",
+    "xlsx",
+    "docx",
+    "pdf",
+    "txt",
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "tiff"
+  ],
+  "provider_adapters": [
+    "google_drive",
+    "google_sheets",
+    "http_api",
+    "cloudflare_r2",
+    "s3_compatible",
+    "database"
+  ],
+  "provider_status": "adapter_contract_only_until_owner_authorization",
+  "secret_policy": "credentials remain in provider secret storage and are never requested in chat"
+}

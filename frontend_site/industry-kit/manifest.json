@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T10:09:38.248177+00:00",
+  "domain": "automotive",
+  "package_version": "1.0.0",
+  "base_package": {
+    "package_id": "operations-dashboard",
+    "label": "資料查詢與營運基礎套件",
+    "layout_id": "operations-dashboard",
+    "motion_profile": "status-reveal",
+    "purpose": "讓條件、結果、來源、狀態與管理資料容易核對。",
+    "runtime": "framework-neutral HTML/CSS/JavaScript",
+    "delivery": "included_in_generated_project",
+    "third_party_dependency": false
+  },
+  "components": [
+    {
+      "component_id": "search_filter",
+      "label": "條件搜尋",
+      "purpose": "依產業欄位篩選資料"
+    },
+    {
+      "component_id": "result_card",
+      "label": "結果卡片",
+      "purpose": "整理重點、狀態與下一步"
+    },
+    {
+      "component_id": "source_evidence",
+      "label": "來源與更新狀態",
+      "purpose": "顯示資料來源與更新時間"
+    },
+    {
+      "component_id": "admin_record_table",
+      "label": "管理資料表",
+      "purpose": "提供管理者查詢與維護紀錄"
+    }
+  ],
+  "files": [
+    "manifest.json",
+    "design-tokens.json",
+    "component-catalog.json",
+    "components.css",
+    "interactions.js",
+    "README.md",
+    "VALIDATION.md",
+    "THIRD_PARTY_NOTICES.json"
+  ],
+  "framework_policy": "The base package always ships. Third-party framework packages are added only when compatible.",
+  "third_party_selected": [],
+  "accessibility": {
+    "reduced_motion": true,
+    "keyboard_safe": true,
+    "progressive_enhancement": "Content remains visible when JavaScript is disabled."
+  }
+}

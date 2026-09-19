@@ -1,0 +1,14 @@
+{
+  "ingest": "continuous_data_sync_runtime.run_directory_sync",
+  "read": "continuous_data_sync_runtime.read_published",
+  "rollback": "continuous_data_sync_runtime.rollback_to_version",
+  "durable_job_queue": "continuous_data_sync_runtime.SyncJobRuntime",
+  "notification_outbox": "notification_outbox_runtime.NotificationOutboxRuntime",
+  "failure_recovery": "retain previous published version and record completed_with_mismatch",
+  "cross_stage_consumers": [
+    "backend_api_builder",
+    "data_to_mcp_system_builder",
+    "website_admin_backend_builder",
+    "ops_health_dashboard_builder"
+  ]
+}

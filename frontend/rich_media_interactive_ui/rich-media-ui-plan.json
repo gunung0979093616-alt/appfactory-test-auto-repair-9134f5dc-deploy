@@ -1,0 +1,169 @@
+{
+  "schema_version": "2.0",
+  "tool": "frontend_widget_builder",
+  "generated_at": "2026-09-19T10:09:38.241650+00:00",
+  "owner_goal": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+  "archetype": "interactive-decoupled",
+  "role_in_mainline": "horizontal_capability_for_frontend_builder_and_submission_qa",
+  "pipeline": [
+    "natural_language_request",
+    "domain_data_tool",
+    "project_owned_source",
+    "domain_adapter",
+    "normalized_structured_content",
+    "renderer_decision",
+    "versioned_mcp_apps_resource",
+    "ui_notifications_tool_result",
+    "native_chatgpt_validation"
+  ],
+  "signals": {
+    "has_images": true,
+    "has_video": false,
+    "has_location": false,
+    "has_price_or_metrics": false,
+    "has_actions": true
+  },
+  "recommended_ui_modes": [
+    "list",
+    "table",
+    "card",
+    "gallery",
+    "carousel",
+    "form"
+  ],
+  "renderer_families": [
+    "card",
+    "list",
+    "carousel",
+    "table",
+    "chart",
+    "gallery",
+    "video",
+    "map",
+    "detail",
+    "form",
+    "dashboard"
+  ],
+  "ui_states": [
+    "loading",
+    "success",
+    "empty",
+    "error",
+    "unauthorized",
+    "quota_exhausted",
+    "partial",
+    "payment_required"
+  ],
+  "project_variables": {
+    "auto_detect_from_project": [
+      "industry",
+      "product",
+      "environment",
+      "business_model",
+      "user_roles",
+      "content_types",
+      "interaction_types",
+      "data_sources",
+      "authentication",
+      "authorization",
+      "payment_provider",
+      "subscription",
+      "quota",
+      "asset_origins",
+      "deployment_endpoint"
+    ],
+    "adapter_owned": [
+      "domain_fields",
+      "tool_inputs",
+      "tool_outputs",
+      "schema_extensions",
+      "renderer_choice",
+      "image_urls",
+      "video_urls",
+      "actions",
+      "csp_domains",
+      "resource_version"
+    ],
+    "rule": "Project variables may change by industry; they must not weaken the fixed core guards."
+  },
+  "fixed_core_guards": [
+    "stage_gate",
+    "secret_exclusion",
+    "existing_widget_protection",
+    "large_payload_protection",
+    "tool_routing_validation",
+    "render_contract_validation",
+    "regression_protection",
+    "verified_payment_notification",
+    "native_evidence_chain",
+    "backend_pass_is_not_native_pass"
+  ],
+  "payload_policy": {
+    "max_structured_items": 100,
+    "default_page_size": 20,
+    "max_page_size": 100,
+    "require_server_filtering_aggregation_pagination": true,
+    "large_dataset_rule": "Never send the full dataset to the Widget; send one bounded page plus total_count and next_cursor."
+  },
+  "required_data_contracts": [
+    {
+      "field": "state",
+      "required": true
+    },
+    {
+      "field": "content_type",
+      "required": true
+    },
+    {
+      "field": "title",
+      "required": true
+    },
+    {
+      "field": "items[].media[]",
+      "required": false,
+      "guard": "HTTPS, project-owned or source-attributed"
+    },
+    {
+      "field": "actions[]",
+      "required": false,
+      "guard": "confirmation and backend result required for writes/transactions"
+    }
+  ],
+  "domain_adapter_contract": {
+    "input": "industry-specific project data from the customer-owned backend",
+    "output": "normalized-content-schema.json",
+    "must_not_output": [
+      "password",
+      "oauth_token",
+      "api_secret",
+      "payment_credential",
+      "private_customer_record"
+    ]
+  },
+  "result_delivery": {
+    "initial": "read window.openai.toolOutput when available",
+    "updates": "listen for ui/notifications/tool-result over MCP Apps postMessage",
+    "fallback": "keep tool text useful when UI is unavailable"
+  },
+  "video_policy": {
+    "direct_media": "HTTPS MP4/WebM or browser-supported HLS in a controls + playsinline video element",
+    "third_party": "open an external project-owned page by default; iframe only for explicitly allowlisted frameDomains",
+    "autoplay": false
+  },
+  "action_policy": {
+    "navigation": "feature-detect window.openai.openExternal, otherwise use a normal HTTPS link",
+    "read": "call an allowlisted read tool when the host supports it",
+    "write_transaction": "require explicit confirmation and backend tool result; a UI click never proves success or grants entitlement"
+  },
+  "quota_upgrade_policy": {
+    "states": [
+      "quota_exhausted",
+      "payment_required"
+    ],
+    "render_rule": "Show the quota/payment notice first, then render project-owned plan cards and a pricing_url action when provided.",
+    "data_source": "Use the project plan/product manifest for product_code, price, quota, expiry and checkout state; never copy another product's brand, pricing or entitlement rules.",
+    "entitlement_truth": "Only verified backend entitlement state can unlock usage. A visible plan card or pricing link is guidance, not access proof."
+  },
+  "versioning": "Create a new immutable resource URI for incompatible UI changes and retain prior versions for rollback.",
+  "truth_boundary": "Generated schema, renderer runtime, MCP Apps resource contract, and local validation proof only; not deployed frontend, remote MCP, ChatGPT native rendering, payment, submission, or OpenAI approval proof"
+}

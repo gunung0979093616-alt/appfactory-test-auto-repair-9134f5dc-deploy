@@ -1,0 +1,399 @@
+{
+  "requirement_id": "req_132396723c29901a",
+  "capabilities": [
+    {
+      "capability_id": "approve_task",
+      "capability_name": "approve_task",
+      "zh_name": "核准任務",
+      "description": "核准任務：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "positive_examples": [
+        "核准任務",
+        "approve_task",
+        "核准"
+      ],
+      "negative_examples": [
+        "只提到核准任務相關名詞但沒有要求執行時，不應自動選用。"
+      ],
+      "applicable_industries": [
+        "cross_industry"
+      ],
+      "inapplicable_industries": [],
+      "inputs": [
+        "project_id",
+        "requirement_id",
+        "arguments"
+      ],
+      "outputs": [
+        "status",
+        "result",
+        "audit_receipt"
+      ],
+      "preconditions": [
+        "project_scope_verified",
+        "required_inputs_valid"
+      ],
+      "success_conditions": [
+        "核准任務的可觀察結果已產生",
+        "audit_receipt_recorded"
+      ],
+      "failure_conditions": [
+        "invalid_input",
+        "unauthorized_scope",
+        "executor_error"
+      ],
+      "tools": [
+        "approve_task"
+      ],
+      "skills": [
+        "workflow-skill"
+      ],
+      "agents": [
+        "approval_agent"
+      ],
+      "workflows": [
+        "workflow-workflow"
+      ],
+      "safety_level": "MEDIUM",
+      "test_cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ],
+      "version": "1.0",
+      "verified": true,
+      "scope": "shared_verified",
+      "action": "approve",
+      "entities": [],
+      "source_requirement_fragments": [
+        "核准"
+      ],
+      "required": true,
+      "replaceable": false,
+      "external_service_required": false,
+      "writes_data": true,
+      "involves_payment": false,
+      "involves_sensitive_data": false,
+      "human_confirmation_required": true,
+      "requirement_id": "req_132396723c29901a"
+    },
+    {
+      "capability_id": "send_notification",
+      "capability_name": "send_notification",
+      "zh_name": "發送通知",
+      "description": "發送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "positive_examples": [
+        "發送通知",
+        "send_notification",
+        "通知"
+      ],
+      "negative_examples": [
+        "只提到發送通知相關名詞但沒有要求執行時，不應自動選用。"
+      ],
+      "applicable_industries": [
+        "cross_industry"
+      ],
+      "inapplicable_industries": [],
+      "inputs": [
+        "project_id",
+        "requirement_id",
+        "arguments"
+      ],
+      "outputs": [
+        "status",
+        "result",
+        "audit_receipt"
+      ],
+      "preconditions": [
+        "project_scope_verified",
+        "required_inputs_valid"
+      ],
+      "success_conditions": [
+        "發送通知的可觀察結果已產生",
+        "audit_receipt_recorded"
+      ],
+      "failure_conditions": [
+        "invalid_input",
+        "unauthorized_scope",
+        "executor_error"
+      ],
+      "tools": [
+        "send_notification"
+      ],
+      "skills": [
+        "notification-skill"
+      ],
+      "agents": [
+        "notification_agent"
+      ],
+      "workflows": [
+        "notification-workflow"
+      ],
+      "safety_level": "MEDIUM",
+      "test_cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ],
+      "version": "1.0",
+      "verified": true,
+      "scope": "shared_verified",
+      "action": "notify",
+      "entities": [],
+      "source_requirement_fragments": [
+        "通知"
+      ],
+      "required": true,
+      "replaceable": false,
+      "external_service_required": true,
+      "writes_data": true,
+      "involves_payment": false,
+      "involves_sensitive_data": false,
+      "human_confirmation_required": false,
+      "requirement_id": "req_132396723c29901a"
+    },
+    {
+      "capability_id": "assign_technician",
+      "capability_name": "assign_technician",
+      "zh_name": "指派技師",
+      "description": "指派技師：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "positive_examples": [
+        "指派技師",
+        "assign_technician",
+        "技師"
+      ],
+      "negative_examples": [
+        "只提到指派技師相關名詞但沒有要求執行時，不應自動選用。"
+      ],
+      "applicable_industries": [
+        "cross_industry"
+      ],
+      "inapplicable_industries": [],
+      "inputs": [
+        "project_id",
+        "requirement_id",
+        "arguments"
+      ],
+      "outputs": [
+        "status",
+        "result",
+        "audit_receipt"
+      ],
+      "preconditions": [
+        "project_scope_verified",
+        "required_inputs_valid"
+      ],
+      "success_conditions": [
+        "指派技師的可觀察結果已產生",
+        "audit_receipt_recorded"
+      ],
+      "failure_conditions": [
+        "invalid_input",
+        "unauthorized_scope",
+        "executor_error"
+      ],
+      "tools": [
+        "assign_technician"
+      ],
+      "skills": [
+        "maintenance-skill"
+      ],
+      "agents": [
+        "execution_agent"
+      ],
+      "workflows": [
+        "maintenance-workflow"
+      ],
+      "safety_level": "MEDIUM",
+      "test_cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ],
+      "version": "1.0",
+      "verified": true,
+      "scope": "shared_verified",
+      "action": "assign",
+      "entities": [
+        "equipment"
+      ],
+      "source_requirement_fragments": [
+        "技師"
+      ],
+      "required": true,
+      "replaceable": false,
+      "external_service_required": false,
+      "writes_data": true,
+      "involves_payment": false,
+      "involves_sensitive_data": false,
+      "human_confirmation_required": false,
+      "requirement_id": "req_132396723c29901a"
+    },
+    {
+      "capability_id": "record_parts_usage",
+      "capability_name": "record_parts_usage",
+      "zh_name": "零件使用紀錄",
+      "description": "零件使用紀錄：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "positive_examples": [
+        "零件使用紀錄",
+        "record_parts_usage",
+        "零件"
+      ],
+      "negative_examples": [
+        "只提到零件使用紀錄相關名詞但沒有要求執行時，不應自動選用。"
+      ],
+      "applicable_industries": [
+        "cross_industry"
+      ],
+      "inapplicable_industries": [],
+      "inputs": [
+        "project_id",
+        "requirement_id",
+        "arguments"
+      ],
+      "outputs": [
+        "status",
+        "result",
+        "audit_receipt"
+      ],
+      "preconditions": [
+        "project_scope_verified",
+        "required_inputs_valid"
+      ],
+      "success_conditions": [
+        "零件使用紀錄的可觀察結果已產生",
+        "audit_receipt_recorded"
+      ],
+      "failure_conditions": [
+        "invalid_input",
+        "unauthorized_scope",
+        "executor_error"
+      ],
+      "tools": [
+        "record_parts_usage"
+      ],
+      "skills": [
+        "maintenance-skill"
+      ],
+      "agents": [
+        "execution_agent"
+      ],
+      "workflows": [
+        "maintenance-workflow"
+      ],
+      "safety_level": "MEDIUM",
+      "test_cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ],
+      "version": "1.0",
+      "verified": true,
+      "scope": "shared_verified",
+      "action": "update",
+      "entities": [
+        "equipment"
+      ],
+      "source_requirement_fragments": [
+        "零件"
+      ],
+      "required": true,
+      "replaceable": false,
+      "external_service_required": false,
+      "writes_data": true,
+      "involves_payment": false,
+      "involves_sensitive_data": false,
+      "human_confirmation_required": false,
+      "requirement_id": "req_132396723c29901a"
+    },
+    {
+      "capability_id": "book_notification",
+      "capability_name": "book_notification",
+      "zh_name": "book notification",
+      "description": "book notification：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "positive_examples": [
+        "預約"
+      ],
+      "negative_examples": [
+        "只提到book notification相關名詞但沒有要求執行時，不應自動選用。"
+      ],
+      "applicable_industries": [
+        "cross_industry"
+      ],
+      "inapplicable_industries": [],
+      "inputs": [
+        "project_id",
+        "requirement_id",
+        "arguments"
+      ],
+      "outputs": [
+        "status",
+        "result",
+        "audit_receipt"
+      ],
+      "preconditions": [
+        "project_scope_verified",
+        "required_inputs_valid"
+      ],
+      "success_conditions": [
+        "book notification的可觀察結果已產生",
+        "audit_receipt_recorded"
+      ],
+      "failure_conditions": [
+        "invalid_input",
+        "unauthorized_scope",
+        "executor_error"
+      ],
+      "tools": [
+        "book_notification"
+      ],
+      "skills": [
+        "project-specific-skill"
+      ],
+      "agents": [
+        "execution_agent"
+      ],
+      "workflows": [
+        "project_specific-workflow"
+      ],
+      "safety_level": "MEDIUM",
+      "test_cases": [
+        "positive",
+        "negative",
+        "ambiguous",
+        "conflict",
+        "cross_industry",
+        "misclassification"
+      ],
+      "version": "1.0",
+      "verified": false,
+      "scope": "project_scope",
+      "action": "book",
+      "entities": [
+        "notification"
+      ],
+      "source_requirement_fragments": [
+        "預約"
+      ],
+      "required": true,
+      "replaceable": false,
+      "external_service_required": false,
+      "writes_data": true,
+      "involves_payment": false,
+      "involves_sensitive_data": false,
+      "human_confirmation_required": false,
+      "requirement_id": "req_132396723c29901a"
+    }
+  ]
+}

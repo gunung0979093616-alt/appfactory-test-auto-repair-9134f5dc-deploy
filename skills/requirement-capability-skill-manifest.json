@@ -1,0 +1,30 @@
+{
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "skills": [
+    {
+      "skill_id": "maintenance-skill",
+      "capabilities": [
+        "assign_technician",
+        "record_parts_usage"
+      ]
+    },
+    {
+      "skill_id": "notification-skill",
+      "capabilities": [
+        "send_notification"
+      ]
+    },
+    {
+      "skill_id": "project-specific-skill",
+      "capabilities": [
+        "book_notification"
+      ]
+    },
+    {
+      "skill_id": "workflow-skill",
+      "capabilities": [
+        "approve_task"
+      ]
+    }
+  ]
+}

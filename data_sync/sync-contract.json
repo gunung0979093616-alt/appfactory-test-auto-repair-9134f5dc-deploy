@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "tenant_id": "tenant-auto-repair-plugin-9134f5dc",
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "source_id": "primary-source",
+  "source_type": "owner_authorized_directory_or_provider_adapter",
+  "authorization_mode": "owner_managed",
+  "record_identity": [
+    "record_id"
+  ],
+  "source_updated_at_field": "updated_at",
+  "cursor_strategy": "manifest_checksum",
+  "deletion_strategy": "explicit_tombstone_only",
+  "publish_policy": "candidate_validation_then_atomic_version_pointer",
+  "reconciliation_strategy": [
+    "manifest_checksum",
+    "record_count",
+    "identity_uniqueness",
+    "published_canary"
+  ],
+  "repair_policy": "targeted_first_bounded_full_once_then_fail_closed",
+  "retention_policy": {
+    "minimum_versions": 3,
+    "rollback_supported": true
+  },
+  "document_policy": {
+    "scanned_pdf": "quarantine_without_ocr",
+    "image_text": "asset_metadata_only"
+  },
+  "limits": {
+    "max_files_per_batch": 1000,
+    "max_file_bytes": 26214400
+  },
+  "schedule": {
+    "mode": "manual_until_owner_authorizes_provider",
+    "timezone": "Asia/Taipei"
+  },
+  "cost_guard": {
+    "free_tier_first": true,
+    "paid_upgrade_requires_owner_confirmation": true
+  },
+  "database_read_contract": "current_published_records view scoped by tenant_id, project_id and source_id",
+  "truth_boundary": "Local continuous data-sync runtime and failure-injection proof only. It does not prove a live provider connection, authorized cloud schedule, production database, remote deployment, ChatGPT native behavior, or OpenAI approval."
+}

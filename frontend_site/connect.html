@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>汽車服務系統｜車商串接</title>
+  <meta name="description" content="說明資料、帳號、圖片與外部服務如何安全串接。">
+  <link rel="icon" href="./favicon.ico">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="汽車服務系統｜車商串接">
+  <meta property="og:description" content="說明資料、帳號、圖片與外部服務如何安全串接。">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="template-page" content="connect">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "汽車服務系統｜車商串接", "description": "說明資料、帳號、圖片與外部服務如何安全串接。", "isPartOf": {"@type": "WebSite", "name": "汽車服務系統"}, "about": "汽車服務系統", "keywords": ["汽車", "車款", "里程", "維修", "試駕"], "inLanguage": "zh-Hant"}</script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="theme-automotive" data-layout="layout-automotive" data-industry-layout="operations-dashboard" data-industry-kit="operations-dashboard" data-motion-profile="status-reveal" data-design-thinking="stage2-design-thinking-v1">
+  <header class="topbar">
+    <nav class="nav" aria-label="主要導覽">
+      <a class="brand" href="./index.html"><img class="brand-logo" src="./public/assets/logo-256.svg" alt="汽車服務系統 Logo"><span>汽車服務系統</span></a>
+      <details class="site-menu">
+        <summary>網站選單</summary>
+        <div class="navlinks" aria-label="網站分頁導覽">
+          <a href="./index.html">汽車首頁</a>
+        <a href="./marketing.html">汽車交付</a>
+        <a href="./pricing.html">車輛方案</a>
+        <a href="./subscription.html">訂閱方案</a>
+        <a class="google-login-nav-link" href="/api/auth/google?next=%2Faccount"><span class="google-g-icon google-g-icon-nav" aria-hidden="true">G</span><span>Google 登入</span></a>
+        <a href="./guide.html">車款教學</a>
+        <a href="./templates.html">車輛模板</a>
+        <a href="./assets.html">車輛素材</a>
+        <a href="./connect.html">車商串接</a>
+        <a href="./docs.html">汽車測試</a>
+        <a href="./status.html">汽車驗收</a>
+        <a href="./privacy.html">隱私權政策</a>
+        <a href="./terms.html">使用條款</a>
+        <a href="./support.html">客服支援</a>
+        </div>
+      </details>
+    </nav>
+  </header>
+  <div class="orb orb-two"></div>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">車商串接</p>
+      <h1>連接外掛前，先分清楚誰要授權、要連到哪一個外掛</h1>
+      <p class="lead">需要外部資料或帳號時，先說清楚要連接哪一個外掛、會讀取哪些資料、使用者要在哪個官方頁面同意授權，以及連接後要用哪一句話測試服務是否可用。</p>
+    </section>
+    <section class="card industry-panel">
+      <p class="badge">產業化內容</p>
+      <h2>這個產業串接後要驗證的使用情境</h2>
+      <p class="lead small-lead">汽車服務系統：用自然語言完成搜尋車款、比較價格與預約試駕</p>
+      <p>汽車買賣、維修廠、租車、試駕與車主服務平台。</p>
+      <ul><li>搜尋車輛或服務</li>
+<li>比較價格里程條件</li>
+<li>預約試駕或維修</li></ul>
+      <div class="mini-trust action-chips"><span>搜尋車款</span>
+<span>比較價格</span>
+<span>預約試駕</span>
+<span>查維修</span>
+<span>估算費用</span></div>
+      <div class="mini-trust keyword-chips"><span>汽車</span>
+<span>車款</span>
+<span>里程</span>
+<span>維修</span>
+<span>試駕</span></div>
+    </section>
+
+    <section id="published-plugin-connection" class="card connector-playbook card-spotlight">
+      <p class="badge">已公開上架的外掛</p>
+      <h2>如何連接這個外掛：在 ChatGPT 搜尋 汽車服務系統 並完成連接</h2>
+      <p>只有在 汽車服務系統 已通過 ChatGPT 審查並公開上架後，才使用這套教學。開啟 ChatGPT 的外掛程式頁，搜尋品牌名稱「汽車服務系統」，按下「＋」或連接按鈕；如果服務使用 Google 登入或 OAuth，請在官方授權畫面用自己的帳號完成連接。</p>
+      <div class="feature-grid connector-step-grid provider-status-grid">
+        <article>
+          <p class="badge">01</p>
+          <h3>搜尋外掛品牌</h3>
+          <p>到 ChatGPT 的外掛程式頁搜尋「汽車服務系統」，確認名稱與圖示來自服務提供者。</p>
+        </article>
+        <article>
+          <p class="badge">02</p>
+          <h3>按下「＋」完成連接</h3>
+          <p>需要 Google 登入或 OAuth 時，只在官方畫面由本人授權；不把密碼、驗證碼或金鑰貼到聊天。</p>
+        </article>
+        <article>
+          <p class="badge">03</p>
+          <h3>測試一句話</h3>
+          <p>連接後用一句自然語言說出你想查詢、預約、比較或完成的事情，確認外掛能正確回應。</p>
+        </article>
+      </div>
+    </section>
+    <section id="private-plugin-connection" class="card connector-playbook card-spotlight">
+      <p class="badge">尚未公開或受邀測試</p>
+      <h2>用開發者模式建立自訂外掛</h2>
+      <p>這套方式適合自己使用，或提供給公司部門、認識的人與受邀測試者。由服務提供者提供外掛連結與測試句；它不代表已通過 ChatGPT 審查，也不應出現在公開搜尋教學中。</p>
+      <ol>
+        <li>開啟 ChatGPT 外掛程式頁，再進入設定 → 安全性與登入。</li>
+        <li>開啟「開發者模式」，按「X」關閉設定畫面並回到外掛程式頁。</li>
+        <li>按「＋」新增自訂外掛，填入外掛名稱並貼上服務提供者交付的 MCP 伺服器網址。</li>
+        <li>若外掛確實尚未建置任何登入驗證，才選「無驗證」，勾選已了解風險後建立。</li>
+        <li>若外掛已建置 Google 登入或其他 OAuth，必須選 OAuth 並依外掛提供的正式設定完成連接，不得為了省步驟改選無驗證。</li>
+        <li>建立後開新對話，用服務提供者提供的測試句確認有顯示工具呼叫並取得正確結果。</li>
+      </ol>
+      <p class="notice">ChatGPT 介面名稱可能更新；核心原則不變：公開上架走品牌搜尋，未公開測試走開發者模式；驗證方式必須和外掛後端實際設定一致。</p>
+    </section>
+
+    <section class="card">
+      <h2>Google 登入與身份驗證入口</h2>
+      <div class="feature-grid">
+        <article>
+          <p class="badge">第一入口</p>
+          <h3>用自己的 Google 帳號開始</h3>
+          <p>如果這個服務需要雲端同步、Google Drive、日曆、表單、地圖、OAuth 或審查測試帳號，系統應先引導使用者到官方 Google 登入與授權頁面完成身份確認。</p>
+        </article>
+        <article>
+          <p class="badge">安全邊界</p>
+          <h3>只授權，不交出密碼</h3>
+          <p>登入、同意權限、一次性驗證碼、真人驗證、帳號切換與付費確認，都必須在官方頁面由本人操作；網站與助手都不能要求使用者把密碼、一次性驗證碼、私密授權碼或金鑰貼到聊天。</p>
+        </article>
+        <article>
+          <p class="badge">完成後續跑</p>
+          <h3>回來一句話繼續</h3>
+          <p>授權完成後，使用者只要回來說「Google 已授權，繼續」，系統就應銜接原本專案狀態，不要求重新描述需求。</p>
+        </article>
+      </div>
+      <p class="notice">Google 登入只是身份與授權入口；不代表網站後端、程式碼平台、部署平台、金流、ChatGPT 連接測試或上架審核已經完成。也不代表 OpenAI、ChatGPT 或任何平台已經保證審查通過，這些仍需要各平台自己的授權與驗證證據。</p>
+    </section>
+    <section class="card">
+      <h2>授權與資料安全</h2>
+      <ol>
+        <li>只有在使用者同意後，才讀取或同步外部資料。</li>
+        <li>上傳圖片、文件或客戶資料時，應清楚標示用途與是否公開。</li>
+        <li>需要建立預約、訂單、申請或付款時，必須先顯示摘要。</li>
+        <li>公開資料仍要保留來源與更新時間，避免使用過期資訊。</li>
+      </ol>
+      <p class="notice">不得要求使用者把密碼、一次性驗證碼、私密授權碼或金鑰貼到聊天裡。</p>
+    </section>
+    <section class="card">
+      <h2>圖片與品牌素材</h2>
+      <ul>
+        <li>Logo、主視覺、卡片圖與社群分享圖都應有可替換位置。</li>
+        <li>未取得公開圖片網址前，只能標示為本地素材或待上傳素材。</li>
+        <li>Cloudflare Images、Google Drive、Canva 或 Figma 匯入都需要使用者授權。</li>
+        <li>素材授權不清楚時，不應直接公開使用。</li>
+      </ul>
+      <p class="notice">這些外部工具是可選加速器，不是必備條件；沒有授權時仍可先使用本地示意圖與可替換素材位置。</p>
+    </section>
+    <section class="card">
+      <h2>使用者應該看得到</h2>
+      <ul>
+        <li>目前可查詢、可預約、可比較或可操作的範圍。</li>
+        <li>資料來源、更新時間或服務限制。</li>
+        <li>圖片、文件或個資如何被使用。</li>
+        <li>需要使用者確認的下一步。</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>網站內容會依資料來源、服務狀態與使用者確認流程持續更新。</p>
+  </footer>
+  <script src="./industry-kit/interactions.js" defer></script>
+  <script src="./script.js"></script>
+</body>
+</html>

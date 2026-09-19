@@ -1,0 +1,26 @@
+{
+  "revision": 1,
+  "content_fingerprint": "bb149b5bc4c792ff1fc53c63ee8292bd0098d5da3017f75b5d67553961c650cb",
+  "human_available": true,
+  "next_question": {
+    "id": "target_user",
+    "priority": "P2",
+    "router": "ASK_HUMAN_OR_INFER",
+    "question": "第一批真正會使用這個系統的人是誰？他們現在如何完成這件事？",
+    "why_this_matters": "使用者與現況會決定登入、權限、介面及成功指標。",
+    "possible_answers": [
+      "自己使用",
+      "公司內部人員",
+      "既有會員或客戶",
+      "一般公開使用者"
+    ],
+    "impact": "identity_ui_and_workflow"
+  },
+  "readiness": {
+    "status": "READY_WITH_OPEN_QUESTIONS",
+    "requirements_draft_allowed": true,
+    "architecture_lock_allowed": true,
+    "external_or_irreversible_actions_allowed": true,
+    "reason": "根本目標足以進入資料盤點；其餘未知保留並在下一輪依答案更新。"
+  }
+}

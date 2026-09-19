@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "req_132396723c29901a",
+  "project_id": "auto-repair-plugin-9134f5dc",
+  "owner_text": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+  "created_at": "2026-09-19T10:09:37.842023+00:00",
+  "sha256": "132396723c29901a0859fe85875dcc87e3e35c2d08c540636925322be6f2e120",
+  "version": 1,
+  "immutable": true,
+  "overwrite_forbidden": true
+}

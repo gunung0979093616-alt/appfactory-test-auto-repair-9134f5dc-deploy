@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "domain": "general_operations",
+  "required_order_locked": true,
+  "plain_formula": "找問題 → 排定問題重要性 → 判斷能不能解決 → 分析使用者會怎麼問 → 決定需要什麼資料 → 設計資料庫 → 設計索引 → 找資料來源 → 建立資料庫 → 驗證資料 → 設計 MCP 工具 → 建立 Skill → 開發後端 → 開發前端／Widget → 驗證產品 → 修復問題 → 部署上線。",
+  "first_stage_priority": [
+    "industry_type",
+    "problem_discovery",
+    "solvability_analysis",
+    "data_requirement_analysis",
+    "query_pattern_analysis",
+    "database_structure",
+    "index_design",
+    "sqlite_database",
+    "data_validation",
+    "mcp_tool_design",
+    "skill"
+  ],
+  "steps": [
+    {
+      "step_id": "industry_type",
+      "name_zh": "產業類型",
+      "stage": "第一階段",
+      "artifact": "requirements/requirements-spec.json",
+      "status": "completed_local",
+      "plain_purpose": "先確認產業與問題場景，避免用錯模板。",
+      "validation_rule": "domain must be specific and must not fall back to generic when clear industry signals exist."
+    },
+    {
+      "step_id": "problem_discovery",
+      "name_zh": "問題探索",
+      "stage": "第一階段",
+      "artifact": "requirements/requirement-model.json",
+      "status": "completed_local",
+      "plain_purpose": "找出使用者真正想解決的問題，而不是只照字面功能施工。",
+      "validation_rule": "requirement model and evidence ledger must exist."
+    },
+    {
+      "step_id": "problem_ranking",
+      "name_zh": "問題排序",
+      "stage": "第一階段",
+      "artifact": "requirements/problem-driven-pipeline.json",
+      "status": "planned_minimum",
+      "plain_purpose": "把最重要、最常見、最有商業價值的問題排前面。",
+      "validation_rule": "golden problem set or minimum prioritized scenario list must exist before full product validation."
+    },
+    {
+      "step_id": "solvability_analysis",
+      "name_zh": "可解決性分析",
+      "stage": "第一階段",
+      "artifact": "requirements/requirements-spec.json#solvability",
+      "status": "completed_local",
+      "plain_purpose": "判斷目前資料與能力能不能真的解決，不能用模型常識冒充產品能力。",
+      "validation_rule": "missing inputs and owner/provider gates must be explicit."
+    },
+    {
+      "step_id": "query_pattern_analysis",
+      "name_zh": "查詢模式分析",
+      "stage": "第一階段",
+      "artifact": "data_schema/data-schema.json#query_rules",
+      "status": "next_stage",
+      "plain_purpose": "分析使用者會如何搜尋、篩選、排序、比較或追蹤。",
+      "validation_rule": "query rules or query-pattern catalog must exist before tool availability claims."
+    },
+    {
+      "step_id": "data_requirement_analysis",
+      "name_zh": "資料需求分析",
+      "stage": "第一階段",
+      "artifact": "requirements/requirements-spec.json#variables",
+      "status": "completed_local",
+      "plain_purpose": "從問題與查詢模式反推需要哪些欄位與資料來源。",
+      "validation_rule": "required variables must be traceable to user problem and domain."
+    },
+    {
+      "step_id": "database_structure",
+      "name_zh": "資料庫結構設計",
+      "stage": "第一階段",
+      "artifact": "data_schema/data-schema.json",
+      "status": "next_stage",
+      "plain_purpose": "把資料需求變成可查詢、可驗證的資料表與欄位。",
+      "validation_rule": "domain table must not be generic when a domain-specific table is known."
+    },
+    {
+      "step_id": "index_design",
+      "name_zh": "索引設計",
+      "stage": "第一階段",
+      "artifact": "database/indexes.sql",
+      "status": "next_stage",
+      "plain_purpose": "依高頻查詢建立快速查找索引，不機械式亂加。",
+      "validation_rule": "indexes must map to query patterns."
+    },
+    {
+      "step_id": "data_source_discovery",
+      "name_zh": "資料來源探索",
+      "stage": "第一階段",
+      "artifact": "data_inventory/data-inventory.json",
+      "status": "next_stage",
+      "plain_purpose": "確認合法、可商業使用且可更新的資料來源。",
+      "validation_rule": "data source gaps must not be marked as imported production data."
+    },
+    {
+      "step_id": "sqlite_database",
+      "name_zh": "建立 SQLite 資料庫",
+      "stage": "第一階段",
+      "artifact": "database/database.sqlite",
+      "status": "next_stage",
+      "plain_purpose": "先建立每個客戶專案自己的 SQLite 資料底座。",
+      "validation_rule": "database.sqlite and governance tables must exist."
+    },
+    {
+      "step_id": "data_validation",
+      "name_zh": "資料驗證",
+      "stage": "第一階段",
+      "artifact": "database/data-quality-report.json",
+      "status": "next_stage",
+      "plain_purpose": "用 row count、樣本查詢與品質報告證明資料狀態。",
+      "validation_rule": "data-quality-report must distinguish schema-only from real imported rows."
+    },
+    {
+      "step_id": "mcp_tool_design",
+      "name_zh": "MCP 工具設計",
+      "stage": "第一階段",
+      "artifact": "generated_mcp/design/tool-design.json",
+      "status": "next_stage",
+      "plain_purpose": "只為資料與問題真正支援的能力設計 MCP Tool。",
+      "validation_rule": "tool design must load database contract when claiming data-backed tools."
+    },
+    {
+      "step_id": "skill",
+      "name_zh": "技能設計",
+      "stage": "第一階段",
+      "artifact": "skill/SKILL.md",
+      "status": "next_stage",
+      "plain_purpose": "把可用能力、限制與不要猜的規則寫進 Skill。",
+      "validation_rule": "Skill must explain supported and unsupported problems."
+    },
+    {
+      "step_id": "backend",
+      "name_zh": "後端開發",
+      "stage": "第一／二階段",
+      "artifact": "generated_mcp/server/server.py",
+      "status": "future_stage",
+      "plain_purpose": "把工具、資料庫、登入、付款或外部 API 接成可執行服務。",
+      "validation_rule": "server must pass local tests before remote deployment claims."
+    },
+    {
+      "step_id": "frontend_widget",
+      "name_zh": "前端／互動元件開發",
+      "stage": "第二階段",
+      "artifact": "frontend_site/index.html",
+      "status": "future_stage",
+      "plain_purpose": "建立網站、Widget、狀態畫面與使用者操作入口。",
+      "validation_rule": "desktop/mobile and state coverage must be validated."
+    },
+    {
+      "step_id": "product_validation",
+      "name_zh": "產品驗證",
+      "stage": "第二至第五階段",
+      "artifact": "validation/",
+      "status": "future_stage",
+      "plain_purpose": "用技術測試與問題覆蓋測試確認產品真的解決問題。",
+      "validation_rule": "PASS requires problem coverage evidence, not only pytest."
+    },
+    {
+      "step_id": "repair",
+      "name_zh": "問題修復",
+      "stage": "全階段",
+      "artifact": "validation/* + CHANGELOG.md",
+      "status": "continuous_gate",
+      "plain_purpose": "失敗就找根因、最小修復、重跑回歸，不讓修 A 壞 B。",
+      "validation_rule": "all FAIL/BLOCKED/NOT RUN items must be repaired or explicitly carried forward."
+    },
+    {
+      "step_id": "deployment",
+      "name_zh": "部署上線",
+      "stage": "第一至第五階段",
+      "artifact": "deployment/",
+      "status": "owner_or_provider_gated",
+      "plain_purpose": "只有通過證據門檻與 owner/provider 授權後才部署或宣稱上線。",
+      "validation_rule": "live URL, health, MCP, provider, and owner action boundaries must be separately proven."
+    }
+  ],
+  "missing_inputs": [
+    "誰可以使用與是否需要登入"
+  ],
+  "not_ready_rule": "Any downstream capability that lacks required data, schema, rows, authorization, or validation must be marked NOT_READY, DATA_INCOMPLETE, OWNER_ACTION_REQUIRED, or PROVIDER_GATED instead of PASS.",
+  "public_tool_surface_rule": "This pipeline is an internal orchestration contract; it must be routed behind the existing public tools and must not add an 11th public MCP tool."
+}

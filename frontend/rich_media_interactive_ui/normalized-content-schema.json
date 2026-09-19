@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://appfactory.local/schemas/normalized-content-v1.json",
+  "title": "Universal Industry ChatGPT UI Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "state",
+    "content_type",
+    "title"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "state": {
+      "enum": [
+        "loading",
+        "success",
+        "empty",
+        "error",
+        "unauthorized",
+        "quota_exhausted",
+        "partial",
+        "payment_required"
+      ]
+    },
+    "content_type": {
+      "enum": [
+        "card",
+        "list",
+        "carousel",
+        "table",
+        "chart",
+        "gallery",
+        "video",
+        "map",
+        "detail",
+        "form",
+        "dashboard"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "columns": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "pagination": {
+      "$ref": "#/$defs/pagination"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "media": {
+      "type": "object",
+      "required": [
+        "url",
+        "kind",
+        "alt"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "kind": {
+          "enum": [
+            "image",
+            "video"
+          ]
+        },
+        "alt": {
+          "type": "string"
+        },
+        "mime_type": {
+          "enum": [
+            "image/jpeg",
+            "image/png",
+            "image/webp",
+            "image/avif",
+            "video/mp4",
+            "video/webm",
+            "application/vnd.apple.mpegurl"
+          ]
+        },
+        "poster_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "source_label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "item": {
+      "type": "object",
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "price_label": {
+          "type": "string"
+        },
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "media": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/media"
+          }
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "navigation",
+            "read",
+            "write",
+            "transaction"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "tool_name": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "requires_confirmation": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pagination": {
+      "type": "object",
+      "required": [
+        "page_size",
+        "total_count"
+      ],
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "page_size": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "total_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "next_cursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

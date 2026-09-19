@@ -1,0 +1,615 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T10:09:38.669421+00:00",
+  "source": {
+    "from_project_yaml": true,
+    "from_requirements": true,
+    "from_architecture": true,
+    "owner_goal": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+    "does_user_need_to_repeat_original_need": false
+  },
+  "auth_needed": true,
+  "recommended_login_methods": [
+    "email_magic_link_or_passwordless",
+    "google_oauth"
+  ],
+  "oauth_provider_boundary": {
+    "owner_must_do": [
+      "登入 Google Cloud 或 provider",
+      "建立或選擇 OAuth app",
+      "設定 OAuth consent screen、應用程式名稱、授權網域、隱私權政策與支援信箱",
+      "建立 Web OAuth client 並加入目前專案實際需要的 authorized JavaScript origins",
+      "處理 OTP/CAPTCHA/法律確認"
+    ],
+    "agent_can_do": [
+      "從實際 runtime 判斷 website login 是 ID-token POST 或 authorization-code callback",
+      "產生實際需要的 origin、redirect URI 與 env manifest",
+      "建立 validation checklist",
+      "產生 Google 官方設定逐欄引導",
+      "產生 ChatGPT 送審 OAuth 一致性檢查表",
+      "引導 owner 提供遮罩後的官方完成狀態，不要求任何 secret 值"
+    ],
+    "agent_must_not_do": [
+      "要求使用者把密碼或 OTP 貼進聊天",
+      "把 client secret 寫入 repo",
+      "重用參考案例的 client id、client secret、redirect uri 或品牌資料",
+      "假裝已完成 live OAuth"
+    ]
+  },
+  "google_oauth_contract": {
+    "application_type": "web_application",
+    "website_login_mode": "provider_setup_pending_runtime_contract",
+    "required_owner_inputs": [
+      "Google Cloud project",
+      "OAuth consent screen",
+      "authorized JavaScript origins",
+      "client ID"
+    ],
+    "frontend_contract": [
+      "login page must preserve safe next=/oauth-continue?...",
+      "cross-origin auth fetch must include credentials when cookie sessions are used",
+      "account switching must be available for cross-account testing"
+    ],
+    "backend_contract": [
+      "Google ID token audience, issuer and signature are verified server-side before creating a local session",
+      "session cookie is httpOnly and secure in production",
+      "protected APIs authorize by local account and role, not by raw Google token in the browser"
+    ]
+  },
+  "google_provider_automation": {
+    "project_id": "auto-repair-plugin-9134f5dc",
+    "stage2_domain_handoff": {
+      "status": "NOT_AVAILABLE",
+      "consumed": false,
+      "path": "deployment/stage2-stage3-domain-oauth-handoff.json",
+      "canonical_origin": "",
+      "rule": "Stage 3 may consume a custom domain only after Stage 2 records READY with verified HTTPS."
+    },
+    "application_name": "auto-repair",
+    "application_type": "web_application",
+    "authorized_domains": [],
+    "authorized_javascript_origins": [
+      "http://localhost:3000"
+    ],
+    "authorized_redirect_uris": [
+      "http://localhost:3000/api/auth/google/member-callback",
+      "http://localhost:3000/api/auth/google/owner-callback"
+    ],
+    "callback_contract": {
+      "path": "",
+      "source": "not_required_or_not_discovered",
+      "required": false,
+      "must_exist_in_runtime_before_live_completion": false
+    },
+    "owner_login_redirect_contract": {
+      "path": "/api/auth/google/owner-callback",
+      "transport": "same_page_redirect",
+      "credential_delivery": "Google POST form with double-submit g_csrf_token validation",
+      "required": true,
+      "must_exist_in_runtime_before_live_completion": true
+    },
+    "member_login_redirect_contract": {
+      "path": "/api/auth/google/member-callback",
+      "transport": "same_page_redirect",
+      "credential_delivery": "Google POST form with double-submit g_csrf_token validation",
+      "safe_return": "short-lived SameSite=None HTTPS cookie containing only a normalized local path",
+      "required": true,
+      "must_exist_in_runtime_before_live_completion": true
+    },
+    "login_mode": "provider_setup_pending_runtime_contract",
+    "branding": {
+      "homepage_url": "",
+      "privacy_policy_url": "",
+      "terms_of_service_url": "",
+      "support_url": "",
+      "logo_policy": "use only a project-owned verified logo; otherwise leave unset"
+    },
+    "audience_and_publication": {
+      "default_user_type": "external",
+      "initial_publication_status": "testing",
+      "test_user_source": "owner Google account selected in the authorized browser; never store its password or OTP",
+      "production_publish_requires": "owner confirmation plus branding, domain, policy, scope, and live-login evidence"
+    },
+    "scopes": [
+      "openid",
+      "email",
+      "profile"
+    ],
+    "project_discovery": {
+      "architecture_style": "saas_app_with_mcp_and_owner_gated_external_services",
+      "service_names": [
+        "frontend_web",
+        "backend_api",
+        "mcp_server",
+        "database_runtime",
+        "auth_oauth",
+        "deployment_runtime",
+        "validation_runtime",
+        "admin_ops"
+      ],
+      "reuse_existing_auth_first": true,
+      "do_not_replace_framework_or_database": true,
+      "mcp_oauth_is_separate_from_website_google_login": true
+    },
+    "environment_variable_names": [
+      "GOOGLE_CLIENT_ID",
+      "APPFACTORY_SESSION_SECRET"
+    ],
+    "runtime_dependencies": {
+      "python": [
+        "google-auth>=2.35,<3",
+        "requests>=2.32,<3"
+      ],
+      "reason": "google.auth.transport.requests requires both google-auth and the requests transport package in a clean deployment"
+    },
+    "production_persistence": {
+      "session_secret": "APPFACTORY_SESSION_SECRET must be stable across restarts and deployments",
+      "membership_database": "APPFACTORY_AUTH_DB_PATH must use persistent storage",
+      "durability_declaration": "APPFACTORY_AUTH_STORAGE_DURABLE=true only after the persistent path is mounted and verified",
+      "completion_gate": "A successful live login on ephemeral storage is test evidence, not production-ready membership evidence",
+      "render_default": {
+        "architecture": "paid Render web service plus minimum persistent disk plus SQLite",
+        "initial_disk_size_gb": 2,
+        "mount_path": "/data",
+        "database_path": "/data/stage3_membership.sqlite3",
+        "why": "Reuse the proven simple single-instance pattern before introducing managed PostgreSQL complexity.",
+        "scale_up_rule": "Monitor capacity and increase disk only when evidence requires it; Render disks cannot be reduced afterward."
+      },
+      "pre_purchase_automatic_work": [
+        "generate the disk mount and SQLite path contract",
+        "prepare APPFACTORY_SESSION_SECRET, APPFACTORY_ADMIN_EMAILS, GOOGLE_CLIENT_ID and APPFACTORY_AUTH_DB_PATH variable names",
+        "prepare a safe SQLite copy and integrity-check plan",
+        "prepare two-deployment persistence verification"
+      ],
+      "single_paid_owner_action": "confirm the Render paid service and persistent-disk purchase in the provider checkout",
+      "post_purchase_automatic_work": [
+        "attach the disk at /data",
+        "set APPFACTORY_AUTH_DB_PATH=/data/stage3_membership.sqlite3",
+        "set APPFACTORY_AUTH_STORAGE_DURABLE=true only after the mount is verified",
+        "migrate existing SQLite membership data without overwriting a newer durable database",
+        "deploy, log in, deploy again, and verify the same user_id and owner_admin membership remain"
+      ],
+      "postgresql_policy": "PostgreSQL is optional for multi-instance concurrency or operational scale; it is not required for the initial Stage 3 Google login launch."
+    },
+    "configuration_fingerprint": "83e20d918786c93a29d86283be60e1620811eb428595070ac9a1d9a8bea1d8b7",
+    "trigger_policy": {
+      "automatic_on": [
+        "stage_3_google_membership starts for the current customer project",
+        "a verified deployment URL changes",
+        "a customer-owned custom domain is added or removed",
+        "the Google callback route changes",
+        "provider authorization is revoked, expired, or fails live verification"
+      ],
+      "not_triggered_by": "An ordinary website login alone does not mutate Google Cloud; starting the disclosed Stage 3 setup records one authorization for the covered setup actions.",
+      "resume_behavior": "After the owner starts the disclosed Stage 3 setup in an authenticated browser, continue through every covered non-secret provider action without repeated confirmations or repeated project data."
+    },
+    "browser_runbook": {
+      "automation_surface": "owner-authorized visible browser on console.cloud.google.com",
+      "owner_account_selection": {
+        "applies_to": [
+          "Google Cloud Stage 3 provider setup",
+          "owner_admin live-login verification"
+        ],
+        "source_of_truth": "the current customer project's registered owner_admin Google email; never infer ownership from account order or another project's session",
+        "agent_behavior": [
+          "when an account chooser is visible, select only the exact registered owner_admin email",
+          "if the exact account is already active, continue without asking the owner to choose again",
+          "if the exact account is absent, use Add another account or Switch account and pause only for password, OTP, or CAPTCHA",
+          "after provider authentication, verify the returned email and Google sub resolve to this project's owner_admin before any admin action"
+        ],
+        "never": [
+          "select the first or default account without an exact match",
+          "assume a Codex, ChatGPT, Google Cloud, or Render session belongs to the same person without project ownership evidence",
+          "apply the owner account hint to ordinary public member login"
+        ],
+        "public_member_login": "Every member chooses and verifies their own Google account; owner auto-selection is restricted to the project-owner setup and verification flow.",
+        "resume_after_human_checkpoint": true
+      },
+      "first_consent_handoff": {
+        "trigger": "Stage 3 purchase or owner-authorized Stage 3 start reaches the first live Google login verification",
+        "owner_setup_url": "/api/auth/google?next=%2Fadmin%2Fgoogle-login&flow=owner_setup",
+        "user_message": "若 Google 顯示選擇帳戶，請點選購買第三階段時登記的管理者 Google 帳號；完成後系統會自動繼續，不需要重新下指令。",
+        "maximum_owner_actions": "one account click, plus only provider-required password, OTP, or CAPTCHA",
+        "continuous_resume": true,
+        "must_not": [
+          "pause for another confirmation between non-secret setup steps",
+          "send the owner back to repeat project information",
+          "wait silently after opening the provider account chooser"
+        ],
+        "public_member_separation": "This owner setup message appears only on flow=owner_setup; ordinary member login keeps the normal member-facing copy."
+      },
+      "owner_login_transport": {
+        "mode": "same_page_redirect",
+        "callback_path": "/api/auth/google/owner-callback",
+        "reason": "Keep first owner consent on a controllable full-page route and prevent a detached popup from losing the continuation signal.",
+        "csrf_guard": "Require Google's g_csrf_token form value to exactly match its cookie before verifying the credential.",
+        "ordinary_member_login": "same-page redirect uses /api/auth/google/member-callback and never grants owner_admin without server-side membership verification",
+        "completion_redirect": "/admin/google-login"
+      },
+      "provider_popup_takeover": {
+        "required": true,
+        "sequence": [
+          "record the initiating login page before clicking the Google button",
+          "wait for either a controllable popup/page or a provider-native account chooser",
+          "reacquire the popup/page immediately when the automation surface exposes it",
+          "run exact owner_admin account matching before clicking any account",
+          "wait for the popup to close or the initiating page to receive the Google credential",
+          "verify /api/me and same-project owner_admin before declaring success"
+        ],
+        "success_gate": [
+          "Google credential accepted by the deployed backend",
+          "/api/me returns the expected verified identity",
+          "same-project role is owner_admin",
+          "owner-only page is accessible and logout clears the session"
+        ],
+        "must_not_mark_complete_on": [
+          "Google button clicked",
+          "account chooser opened",
+          "an account row clicked without backend identity proof"
+        ],
+        "native_surface_fallback": "If the provider intentionally exposes a non-controllable native identity surface, show the exact matched owner account and one-action handoff immediately; never wait silently. Resume automatically after that single owner click.",
+        "timeout_behavior": "Return a structured provider_popup_not_controllable or owner_account_not_present result promptly; never remain waiting without a visible next action."
+      },
+      "google_button_configuration": {
+        "use_fedcm_for_button": false,
+        "button_auto_select": false,
+        "ux_mode": "redirect",
+        "member_callback_path": "/api/auth/google/member-callback",
+        "expected_effect": "Use a full-page Google redirect so embedded and in-app browsers do not silently stall on FedCM or detached popup handling.",
+        "fedcm_retry_policy": "Do not rely on FedCM or a detached popup for ordinary login; use the fixed server callback and never leave a clickable button with no visible result.",
+        "identity_guard": "The backend still verifies the ID token audience and maps Google sub plus verified email to this project's membership before granting owner_admin."
+      },
+      "one_time_authorization": {
+        "record_at_start": true,
+        "scope": "the exact customer project, existing OAuth client, and manifest URL additions disclosed for this Stage 3 run",
+        "covers": [
+          "application name and same-account support/contact email",
+          "external testing audience and owner test user",
+          "customer-project domains, JavaScript origins, and discovered redirect URIs",
+          "Google OAuth web client creation or minimal update",
+          "Google API User Data Policy checkbox when it is explicitly included in the Stage 3 start disclosure"
+        ],
+        "no_repeat_confirmation_for_covered_actions": true,
+        "resume_from_first_incomplete_step": true,
+        "save_behavior": "Codex clicks Google Cloud Save automatically after the scoped authorization; the owner is not asked to click the routine Save button."
+      },
+      "provider_mutation_state_machine": {
+        "initial": "WAITING_FOR_OWNER_OAUTH_CHANGE_CONFIRMATION",
+        "states": [
+          "WAITING_FOR_OWNER_OAUTH_CHANGE_CONFIRMATION",
+          "APPLYING_PROVIDER_DIFF",
+          "PROVIDER_SAVE_CONFIRMED",
+          "WAITING_FOR_PROVIDER_PROPAGATION",
+          "LIVE_LOGIN_VERIFIED",
+          "FAILED_CLOSED"
+        ],
+        "authorization_gate": "Require one action-time confirmation naming the exact customer project, existing OAuth client, and sanitized URL additions before the first persistent provider mutation.",
+        "automatic_after_gate": [
+          "read the current sanitized origins and redirect URIs",
+          "compute an add-only exact-value diff against the generated manifest",
+          "add only missing values and deduplicate exact normalized entries",
+          "click the Google Cloud Save button automatically",
+          "wait for an explicit provider save-success message and for pending progress to finish",
+          "reload the existing OAuth client and read back the sanitized origins and redirect URIs",
+          "compare the read-back state and fingerprint with the manifest",
+          "wait for provider propagation, then run deployed login, callback, session, and logout verification"
+        ],
+        "save_action": "agent_clicks_save_after_scoped_owner_confirmation",
+        "owner_manual_save_required": false,
+        "success_evidence": [
+          "provider save-success message observed",
+          "saved OAuth client reopened",
+          "all required origins and redirect URIs read back exactly"
+        ],
+        "failure_codes": {
+          "save_not_confirmed": "OAUTH_PROVIDER_SAVE_NOT_CONFIRMED",
+          "readback_mismatch": "OAUTH_PROVIDER_CONFIG_STALE",
+          "live_login_failed": "OAUTH_LIVE_LOGIN_NOT_VERIFIED"
+        },
+        "failure_behavior": "Fail closed with the exact safe error code; do not create another OAuth client, delete old URLs, or rotate a secret to bypass a save/read-back failure.",
+        "truth_boundary": "A provider save and read-back prove configuration persistence only; LIVE_LOGIN_VERIFIED still requires the deployed Google callback, /api/me, session, protected route, and logout checks."
+      },
+      "agent_steps": [
+        "select or create the Google Cloud project that belongs to this customer project",
+        "match the visible Google account exactly to this customer project's registered owner_admin before changing provider configuration",
+        "open Google Auth Platform Branding and fill the project application name",
+        "fill only existing project homepage, privacy, terms, support, and verified logo fields",
+        "keep a public project in external testing mode and add the owner as a test user",
+        "add only customer-owned authorized domains",
+        "open Clients, choose Web application, and fill the project name",
+        "add the manifest JavaScript origins and only the redirect URIs required by a discovered runtime callback",
+        "request only openid, email, and profile for basic sign-in",
+        "after the scoped owner authorization, click Save automatically, wait for provider success, reopen the client, and verify the sanitized provider configuration against this manifest"
+      ],
+      "owner_only_steps": [
+        "enter Google password, OTP, or solve CAPTCHA",
+        "complete domain ownership or Google verification submission not included in the recorded Stage 3 authorization"
+      ],
+      "human_checkpoint_guidance": {
+        "otp": {
+          "plain_language_message": "請開啟當初綁定目前服務帳號的驗證器 App，輸入該服務顯示的 6 位數動態碼；若無法使用驗證器，請改用服務提供的備用碼或帳號復原。請勿把驗證碼貼到聊天。",
+          "agent_behavior": "Keep the authorized browser on the exact OTP page, identify the provider by name, and resume automatically after the owner submits the code without requiring another command.",
+          "never_request_in_chat": true
+        },
+        "password": {
+          "plain_language_message": "請直接在目前供應商的登入頁輸入密碼，不要貼到聊天；登入完成後 Codex 會從原步驟自動續接。",
+          "never_request_in_chat": true
+        },
+        "captcha": {
+          "plain_language_message": "請在目前頁面完成人機驗證；完成後 Codex 會從原步驟自動續接。"
+        }
+      },
+      "never_capture": [
+        "password",
+        "OTP",
+        "cookie",
+        "access token",
+        "refresh token",
+        "client secret",
+        "API key"
+      ],
+      "credential_preservation": "Never delete the OAuth client to repair a secret-handling issue. Preserve the client ID, origins, and login service; rotate only the affected secret when the runtime uses one.",
+      "url_update_guard": "URL-only maintenance is add-only by default: never delete an existing valid URI, recreate the OAuth client, or create/rotate a client secret merely to apply or repair origins and redirect URIs."
+    },
+    "maintenance": {
+      "cli": "python3 auth/google_oauth_config_sync.py diff --observed <sanitized-provider-state.json>",
+      "admin_status_api": "/api/admin/oauth/status",
+      "admin_sync_plan_api": "/api/admin/oauth/sync-plan",
+      "admin_verify_api": "/api/admin/oauth/verify",
+      "admin_role": "owner_admin",
+      "safe_status_fields": [
+        "configuration_state",
+        "application_name",
+        "authorized_domains",
+        "authorized_javascript_origins",
+        "authorized_redirect_uris",
+        "configuration_fingerprint",
+        "last_verified_at",
+        "authorization_expires_at",
+        "credential_rotation_due_at",
+        "verification_due_at",
+        "next_action",
+        "error_code"
+      ],
+      "repair_policy": "Compute a minimal add-only diff, preserve valid existing entries and the OAuth client ID, use the scoped Stage 3 action-time authorization for covered mutations, let Codex save and read back automatically, rotate only an affected secret when separately required, then rerun live login and the discovered runtime flow verification."
+    },
+    "execution_sequence": [
+      "inspect project and preserve existing authentication",
+      "implement or confirm the login button, verified identity route, session, logout, and protected-route checks; require callback only when the runtime uses one",
+      "apply the provider manifest in an owner-authorized browser",
+      "store credentials only through the deployment secret manager owner surface",
+      "deploy and verify health separately from Google login",
+      "run the discovered login flow, identity, session, logout, authorization, mobile, and regression checks",
+      "record safe evidence and leave any unobserved layer incomplete"
+    ],
+    "lifecycle_policy": {
+      "authorization_expired_or_revoked": "start a fresh owner-visible authorization; never extend or forge a token expiry",
+      "credential_rotation_due": "create a replacement only with owner confirmation, deploy it through secret storage, verify login, then retire the old credential",
+      "verification_due": "surface the official due date and owner action; never claim or fabricate an extension",
+      "url_changed": "run the sync diff, merge new origins and redirect URIs, deploy, then verify before considering removal of old valid URLs"
+    },
+    "provider_preview_hosts": [],
+    "production_domain_gate": "waiting_for_customer_owned_custom_domain_for_google_brand_verification",
+    "truth_boundary": "This manifest and runbook make provider setup repeatable, but do not prove that Google Cloud was changed. Live completion requires owner-authorized browser/provider evidence and deployed login verification."
+  },
+  "chatgpt_submission_oauth_contract": {
+    "must_align": [
+      "authorization endpoint",
+      "token endpoint",
+      "OAuth metadata",
+      "protected resource metadata when MCP is used",
+      "PKCE state and redirect_uri preservation",
+      "refresh token lifecycle when long-lived connector sessions are required",
+      "reviewer test path with seeded non-sensitive data"
+    ],
+    "must_not": [
+      "make reviewer use the owner's Google account",
+      "require real payment to test basic protected flow",
+      "use JavaScript-only approval buttons for external OAuth clients",
+      "change scopes or redirect URIs between website login and ChatGPT submission without a new review"
+    ]
+  },
+  "reference_incident_lessons": [
+    "OAuth resume loss after Google login breaks external connector authorization even when login itself succeeds.",
+    "Missing credentials include on cross-origin login can prevent the backend session cookie from landing.",
+    "Settings showing a connector is connected is not proof that the current chat loaded tools.",
+    "Authorization approval should have a plain link-navigation route as the stable path for external clients.",
+    "Unauthorized MCP or protected API probes should return an auth challenge, not data or a generic backend failure.",
+    "Live proof must separate local plan, provider console setup, deployed callback, native ChatGPT or connector transcript, and review approval."
+  ],
+  "routes": [
+    "/login",
+    "/logout",
+    "/api/auth/callback/google",
+    "/api/auth/google",
+    "/api/me",
+    "/oauth/authorize",
+    "/oauth/authorize/approve",
+    "/oauth/token",
+    "/.well-known/oauth-authorization-server",
+    "/.well-known/oauth-protected-resource"
+  ],
+  "roles": [
+    "anonymous",
+    "user",
+    "owner_admin",
+    "reviewer"
+  ],
+  "permission_model": {
+    "anonymous": [
+      "public docs",
+      "public health/status when safe"
+    ],
+    "user": [
+      "own account",
+      "own project results",
+      "own tool calls",
+      "confirmed write actions only"
+    ],
+    "reviewer": [
+      "test-only app flow",
+      "seeded test data"
+    ],
+    "owner_admin": [
+      "masked admin reports",
+      "ops dashboard",
+      "configuration checklist"
+    ]
+  },
+  "identity_rbac_abuse_contract": {
+    "identity_source": "server_verified_oauth_or_session_only",
+    "scope_keys": [
+      "tenant_id",
+      "project_id",
+      "subject",
+      "role",
+      "permission"
+    ],
+    "roles": [
+      "user",
+      "developer",
+      "admin",
+      "owner"
+    ],
+    "persistent_tables": [
+      "project_memberships",
+      "tool_usage_events",
+      "account_restrictions",
+      "admin_action_audit_logs"
+    ],
+    "stored_event_fields": [
+      "hashed tenant/project/subject",
+      "tool_name",
+      "request_hash",
+      "request_size",
+      "outcome",
+      "risk_code",
+      "created_at"
+    ],
+    "forbidden_event_fields": [
+      "raw prompt",
+      "password",
+      "OTP",
+      "token",
+      "cookie",
+      "payment credential"
+    ],
+    "anonymous_global_block": false,
+    "stage_3": "bind verified OAuth/session identity to project membership and enforce RBAC",
+    "stage_6": "operate retention, per-subject limits, restrictions, alerts and owner audit",
+    "persistence_requirement": "APPFACTORY_SECURITY_DB_PATH must point to durable storage before deployed monitoring can be marked PASS"
+  },
+  "session_policy": {
+    "cookie": "httpOnly, secure in production, sameSite appropriate for ChatGPT/OAuth flow",
+    "token_storage": "server-side or signed session only; never expose OAuth refresh token to frontend",
+    "logout": "clear session and revoke project-local session; provider revocation optional by provider capability"
+  },
+  "unified_member_identity_chain": {
+    "external_identity_key": "Google verified sub; email is profile/contact data and must not be the permanent identity key",
+    "internal_identity_key": "user_id",
+    "required_consumers": [
+      "/api/auth/google",
+      "/api/me",
+      "website session",
+      "MCP authorization",
+      "get_my_usage_quota",
+      "plan and subscription lookup",
+      "payment order",
+      "entitlement ledger",
+      "notification recipient reference",
+      "admin ops read model"
+    ],
+    "rule": "Every consumer resolves the same server-side user_id from a verified session. Website, MCP, quota, payment, entitlement, notification, and ops must not create separate member identities.",
+    "api_token_boundary": "Project API tokens, when needed, are server-issued credentials bound to user_id, tenant_id, project_id, scopes, expiry, revocation and audit; never treat a Google ID token as the application's long-lived API token."
+  },
+  "project_owner_binding": {
+    "source_of_truth": "the Google account registered for the current customer project purchase or owner-authorized Stage 3 start",
+    "binding_key": "verified Google sub plus current project_id; email is used only for initial exact-account matching and contact",
+    "role": "owner_admin for this customer project only",
+    "subscription_independence": "owner_admin maintenance, testing, export and rollback access cannot be removed by subscription expiry, quota exhaustion or a later stage purchase",
+    "stage_entitlement_boundary": "purchased stages unlock customer-facing build capabilities; they never grant mother-system admin, other-project access or provider approval",
+    "codex_rule": "Before project mutation, Codex must resolve the active verified Google identity to the same project_id owner_admin and reject any mother-system, reference-product or other-customer context.",
+    "isolation_keys": [
+      "tenant_id",
+      "project_id",
+      "user_id",
+      "google_sub",
+      "role"
+    ]
+  },
+  "reviewer_path": {
+    "required": true,
+    "purpose": "OpenAI/ChatGPT review must be able to test without being blocked by unclear login or paid-only access.",
+    "options": [
+      "demo reviewer account",
+      "time-limited reviewer bypass",
+      "seeded test data with no real customer data"
+    ],
+    "must_not": [
+      "給 reviewer 真實付費者資料",
+      "讓 reviewer 需要真刷卡才可測基本功能"
+    ]
+  },
+  "generated_runtime": {
+    "implementation": "auth/project_stage3_membership_runtime.py",
+    "regression_test": "auth/project_stage3_runtime_test.py",
+    "capabilities": [
+      "verified Google identity to project-local user/session",
+      "configured customer-project owner_admin binding",
+      "project-local cumulative stage entitlement decisions",
+      "project-local SQLite identity and membership persistence"
+    ],
+    "not_copied_from_mother": [
+      "mother-system reviewer credentials",
+      "mother-system MCP approval allowlist",
+      "mother-system OAuth signing material",
+      "full internal capability catalog or routing recipes"
+    ],
+    "adapter_boundary": "The selected backend adapter must wire this compact project runtime to its own routes. Reviewer login, external MCP OAuth authorization-code issuance, provider credentials and live deployment require separate project-scoped adapters and evidence."
+  },
+  "validation_gates": [
+    "login page renders",
+    "Google OAuth console settings are owner-confirmed without exposing secrets",
+    "generated Google OAuth manifest is derived from this project rather than a reference project",
+    "OAuth configuration sync is idempotent and reports only missing or stale values",
+    "provider-managed preview domains are not claimed as owner-authorized production domains",
+    "admin OAuth status is owner_admin-only and never returns secrets or tokens",
+    "safe next=/oauth-continue is preserved after login/register",
+    "cross-origin login uses credentials include when cookie sessions are used",
+    "callback route exists",
+    "state and redirect_uri are preserved through authorization",
+    "PKCE challenge and verifier path is tested for external OAuth clients",
+    "session persists across protected API call",
+    "logout clears session",
+    "different Google accounts resolve to different local user identities",
+    "/api/auth/google, /api/me, MCP, quota, plans, payments, entitlements, notifications and ops resolve the same server-side user_id",
+    "user-supplied owner/admin claims never elevate privileges",
+    "tenant and project membership are checked before owner/admin access",
+    "security event persistence stores hashes and classifications but no raw prompt or secret",
+    "mobile login and callback complete without blank page or hidden overflow blocking action buttons",
+    "reviewer path can access test-only data",
+    "owner_admin remains authorized when plan, subscription or quota state changes",
+    "a customer project's owner_admin never becomes mother-system admin or another project's admin",
+    "MCP unauthorized returns proper auth challenge when needed",
+    "ChatGPT OAuth metadata endpoints are reachable after deployment",
+    "ChatGPT native or review test transcript shows the external client completed OAuth and called the protected tool"
+  ],
+  "next_stage_recommendation": {
+    "recommended": [
+      "backend_api_builder"
+    ],
+    "plain_next_prompt": "幫我把登入、OAuth、角色權限接到後端 API 和 MCP 權限檢查。"
+  },
+  "reference_case_policy": "Use completed reference cases only for reusable auth/OAuth/reviewer gates; do not copy accounts, secrets, tokens, brand, or production paths.",
+  "truth_boundary": "Auth/OAuth login planning proof only. It creates login, session, role, OAuth metadata, reviewer path, owner-action, and validation plans. It is not Google Cloud OAuth configuration proof, real credential proof, live login proof, deployed callback proof, ChatGPT OAuth proof, or approval proof.",
+  "dependency_application": {
+    "status": "already_satisfied",
+    "path": "requirements.txt",
+    "dependencies": [
+      "google-auth>=2.35,<3",
+      "requests>=2.32,<3"
+    ],
+    "added": [],
+    "clean_environment_verification_required": true
+  }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>開發外掛助手｜Google 登入維護</title>
+  <style>
+    :root { color-scheme: dark; --panel:#101d33; --line:#29405f; --text:#eef6ff; --muted:#a9b8d4; --ok:#6ee7b7; }
+    * { box-sizing:border-box; } body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif; background:linear-gradient(145deg,#07101f,#0d1728); color:var(--text); }
+    main { max-width:980px; margin:auto; padding:24px 18px 56px; } a { color:inherit; } .top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .button { display:inline-block; text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:10px 14px; }
+    .hero,.card { border:1px solid var(--line); background:rgba(16,29,51,.9); border-radius:24px; padding:24px; margin-top:18px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } h1 { font-size:clamp(32px,6vw,58px); margin:.2em 0; } h2 { margin-top:0; } p,li { color:var(--muted); line-height:1.7; }
+    code { overflow-wrap:anywhere; color:#bfdbfe; } .status { color:var(--ok); font-weight:800; } .warning { border-left:4px solid #fbbf24; background:#3a2c12; }
+    @media(max-width:720px) { .grid { grid-template-columns:1fr; } .top { align-items:flex-start; flex-direction:column; } }
+  </style>
+</head>
+<body><main>
+  <div class="top"><strong>開發外掛助手｜技術維護中心</strong><a class="button" href="/ops">返回營運後台</a></div>
+  <section class="hero">
+    <p class="status">僅限同專案 owner_admin</p>
+    <h1>Google 登入維護</h1>
+    <p>這裡讓專案擁有者與其 Codex 查看安全狀態、產生設定差異、驗證正式登入及追蹤後續異動。它不顯示密鑰，也不允許直接竄改會員、付款或權益。</p>
+    <p>設定指紋：<code>83e20d918786c93a29d86283be60e1620811eb428595070ac9a1d9a8bea1d8b7</code></p>
+  </section>
+  <section class="grid">
+    <article class="card"><h2>設定比對</h2><p>網址或網域改變時先產生最小差異，保留仍有效的設定。</p><code>python3 auth/google_oauth_config_sync.py diff --observed &lt;sanitized-provider-state.json&gt;</code></article>
+    <article class="card"><h2>驗證正式登入</h2><p>部署後重新測試 Google 登入、回呼、session 與 owner_admin 權限；沒有實際證據就維持待驗證。</p></article>
+    <article class="card"><h2>自動維護觸發</h2><ul><li>網站網址或自訂網域變更</li><li>重新導向網址不一致</li><li>Google 授權失效或被撤銷</li><li>正式登入驗證失敗</li></ul></article>
+    <article class="card"><h2>後台安全欄位</h2><ul><li>configuration_state</li><li>application_name</li><li>authorized_domains</li><li>authorized_javascript_origins</li><li>authorized_redirect_uris</li><li>configuration_fingerprint</li><li>last_verified_at</li><li>authorization_expires_at</li><li>credential_rotation_due_at</li><li>verification_due_at</li><li>next_action</li><li>error_code</li></ul></article>
+  </section>
+  <section class="card warning"><strong>安全邊界</strong><p>不顯示密鑰。密碼、OTP、cookie、Client Secret、access token、refresh token 與 authorization code 不得寫入此後台、CLI 輸出、GitHub 或聊天內容。需要本人登入或確認時，Codex 暫停，完成後再自動續跑。</p></section>
+</main></body></html>

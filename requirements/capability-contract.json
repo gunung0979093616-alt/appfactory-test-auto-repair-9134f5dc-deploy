@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "scope": "customer_project",
+  "owner_goal": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+  "domain_id": "automotive",
+  "allowed_requirement_statuses": [
+    "required",
+    "optional",
+    "not_applicable",
+    "owner_blocked"
+  ],
+  "capability_groups": {
+    "required": [
+      "schedule_operation",
+      "subscribe_alerts",
+      "create_booking",
+      "approve_task",
+      "send_notification",
+      "assign_technician",
+      "record_parts_usage",
+      "book_notification"
+    ],
+    "optional": [
+      "cancel_notification",
+      "notification_delivery_status",
+      "retry_notification",
+      "schedule_job",
+      "schedule_reminder"
+    ],
+    "not_applicable": [],
+    "owner_blocked": []
+  },
+  "capabilities": [
+    {
+      "capability_id": "schedule_operation",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#schedule_operation",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::schedule_operation",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "subscribe_alerts",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#subscribe_alerts",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::subscribe_alerts",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "create_booking",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#create_booking",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::create_booking",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "approve_task",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#approve_task",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::approve_task",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "send_notification",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#send_notification",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::send_notification",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "assign_technician",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#assign_technician",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::assign_technician",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "record_parts_usage",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#record_parts_usage",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::record_parts_usage",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "book_notification",
+      "requirement_status": "required",
+      "source": "frozen_from_pre_runtime_domain_plan",
+      "tool_schema": "generated_mcp/automotive-tools.json#book_notification",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::book_notification",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "cancel_notification",
+      "requirement_status": "optional",
+      "source": "selected_industry_runtime_optional",
+      "tool_schema": "generated_mcp/automotive-tools.json#cancel_notification",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::cancel_notification",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "notification_delivery_status",
+      "requirement_status": "optional",
+      "source": "selected_industry_runtime_optional",
+      "tool_schema": "generated_mcp/automotive-tools.json#notification_delivery_status",
+      "skill_behavior": "skills/automotive-resource-discovery/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::notification_delivery_status",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "read-only; no write confirmation required"
+    },
+    {
+      "capability_id": "retry_notification",
+      "requirement_status": "optional",
+      "source": "selected_industry_runtime_optional",
+      "tool_schema": "generated_mcp/automotive-tools.json#retry_notification",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::retry_notification",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "schedule_job",
+      "requirement_status": "optional",
+      "source": "selected_industry_runtime_optional",
+      "tool_schema": "generated_mcp/automotive-tools.json#schedule_job",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::schedule_job",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    },
+    {
+      "capability_id": "schedule_reminder",
+      "requirement_status": "optional",
+      "source": "selected_industry_runtime_optional",
+      "tool_schema": "generated_mcp/automotive-tools.json#schedule_reminder",
+      "skill_behavior": "skills/automotive-application-workflow/SKILL.md",
+      "backend_handler": "server/industry_runtime.py::schedule_reminder",
+      "mcp_registration": "server/server.py::tools/list",
+      "widget_action": "ui://widget/universal-industry-content-v1.html",
+      "positive_and_negative_test": "tests/test_industry_runtime.py",
+      "write_guard": "confirmed + idempotency_key required"
+    }
+  ],
+  "missing_required_capabilities": [],
+  "requirement_fingerprint": "234cf1065c25417738679315d66b616ad99fbd9291e8fecbdb45cc34bc151aa7",
+  "required_tools_source": "frozen_from_pre_runtime_domain_plan",
+  "status": "PASS",
+  "completion_rule": "Every required capability must keep its Tool schema, Skill behavior, handler, MCP registration, UI action and positive/negative evidence. Optional and not-applicable capabilities never become mandatory; owner-blocked capabilities preserve an owner-action handoff. Guards may constrain writes but may not remove required industry capabilities.",
+  "truth_boundary": "Generated local traceability contract only; provider authorization and live behavior require separate evidence."
+}

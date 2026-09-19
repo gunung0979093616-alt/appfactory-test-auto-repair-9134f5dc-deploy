@@ -1,0 +1,8 @@
+{
+  "entities": [
+    "notification"
+  ],
+  "states": [],
+  "project_id_required": true,
+  "requirement_id_required": true
+}

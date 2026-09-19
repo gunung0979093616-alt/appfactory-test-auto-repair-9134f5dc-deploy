@@ -1,0 +1,10 @@
+{
+  "name": "汽車服務系統",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "build": "echo stage2 preview site ready"
+  },
+  "devDependencies": {}
+}

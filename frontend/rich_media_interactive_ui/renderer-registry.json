@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "default_renderer": "list",
+  "supported_states": [
+    "loading",
+    "success",
+    "empty",
+    "error",
+    "unauthorized",
+    "quota_exhausted",
+    "partial",
+    "payment_required"
+  ],
+  "selection_order": [
+    "explicit content_type",
+    "data shape",
+    "media availability",
+    "item count",
+    "interaction need",
+    "list fallback"
+  ],
+  "cardinality_rules": {
+    "one": "card_or_detail",
+    "two_to_eight_visual_items": "carousel_or_grid",
+    "nine_to_one_hundred": "list_grid_or_table_with_pagination",
+    "more_than_one_hundred": "server_filter_aggregate_and_page_before_render"
+  },
+  "renderers": [
+    {
+      "id": "card",
+      "when": "one focused item",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "list",
+      "when": "many or text-heavy items",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "carousel",
+      "when": "two to eight visual peers",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "table",
+      "when": "comparable records with stable columns",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "chart",
+      "when": "numeric trends or distributions",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "gallery",
+      "when": "image-first collection",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "video",
+      "when": "direct approved media or external player navigation",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "map",
+      "when": "records with coordinates",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "detail",
+      "when": "one record with many fields",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "form",
+      "when": "validated user input",
+      "fallback": "accessible text list"
+    },
+    {
+      "id": "dashboard",
+      "when": "multiple metrics and grouped sections",
+      "fallback": "accessible text list"
+    }
+  ],
+  "accessibility": [
+    "semantic headings",
+    "alt text",
+    "keyboard controls",
+    "visible focus",
+    "reduced motion",
+    "text fallback"
+  ]
+}

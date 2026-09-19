@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "scope": "customer_project_deployment_ops",
+  "service_name": "auto-repair-plugin",
+  "display_name": "auto-repair",
+  "purpose": "讓不同產業開發者的外掛上 Render 後，也能用自己的後台/API 確認正式站版本、健康狀態、MCP 工具與部署證據。",
+  "generated_surfaces": {
+    "status_api": "/api/admin/deployment/status",
+    "smoke_api": "/api/admin/deployment/smoke",
+    "admin_page": "/admin/deployment.html",
+    "health": "/health",
+    "mcp": "/mcp"
+  },
+  "required_environment_variables": [
+    {
+      "name": "RENDER_SERVICE_ID",
+      "required_for": "Render API 管理與部署狀態對齊",
+      "secret": false
+    },
+    {
+      "name": "RENDER_WORKSPACE_ID",
+      "required_for": "Render workspace 對齊",
+      "secret": false
+    },
+    {
+      "name": "RENDER_EXTERNAL_URL",
+      "required_for": "正式網址 smoke 測試",
+      "secret": false
+    },
+    {
+      "name": "RENDER_API_KEY",
+      "required_for": "由 Codex/後台伺服器端管理 Render 時使用，不得放前端或 ZIP 明文",
+      "secret": true
+    }
+  ],
+  "truth_boundary": "本 scaffolding 建立專案自己的部署管理 API 與後台入口；正式 Render API 操作仍需開發者在自己的帳號授權，金鑰只能放伺服器環境變數，不得寫入前端、聊天或版本庫。",
+  "stage_hooks": {
+    "stage_1": "需求與資料庫建立時先建立部署證據欄位，不等到上線後才補。",
+    "stage_2": "網站後台顯示部署與 MCP 狀態。",
+    "stage_3": "登入/會員完成後可加上 owner-only 存取。",
+    "stage_4": "付款與權益上線前必須通過正式站 smoke。",
+    "stage_5": "ChatGPT 原生連線前確認 MCP tools/list 與 tools/call。",
+    "stage_6": "送審前輸出完整部署證據包。"
+  }
+}

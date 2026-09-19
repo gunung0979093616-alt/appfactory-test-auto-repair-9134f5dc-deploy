@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "resource_uri": "ui://widget/universal-industry-content-v1.html",
+  "mime_type": "text/html;profile=mcp-app",
+  "tool_descriptor_meta": {
+    "ui": {
+      "resourceUri": "ui://widget/universal-industry-content-v1.html"
+    },
+    "openai/outputTemplate": "ui://widget/universal-industry-content-v1.html"
+  },
+  "resource_meta": {
+    "ui": {
+      "csp": {
+        "resourceDomains": [],
+        "connectDomains": [],
+        "frameDomains": []
+      }
+    },
+    "openai/widgetCSP": {
+      "resource_domains": [],
+      "connect_domains": [],
+      "frame_domains": []
+    }
+  },
+  "version_policy": "Never overwrite or delete a resource still referenced by a deployed tool descriptor; publish v2 and switch atomically.",
+  "existing_widget_protection": {
+    "before_change": [
+      "capture current resource URI",
+      "capture current tool descriptor",
+      "run current render regression"
+    ],
+    "after_change": [
+      "register new version",
+      "verify new conversation",
+      "retain prior version for rollback"
+    ]
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T10:09:37.827930+00:00",
+  "source": {
+    "from_project_yaml": true,
+    "from_requirements_spec": true,
+    "from_data_inventory": true,
+    "owner_goal": "建立三間汽車保養維修廠營運 ChatGPT App：先診斷等待過久的根因，再管理預約、接車、工單、技師技能、工位、零件等待、報價核准、進度通知與完工交車。不得在未驗證根因前只做排班系統。需要前後端網站、管理後台、工具、技能、測試與 ZIP。",
+    "does_user_need_to_repeat_original_need": false
+  },
+  "data_context": {
+    "domain": "general_operations",
+    "availability_status": "ready_for_database_design"
+  },
+  "entities": [
+    {
+      "name": "business_record",
+      "purpose": "保存外掛需要查詢或分析的主要業務資料。",
+      "fields": [
+        {
+          "name": "record_id",
+          "type": "string",
+          "required": true,
+          "description": "general_operations 專案所需欄位：record_id。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料",
+            "必須可唯一或穩定定位資料"
+          ]
+        },
+        {
+          "name": "record_name",
+          "type": "string",
+          "required": true,
+          "description": "general_operations 專案所需欄位：record_name。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "required": true,
+          "description": "general_operations 專案所需欄位：status。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "required": true,
+          "description": "資料最後更新時間。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料",
+            "必須能解析為日期時間"
+          ]
+        },
+        {
+          "name": "data_source_type",
+          "type": "string",
+          "required": true,
+          "description": "資料來源類型，例如 CSV、Google Sheet、資料庫或 API。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "required": false,
+          "description": "general_operations 專案所需欄位：category。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        },
+        {
+          "name": "owner",
+          "type": "string",
+          "required": false,
+          "description": "general_operations 專案所需欄位：owner。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        },
+        {
+          "name": "date_range",
+          "type": "datetime",
+          "required": false,
+          "description": "general_operations 專案所需欄位：date_range。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        },
+        {
+          "name": "notes",
+          "type": "string",
+          "required": false,
+          "description": "general_operations 專案所需欄位：notes。",
+          "public_safe": true,
+          "validation": [
+            "不得為未授權秘密或完整敏感資料"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_to_field_map": [
+    {
+      "field": "record_id",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "record_name",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "status",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "updated_at",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "data_source_type",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "category",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "owner",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "date_range",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    },
+    {
+      "field": "notes",
+      "source_candidate": "business_data_source",
+      "source_status": "declared_but_not_connected",
+      "source_path": "",
+      "mapping_status": "planned"
+    }
+  ],
+  "data_intelligence_layer": {
+    "stage_order": [
+      "market_problem_to_data_requirement",
+      "answer_gap_to_data_gap",
+      "data_source_discovery",
+      "multi_source_validation",
+      "data_acquisition",
+      "cleaning_and_standardization",
+      "multi_source_fusion",
+      "canonical_schema",
+      "database_builder",
+      "index_search",
+      "data_quality",
+      "data_freshness",
+      "data_lineage",
+      "source_replacement"
+    ],
+    "plain_language": "先從產業問題反推資料需求，再找資料來源、驗證、清洗、標準化、融合成標準資料模型，最後建立資料庫、索引、品質、新鮮度、血緣與來源替換規則。",
+    "canonical_schema": {
+      "domain": "general_operations",
+      "primary_fields": [
+        "record_id",
+        "record_name",
+        "status",
+        "updated_at",
+        "data_source_type",
+        "category",
+        "owner",
+        "date_range",
+        "notes"
+      ],
+      "public_safe_fields": [
+        "record_id",
+        "record_name",
+        "status",
+        "updated_at",
+        "data_source_type",
+        "category",
+        "owner",
+        "date_range",
+        "notes"
+      ]
+    },
+    "source_strategy": {
+      "candidate_statuses": [
+        "declared_but_not_connected"
+      ],
+      "replacement_rule": "資料來源可以替換，但欄位契約、索引契約與品質驗證必須重新通過，不能直接覆蓋既有成果。",
+      "lineage_fields": [
+        "source_id",
+        "source_path",
+        "source_checksum",
+        "source_updated_at",
+        "ingested_at"
+      ]
+    },
+    "quality_and_freshness": {
+      "quality_rule": "正式資料必須有 row count、欄位對應、缺漏檢查與來源證據。",
+      "freshness_rule": "回答涉及即時或會變動資料時，必須能說明更新時間；沒有更新證據時要說明限制。"
+    },
+    "handoff_to_database": {
+      "database_builder": "adaptive_database_builder",
+      "index_search": "database/indexes.sql and database/query-pattern-catalog.json",
+      "must_not_claim_real_data_without_source_rows": true
+    }
+  },
+  "query_rules": [
+    {
+      "name": "answer_with_source",
+      "description": "回答必須包含資料來源或更新時間；缺少時要說明限制。",
+      "required_fields": [
+        "updated_at",
+        "data_source_type"
+      ]
+    },
+    {
+      "name": "missing_data_guard",
+      "description": "資料來源或必要欄位缺失時，不得假裝已能查詢真實資料。",
+      "required_fields": []
+    },
+    {
+      "name": "answer_confidence",
+      "description": "依資料完整度與更新時間推導",
+      "required_fields": []
+    }
+  ],
+  "validation_rules": [
+    "所有 required 欄位在正式匯入前必須有來源對應。",
+    "不得把 sample data 當成 production proof。"
+  ],
+  "privacy_rules": [
+    "欄位預設 developer_private，除非明確標 public_ok。"
+  ],
+  "sync_lifecycle_contract": {
+    "scope_keys": [
+      "tenant_id",
+      "project_id",
+      "source_id"
+    ],
+    "identity_fields": [
+      "record_id"
+    ],
+    "source_metadata": [
+      "source_path",
+      "source_checksum",
+      "source_updated_at",
+      "ingested_at",
+      "published_version"
+    ],
+    "publish_rule": "candidate validation must pass before atomic published pointer switch",
+    "deletion_rule": "explicit tombstone only; missing input is not deletion"
+  },
+  "readiness": {
+    "status": "ready_for_database_design",
+    "can_start_database_design": true,
+    "can_start_skill_definition": true,
+    "known_gaps": []
+  },
+  "next_stage_recommendation": {
+    "recommended": [
+      "adaptive_database_builder",
+      "skill_definition",
+      "mcp_tool_design"
+    ],
+    "plain_next_prompt": "先依這份資料欄位與查詢規則建立專案專屬 SQLite、索引與資料驗證，再建立 Skill 與 MCP 工具。",
+    "sequence_rule": "For a full data-backed project, create and validate the project-scoped SQLite foundation, indexes, and query patterns before claiming that Skill or MCP tools are executable. A user may explicitly stop after inventory or schema planning without creating a database."
+  },
+  "truth_boundary": "data schema planning proof only; not data import, database migration, Skill, MCP, frontend, backend, deployment, ChatGPT native, or submission proof"
+}

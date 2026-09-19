@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>管理後台｜開發外掛助手</title>
+  <style>
+    :root{--ink:#17202b;--muted:#667085;--paper:#f6f2e9;--card:#fff;--line:#ded7cb;--blue:#087ac1;--cyan:#08a9be;--orange:#f47a20;--nav:#102a43}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Segoe UI",sans-serif}
+    .layout{min-height:100vh;display:grid;grid-template-columns:280px 1fr}.sidebar{padding:28px 20px;background:var(--nav);color:#fff}.brand{font-weight:900;font-size:20px;line-height:1.35}.brand span{color:#42d6e7}.surface{margin:22px 0 8px;color:#a8c6dc;font-size:13px}.nav{display:grid;gap:7px}.nav a{color:#d8e8f2;text-decoration:none;padding:11px 13px;border-radius:12px}.nav a:hover,.nav a[aria-current="page"]{background:#fff;color:#102a43;font-weight:800}.switch{display:grid;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid #31506a}.switch a{color:#fff;text-decoration:none;font-size:14px}
+    main{padding:38px clamp(22px,5vw,70px)}.eyebrow{color:var(--orange);font-weight:900}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.top h1{font-size:clamp(32px,5vw,58px);margin:8px 0 10px;line-height:1}.top p{max-width:700px;color:var(--muted);font-size:17px;line-height:1.7}.badge{white-space:nowrap;background:#dff6f8;color:#056473;border-radius:999px;padding:9px 13px;font-weight:800}
+    .notice{margin:24px 0;padding:16px 18px;border:1px solid #f0c494;border-radius:16px;background:#fff8ed;color:#7a4613}.notice a{color:#087ac1;font-weight:800}.refresh-row{display:flex;align-items:center;gap:12px;margin:-10px 0 20px;color:var(--muted);font-size:13px}.refresh-row button{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:8px 13px;font-weight:800;cursor:pointer}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.card{min-height:158px;padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 10px 30px rgba(20,32,43,.06)}.card .stage{color:var(--blue);font-size:13px;font-weight:900}.card h2{margin:14px 0 7px;font-size:18px}.card .value{font-size:25px;font-weight:950;overflow-wrap:anywhere}.card p{color:var(--muted);line-height:1.55}.loading{color:var(--muted)}
+    @media(max-width:800px){.layout{grid-template-columns:1fr}.sidebar{padding:20px}.nav{display:flex;overflow-x:auto}.nav a{white-space:nowrap}.top{display:block}.badge{display:inline-flex;margin-bottom:14px}main{padding:28px 18px}}
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">開發外掛助手</div>
+      <div id="surface-label" class="surface">載入管理項目</div>
+      <nav id="navigation" class="nav" aria-label="管理功能"></nav>
+      <div class="switch"><a id="surface-switch" href="/technical">切換管理介面</a><a href="/">返回網站首頁</a></div>
+    </aside>
+    <main>
+      <div class="top">
+        <div><div id="eyebrow" class="eyebrow">OWNER ONLY</div><h1 id="title">正在確認管理權限</h1><p id="description">後台資料僅提供已驗證的專案管理者。</p></div>
+        <div id="badge" class="badge">權限檢查中</div>
+      </div>
+      <div id="notice" class="notice">正在連接安全的管理資料……</div>
+      <div class="refresh-row"><button id="refresh" type="button">立即重新整理</button><span id="last-refresh">尚未完成更新</span></div>
+      <section id="cards" class="cards" aria-live="polite"><p class="loading">載入中</p></section>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const technical = location.pathname.startsWith('/technical');
+      const parts = location.pathname.split('/').filter(Boolean);
+      const section = parts[1] || (technical ? 'system' : 'overview');
+      const surface = technical ? 'technical' : 'business';
+      const endpoint = `/api/ops/${surface}/${encodeURIComponent(section)}`;
+      const switchLink = document.querySelector('#surface-switch');
+      switchLink.href = technical ? '/ops' : '/technical';
+      switchLink.textContent = technical ? '前往外掛營運後台' : '前往 Codex 技術維護中心';
+      document.querySelector('#surface-label').textContent = technical ? 'Codex 技術維護中心' : '外掛營運後台';
+      document.querySelector('#eyebrow').textContent = technical ? 'CODEX / TECHNICAL ONLY' : 'PROJECT OWNER ONLY';
+
+      const text = value => value === null || value === undefined || value === '' ? '尚未啟用' : String(value);
+      const optionalText = value => value === null || value === undefined || value === '' ? '' : String(value);
+      let requestSequence = 0;
+      const loadPayload = (retryAttempt = 0) => {
+        const sequence = ++requestSequence;
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 8000);
+        return fetch(endpoint, {credentials:'include', headers:{Accept:'application/json'}, signal:controller.signal}).then(async response => {
+        const payload = await response.json();
+        if (!response.ok) throw {response, payload};
+        if (sequence !== requestSequence) return;
+        document.title = `${payload.title}｜開發外掛助手`;
+        document.querySelector('#title').textContent = payload.title;
+        document.querySelector('#description').textContent = payload.description;
+        document.querySelector('#badge').textContent = technical ? '技術人員專用' : '管理者專用';
+        document.querySelector('#notice').textContent = technical
+          ? '此區提供遮罩後的系統證據與修復線索；不顯示密鑰，也不直接任意修改正式資料。'
+          : '此區只呈現營運管理需要的資料；技術路由、錯誤堆疊與密鑰不會出現在這裡。';
+        document.querySelector('#navigation').innerHTML = payload.navigation.map(item =>
+          `<a href="${item.href}" ${item.id === payload.section ? 'aria-current="page"' : ''}>${item.label}</a>`
+        ).join('');
+        document.querySelector('#cards').innerHTML = payload.cards.map(card =>
+          `<article class="card"><div class="stage">${text(card.stage)}</div><h2>${text(card.label)}</h2><div class="value">${text(card.value)}</div>${optionalText(card.note) ? `<p>${optionalText(card.note)}</p>` : ''}</article>`
+        ).join('');
+        document.querySelector('#last-refresh').textContent = `最後更新：${new Date().toLocaleString('zh-Hant-TW')}`;
+      }).catch(error => {
+        if (sequence !== requestSequence) return;
+        const payload = error.payload || {};
+        const status = error.response?.status;
+        if (!status && retryAttempt < 3) {
+          document.querySelector('#notice').textContent = error.name === 'AbortError'
+            ? '完整監控超過 8 秒，保留上一版畫面並在 5 秒後重試。'
+            : '監控資料暫時無法更新，保留上一版畫面並在 5 秒後重試。';
+          window.setTimeout(() => loadPayload(retryAttempt + 1), 5000);
+          return;
+        }
+        document.querySelector('#title').textContent = payload.status === 'admin_required' ? '需要管理者權限' : '請先使用 Google 登入';
+        document.querySelector('#description').textContent = '這不是公開展示頁；只有此專案的管理者可以查看營運或技術資料。';
+        document.querySelector('#badge').textContent = '尚未授權';
+        document.querySelector('#notice').innerHTML = payload.status === 'admin_required'
+          ? '目前帳號不是專案管理者。'
+          : '請先完成 Google 登入。若管理者尚未設定 OAuth，系統會維持關閉，不會顯示假資料。 <a href="/api/auth/google?next=/ops">前往 Google 登入</a>';
+        document.querySelector('#cards').innerHTML = '';
+      }).finally(() => window.clearTimeout(timeout));
+      };
+      document.querySelector('#refresh').addEventListener('click', () => loadPayload());
+      loadPayload();
+      if (technical && section === 'mcp') window.setInterval(loadPayload, 60000);
+
+    })();
+  </script>
+</body>
+</html>

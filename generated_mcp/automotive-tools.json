@@ -1,0 +1,83 @@
+{
+  "domain_id": "automotive",
+  "tools": [
+    {
+      "name": "schedule_operation",
+      "description": "確認資源、時間與影響範圍後建立排程。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "subscribe_alerts",
+      "description": "確認通知對象與管道後建立異常通知。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "create_booking",
+      "description": "重新檢查名額與輸入並確認後建立預約。",
+      "action_kind": "transaction",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "approve_task",
+      "description": "核准任務：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "transaction",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "send_notification",
+      "description": "發送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "assign_technician",
+      "description": "指派技師：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "record_parts_usage",
+      "description": "零件使用紀錄：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "book_notification",
+      "description": "book notification：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "cancel_notification",
+      "description": "取消通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "notification_delivery_status",
+      "description": "通知狀態：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "read",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "retry_notification",
+      "description": "重送通知：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "schedule_job",
+      "description": "排程工作：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    },
+    {
+      "name": "schedule_reminder",
+      "description": "排程提醒：依輸入、前置條件與成功條件執行，不以產業名稱代替需求判斷。",
+      "action_kind": "write",
+      "public_mcp_tool": true
+    }
+  ]
+}

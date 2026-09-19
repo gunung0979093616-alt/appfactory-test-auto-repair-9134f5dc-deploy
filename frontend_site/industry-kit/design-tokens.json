@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "package_version": "1.0.0",
+  "color": {
+    "class": "theme-automotive",
+    "brand": "#1e293b",
+    "accent": "#dc2626",
+    "gold": "#facc15",
+    "hero_radius": "32px",
+    "layout": "layout-automotive"
+  },
+  "layout": "operations-dashboard",
+  "motion": "status-reveal",
+  "breakpoints": {
+    "mobile": "720px",
+    "compact": "900px"
+  },
+  "minimum_tap_target": "44px"
+}
